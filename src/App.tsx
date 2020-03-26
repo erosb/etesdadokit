@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component, ReactElement } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -55,50 +55,74 @@ function Donations() {
           <dd>#Etesdadokit! Debrecen</dd>
         </dl>
 
-            </p>
+      </p>
     </Fragment>
   );
 }
 
-function App() {
-  return (
-    <Fragment>
-      {/* <h1>
-        <img src="./fb-logo.png" className="fb-logo" alt="Keress minket Facebookon!" title="Keress minket Facebookon!" />
-        Etesd A dokit!  
-    </h1> */}
+interface AppState {
+  chosenOffering: ReactElement | null,
+  layoutClass: string
+}
 
-      <div id="main-grid">
+export class App extends Component<any, AppState> {
 
-        <Intro />
+  public state = {
+    chosenOffering: null,
+    layoutClass: ""
+  };
 
+  onRestaurantClick() {
+    this.setState({
+      chosenOffering: (
+      <form style={{gridArea: "form"}}>
+        <div className="form-group">
+          <label>Milyen ételt tudsz felajánlani?</label>
+          <textarea name="txt-dish" id="txt-dish"></textarea>
+        </div>
+      </form>
+      ),
+      layoutClass: "offering-form"
+    })
+  }
+
+  render() {
+    let content: (ReactElement | null) = this.state.chosenOffering;
+    if (content === null) {
+      content = (<Fragment>
         <h2 id="want-to-support">Hogyan tudsz segíteni minket?</h2>
+          <div className="tile" id="tile-offerings">
+            <h3>Felajánlással</h3>
+            <ul className="offering-types">
+              <li className="restaurant" onClick={this.onRestaurantClick.bind(this)}>
+                <span>Éttermet, ételkiszállítót, pékséget képviselek</span>
+                <div className="hover"></div>
+              </li>
+              <li className="raw-material">
+                <span>Alapanyagom, csomagolóanyagom van</span>
+                <div className="hover"></div>
+              </li>
+              <li className="shipping">
+                <span>Fuvarozó vagyok</span>
+                <div className="hover"></div>
+              </li>
+            </ul>
+          </div>
 
-        <div className="tile" id="tile-offerings">
-          <h3>Felajánlással</h3>
-          <ul className="offering-types">
-            <li className="restaurant">
-              <span>Éttermet, ételkiszállítót, pékséget képviselek</span>
-              <div className="hover"></div>
-            </li>
-            <li className="raw-material">
-              <span>Alapanyagom, csomagolóanyagom van</span>
-              <div className="hover"></div>
-            </li>
-            <li className="shipping">
-              <span>Fuvarozó vagyok</span>
-              <div className="hover"></div>
-            </li>
-          </ul>
+          <div className="tile" id="tile-donations">
+            <Donations />
+          </div>
+      </Fragment>);
+    }
+    return (
+      <Fragment>
+        <div id="main-grid" className={this.state.layoutClass}>
+          <Intro />
+          {content}
         </div>
-
-        <div className="tile" id="tile-donations">
-          <Donations />
-        </div>
-
-      </div>
-    </Fragment>
-  );
+      </Fragment>
+    );
+  }
 }
 
 export default App;

@@ -58,8 +58,14 @@ img.fb-logo {
   ". intro intro ."
   ". wts wts ."
   ". offerings donations ."
-  ". offerings donations ."
-  ". offerings donations .";
+  ;
+}
+
+#main-grid.offering-form {
+  grid-template-areas: 
+  ". intro intro ."
+  ". wts wts ."
+  ". form form .";
 }
 
 #want-to-support {
