@@ -16,7 +16,7 @@ body {
   grid-area: intro;
   font-size: 130%;
   text-align: justify;
-  background-color: #72bb96; /* #74d0a1 #a6decc;*/
+  background-color: #72bb8f; /* #72bb96 #74d0a1 #a6decc;*/
   
   border-radius: 0 0 .5em .5em;
   padding: 0em 3em 1.6em 3em;
@@ -26,7 +26,7 @@ body {
 }
 
 .intro h2 {
-  background-color: #508c88;
+  background-color:  #508c88;
   border-radius: 0 0 .5em .5em;
   border: .15em solid white;
   border-top: 0em;
@@ -118,17 +118,15 @@ img.fb-logo {
   width: 100%; height: 100%;
   top: 0;
   left: 0;
-  background-color: #bb685b; /*#c56455;*/
   display: inline-block;
   position: absolute;
   border-radius: .5em;
-  /* z-index: 1; */
-  transition: all .2s ;
+  transition: all .05s ;
 }
 
 .offering-types li:hover .hover {
   clip-path: circle(100% at 50% 50%);
-  transition: all .2s ;
+  transition: all .25s ;
 }
 
 .offering-types li span {
@@ -136,24 +134,24 @@ img.fb-logo {
   position: absolute;
   z-index: 1;
   width: 100%; height: 100%;
-  left: 0; top: 0;/*top: 40%;*/
-  /* left: 50%; top: 50%;
-  transform: translate(-50%, -50%); */
-  /* margin-top: auto;
-  margin-bottom: auto; */
+  left: 0; top: 0;
   text-align: center;
   align-items: center;
   justify-content: center;
-  /* line-height: 100%; */
-  /* vertical-align: middle; */
 }
 
 .offering-types .restaurant {
   background-color: #914539
 }
+.offering-types .restaurant .hover {
+  background-color: #bb685b
+}
 
 .offering-types .raw-material {
   background-color: #508c88
+}
+.offering-types .raw-material .hover {
+  background-color: #69a09d
 }
 
 .offering-types .bakery {
@@ -162,6 +160,10 @@ img.fb-logo {
 
 .offering-types .shipping {
   background-color: #50484d
+}
+
+.offering-types .shipping .hover {
+  background-color: #777376
 }
 
 .offering-types .wrapping {

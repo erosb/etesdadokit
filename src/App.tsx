@@ -81,8 +81,14 @@ function App() {
               <span>Éttermet, ételkiszállítót, pékséget képviselek</span>
               <div className="hover"></div>
             </li>
-            <li className="raw-material">Alapanyagom, csomagolóanyagom van</li>
-            <li className="shipping">Fuvarozó vagyok</li>
+            <li className="raw-material">
+              <span>Alapanyagom, csomagolóanyagom van</span>
+              <div className="hover"></div>
+            </li>
+            <li className="shipping">
+              <span>Fuvarozó vagyok</span>
+              <div className="hover"></div>
+            </li>
           </ul>
         </div>
 
