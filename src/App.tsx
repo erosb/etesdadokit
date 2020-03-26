@@ -26,7 +26,7 @@ function Intro(props: object) {
       <p>
         <a href="https://www.facebook.com/groups/195786688381007">
           <img src="./fb-logo.png" className="fb-logo" alt="Keress minket Facebookon!" title="Keress minket Facebookon!" />
-                    Csatlakozz hozzánk Facebookon!
+                    &nbsp;Csatlakozz hozzánk Facebookon!
                 </a>
       </p>
     </div>
@@ -65,7 +65,7 @@ function App() {
     <Fragment>
       {/* <h1>
         <img src="./fb-logo.png" className="fb-logo" alt="Keress minket Facebookon!" title="Keress minket Facebookon!" />
-        Etesd A dokit!
+        Etesd A dokit!  
     </h1> */}
 
       <div id="main-grid">
@@ -77,7 +77,10 @@ function App() {
         <div className="tile" id="tile-offerings">
           <h3>Felajánlással</h3>
           <ul className="offering-types">
-            <li className="restaurant">Éttermet, ételkiszállítót, pékséget képviselek</li>
+            <li className="restaurant">
+              <span>Éttermet, ételkiszállítót, pékséget képviselek</span>
+              <div className="hover"></div>
+            </li>
             <li className="raw-material">Alapanyagom, csomagolóanyagom van</li>
             <li className="shipping">Fuvarozó vagyok</li>
           </ul>

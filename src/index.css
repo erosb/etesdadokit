@@ -97,6 +97,7 @@ img.fb-logo {
 
 .offering-types {
   padding-inline-start: 0;
+  position: relative;
 }
 
 .offering-types li {
@@ -108,6 +109,43 @@ img.fb-logo {
   list-style-type: none;
   font-size: 160%;
   cursor: pointer;
+  position: relative;
+  align-items: center;
+}
+
+.offering-types li .hover {
+  clip-path: circle(0% at 50% 50%);
+  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #bb685b; /*#c56455;*/
+  display: inline-block;
+  position: absolute;
+  border-radius: .5em;
+  /* z-index: 1; */
+  transition: all .2s ;
+}
+
+.offering-types li:hover .hover {
+  clip-path: circle(100% at 50% 50%);
+  transition: all .2s ;
+}
+
+.offering-types li span {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  width: 100%; height: 100%;
+  left: 0; top: 0;/*top: 40%;*/
+  /* left: 50%; top: 50%;
+  transform: translate(-50%, -50%); */
+  /* margin-top: auto;
+  margin-bottom: auto; */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* line-height: 100%; */
+  /* vertical-align: middle; */
 }
 
 .offering-types .restaurant {
