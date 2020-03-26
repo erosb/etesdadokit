@@ -9,7 +9,7 @@ body {
   background-color:  #fffae0; /*#ffeb3b*/
   font-family: "Baloo 2", Arial, Helvetica, sans-serif;
   color: #232323;
-  margin: 0
+  margin: 0 0 3em 0;
 }
 
 .intro {
@@ -58,6 +58,7 @@ img.fb-logo {
   ". intro intro ."
   ". wts wts ."
   ". offerings donations ."
+  ". form form ."
   ;
 }
 
@@ -117,6 +118,11 @@ img.fb-logo {
   cursor: pointer;
   position: relative;
   align-items: center;
+}
+
+.offering-types li a {
+  text-decoration: none;
+  color: white;
 }
 
 .offering-types li .hover {

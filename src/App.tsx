@@ -1,6 +1,7 @@
-import React, { Fragment, Component, ReactElement } from 'react';
-import logo from './logo.svg';
+import React, { Component, Fragment, ReactElement } from 'react';
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import './App.css';
+import { RestaurantForm } from "./RestaurantForm";
 
 function Intro(props: object) {
   return (
@@ -60,6 +61,39 @@ function Donations() {
   );
 }
 
+function WelcomeContent(props: object) {
+  return (<Fragment>
+    <h2 id="want-to-support">Hogyan tudsz segíteni minket?</h2>
+          <div className="tile" id="tile-offerings">
+            <h3>Felajánlással</h3>
+            <ul className="offering-types">
+              <li className="restaurant">
+                <Link to="/restaurant">
+                  <span>Éttermet, ételkiszállítót, pékséget képviselek</span>
+                  <div className="hover"></div>
+                </Link>
+              </li>
+              <li className="raw-material">
+                <Link to="/raw-material">
+                  <span>Alapanyagom, csomagolóanyagom van</span>
+                  <div className="hover"></div>
+                </Link>
+              </li>
+              <li className="shipping">
+                <Link to="/shipping">
+                  <span>Fuvarozó vagyok</span>
+                  <div className="hover"></div>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="tile" id="tile-donations">
+            <Donations />
+          </div>
+  </Fragment>)
+}
+
 interface AppState {
   chosenOffering: ReactElement | null,
   layoutClass: string
@@ -75,12 +109,12 @@ export class App extends Component<any, AppState> {
   onRestaurantClick() {
     this.setState({
       chosenOffering: (
-      <form style={{gridArea: "form"}}>
-        <div className="form-group">
-          <label>Milyen ételt tudsz felajánlani?</label>
-          <textarea name="txt-dish" id="txt-dish"></textarea>
-        </div>
-      </form>
+        <form style={{ gridArea: "form" }}>
+          <div className="form-group">
+            <label>Milyen ételt tudsz felajánlani?</label>
+            <textarea name="txt-dish" id="txt-dish"></textarea>
+          </div>
+        </form>
       ),
       layoutClass: "offering-form"
     })
@@ -89,30 +123,18 @@ export class App extends Component<any, AppState> {
   render() {
     let content: (ReactElement | null) = this.state.chosenOffering;
     if (content === null) {
-      content = (<Fragment>
-        <h2 id="want-to-support">Hogyan tudsz segíteni minket?</h2>
-          <div className="tile" id="tile-offerings">
-            <h3>Felajánlással</h3>
-            <ul className="offering-types">
-              <li className="restaurant" onClick={this.onRestaurantClick.bind(this)}>
-                <span>Éttermet, ételkiszállítót, pékséget képviselek</span>
-                <div className="hover"></div>
-              </li>
-              <li className="raw-material">
-                <span>Alapanyagom, csomagolóanyagom van</span>
-                <div className="hover"></div>
-              </li>
-              <li className="shipping">
-                <span>Fuvarozó vagyok</span>
-                <div className="hover"></div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="tile" id="tile-donations">
-            <Donations />
-          </div>
-      </Fragment>);
+      content = (
+        <BrowserRouter>
+        <Switch>
+          <Route path="/restaurant">
+            <RestaurantForm />
+          </Route>
+          <Route path="/">
+            <WelcomeContent />
+          </Route>
+        </Switch>
+          
+        </BrowserRouter>);
     }
     return (
       <Fragment>
