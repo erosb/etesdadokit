@@ -84,7 +84,7 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 </dd>
 
 <dt>Kiszállítási terv</dt>
-<dd>A kiszállítási tervet egy koordinátor készíti el. Egy adott napra vonatkozó feladatokból áll. Attribútumai:
+<dd>A kiszállítási tervet egy koordinátor készíti el. Egy adott napra vonatkozó feladatokból áll. Minden feladatnak van egy felelőse, akinek már ismertek a kapcsolati adatai. Attribútumai:
 
  - dátum (nap)
  - ételkészítési feladat: egy ételkészítési felajánlással élve a koordinátor megbízza a felajánlót, hogy készítse el a felajánlott (vagy kevesebb?) adag ételt. Pontosan 1 ételkészítési feladat tarozik egy kiszállítási tervhez.
@@ -95,6 +95,7 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 <dt>Ételkészítési feladat</dt>
 <dd>A koordinátor hozza létre egy ételkészítési felajánlás alapján. Attribútumok:
 
+- felelős: az étterem-tulajdonos, akinek a felajánlását elfogadja a koordinátor
 - adagok száma: maximum a felajánlásban megadott adagmennyiség lehet)
 - fuvarozási feladat: kötelezően tartozik az ételkészítési feladathoz, ha az étterem-tulajdonos nem tudja megoldani a szállítást
 - 
@@ -103,14 +104,15 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 <dt>Alapanyag-beszerzési feladat</dt>
 <dd>Attribútumok:
 
-- a szükséges alapanyagok szabadszöveges leírása
+- felelős: az alapanyag-beszállító, akinek a felajánlását elfogadja a koordinátor
+- a biztosított alapanyagok szabadszöveges leírása
 - fuvarozási feladat: kötelező, ha nem vállalja az alapanyag-beszállító a szállítást az étterembe, egyébként nincs megadva
 </dd>
 
 <dt>Fuvarozási feladat</dt>
 <dd>A koordinátor hozza létre egy fuvarozási felajánlás alapján. Vagy egy alapanyag-beszerzési feladathoz tartozik, vagy egy ételkészítési feladathoz. Attribútumai:
 
-- fuvarozó (akinek a felajánlását elfogadja a koordinátor)
+- felelős: a fuvarozó, akinek a felajánlását elfogadja a koordinátor
 - becsült indulási időpont (mikorra kell a fuvarozónak megérkezni az indulási címre)
 - feladó és címzett kapcsolati adatai (annak az alapanyag-beszállítónak vagy étterem-tulajdonosnak a kapcsolati adatai, akinek a címéről szállítani kell ill. ahova szállítani kell)
 - címek (honnan hova)
@@ -125,17 +127,29 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 
 Alatta 3 gomb felajánlóknak, szerep szerint. A gombok 3 különböző formra navigálnak, amelyeken a különböző típusú felajánlásokat lehet létrehozni.
 
+### User scenario:
+ * a látogató a welcome screen-re navigál
+ * valamelyik szerepkör szerinti gombra kattint
+ * kitölti a formot
+ * elküldi a felajánlását
+ * ...
+ * később telefonon vagy emailben értesítést kap, ha egy koordinátor beillesztette a felajánlást egy kiszállítási tervbe
+
+
 ## Koordinátori felület
 
 Authentikált koordinátorok láthatják.
 
 ### Kiszállítási tervező felület
 
-A koordinátor itt tudja 
+A koordinátor itt tud összeállítani egy kiszállítási tervet.
 
+#### User scenario: új kiszállítási terv létrehozása
 
-### Invariánsok
-
-Ezeket feladat létrehozásánál ellenőrizzük, és figyelmeztető üzenetet jelenítünk meg, ha valamelyik nem teljesül.
-
-Ételkészítési 
+* a koordinátor bejelentkezik
+* kiválasztja, hogy melyik napra vonatkozó tervet készít (következő 3 nap valamelyike)
+* megjelenik az adott napra érvényes készétel-felajánlások listája
+* kiválasztja a készétel-felajánlást (így létrejön az ételkészítési feladat a kiszállítási tervhez)
+* létrehozza az opcionális alapanyag-beszállítási és fuvarozási feladatokat (TODO UI)
+* elmenti a kiszállítási tervet
+* értesítések a felelősöknek?
