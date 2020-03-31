@@ -37,6 +37,7 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
   - kiszállítás napja (bármely nap, vagy a következő 3 nap valamelyike)
   - milyen fontosabb hozzávalók kellenek (szabadszöveges leírás)
   - meg tudja-e oldani az étel kiszállítását a kórházba (boolean)
+  - fuvarozási igény (ha nem tudja megoldani a fuvarozást, akkor ezt kötelező megadni)
   - étterem címe
   - kapcsolati adatok
 
@@ -50,7 +51,7 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
  - telefonszám
 </dd>
 
-<dt>Fuvarozás felajánlás (shipping offering)</dt>
+<dt>Fuvarozás/szállítás felajánlás (shipping offering)</dt>
 <dd>Attribútumai:
     
  - raktér mérete, vagy a jármű típusa
@@ -64,8 +65,21 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 
 <dt>alapanyag-felajánlás</dt>
 <dd>Alapanyag-beszállító hozza létre. Attribútumok:
-    
-    
+
+ - cím (hova kell menni az alapanyagért)  
+ - milyen alapanyag(ok)at tud felajánlani (szabadszöveges?)
+ - meg tudja-e oldani az alapanyag(ok) szállítását (boolean) az étteremhez
+ - fuvarozást meg tudja oldani?
+ - fuvarozási igény (ha nem tudja megoldani, akkor kötelező megadni)
+ - kapcsolati adatok
+</dd>
+
+<dt>Fuvarozás-igény</dt>
+<dd>Készétel-felejánláshoz vagy alapanyag-felajánláshoz tartozik. Akkor kötelező megadni, ha. Attribútumai:
+
+ - leghamarabb mikorra lehet menni a szállítmányért? (óra:perc, dátum nélkül)
+ - mekkora rakterű jármű kell?
+ - hűtős jármű kell?
 </dd>
 </dl>
 
@@ -74,4 +88,8 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 ## Publikus welcome screen
 
 Statikus szöveg a csoport céljáról
-Alatta 3 gomb felajánlóknak, szerep szerint
+Alatta 3 gomb felajánlóknak, szerep szerint. A gombok 3 különböző formra navigálnak, amelyeken a különböző típusú felajánlásokat lehet létrehozni.
+
+## Koordinátori felület
+
+
