@@ -30,7 +30,7 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 
 <dl>
     <dt>készétel-felajánlás (food offering)</dt>
-    <dd>Az étterem-tulajdonos hozza létre, attribútumai:
+    <dd>Az étterem-tulajdonos (vagy egy koordinátor, egy étterem-tulajdonos nevében) hozza létre, attribútumai:
     
   - felajánlott étel megnevezése
   - hány adagot tud készíteni (min. 50)
@@ -63,8 +63,8 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 
 </dd>
 
-<dt>alapanyag-felajánlás</dt>
-<dd>Alapanyag-beszállító hozza létre. Attribútumok:
+<dt>alapanyag-felajánlás (raw material offering)</dt>
+<dd>Alapanyag-beszállító (vagy egy koordinátor, egy alapanyag-beszállító nevében) hozza létre. Attribútumok:
 
  - cím (hova kell menni az alapanyagért)  
  - milyen alapanyag(ok)at tud felajánlani (szabadszöveges?)
@@ -77,9 +77,34 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
 <dt>Fuvarozás-igény</dt>
 <dd>Készétel-felejánláshoz vagy alapanyag-felajánláshoz tartozik. Akkor kötelező megadni, ha. Attribútumai:
 
+ - cím: honnan kell szállítani
  - leghamarabb mikorra lehet menni a szállítmányért? (óra:perc, dátum nélkül)
  - mekkora rakterű jármű kell?
  - hűtős jármű kell?
+</dd>
+
+<dt>Kiszállítási terv</dt>
+<dd>A kiszállítási tervet egy koordinátor készíti el. Egy adott napra vonatkozó feladatokból áll. Attribútumai:
+
+ - ételkészítési feladat: egy ételkészítési felajánlással élve a koordinátor megbízza a felajánlót, hogy készítse el a felajánlott (vagy kevesebb?) adag ételt. Pontosan 1 ételkészítési feladat tarozik egy kiszállítási tervhez.
+ - alapanyag-beszerzési feladat: egy alapanyag-felajánlással élve a koordinátor megbízza a felajánlót, hogy biztosítsa időben a felajánlott alapanyagokat adott napon, adott időpontra.
+</dd>
+
+<dt>Ételkészítési feladat</dt>
+<dd>A koordinátor hozza létre egy ételkészítési felajánlás alapján. Attribútumok:
+
+- adagok száma: maximum a felajánlásban megadott adagmennyiség lehet
+</dd>
+
+<dt>Alapanyag-beszerzési feladat</dt>
+<dd></dd>
+
+<dt>Fuvarozási feladat</dt>
+<dd>A koordinátor hozza létre egy fuvarozási felajánlás alapján. Vagy egy alapanyag-beszerzési feladathoz tartozik, vagy egy ételkészítési feladathoz. Attribútumai:
+
+- fuvarozó (akinek a felajánlását elfogadja a koordinátor)
+- feladó kapcsolati adatai (annak az alapanyag-beszállítónak vagy étterem-tulajdonosnak a kapcsolati adatai, akinek a címéről szállítani kell)
+- címek
 </dd>
 </dl>
 
