@@ -32,39 +32,41 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
     <dt>készétel-felajánlás (food offering)</dt>
     <dd>Az étterem-tulajdonos hozza létre, attribútumai:
     
- - felajánlott étel megnevezése
- - hány adagot tud készíteni (min. 50)
- - kiszállítás napja (bármely nap, vagy a következő 3 nap valamelyike)
- - milyen fontosabb hozzávalók kellenek (szabadszöveges leírás)
- - meg tudja-e oldani az étel kiszállítását a kórházba (boolean)
- - étterem címe
- - kapcsolati adatok
-    </dd>
+  - felajánlott étel megnevezése
+  - hány adagot tud készíteni (min. 50)
+  - kiszállítás napja (bármely nap, vagy a következő 3 nap valamelyike)
+  - milyen fontosabb hozzávalók kellenek (szabadszöveges leírás)
+  - meg tudja-e oldani az étel kiszállítását a kórházba (boolean)
+  - étterem címe
+  - kapcsolati adatok
 
-    <dt>kapcsolati adatok</dt>
+</dd>
+
+<dt>kapcsolati adatok</dt>
     <dd>Minden felajánlónak kötelező megadni. Ezeket kliensoldalon megjegyezzük, de authentikációra egyelőre semmit  nem használunk belőle. Attribútumai:
 
-- cégnév vagy kapcsolattartó neve
-- email cím
-- telefonszám
-    </dd>
+ - cégnév vagy kapcsolattartó neve
+ - email cím
+ - telefonszám
+</dd>
 
-    <dt>Fuvarozás felajánlás (shipping offering)</dt>
-    <dd>Attribútumai:
+<dt>Fuvarozás felajánlás (shipping offering)</dt>
+<dd>Attribútumai:
     
-- raktér mérete, vagy a jármű típusa
-- hűtős autó? 
-- fuvarozsá napja (bármely nap, vagy a következő 3 nap valamelyike)
-- az adott napon leghamarabb hány órától tud vállalni fuvarozást
-- csak Debrecenen belül szállít, vagy az egész megyében?
-- kapcsolati adatok
-    </dd>
+ - raktér mérete, vagy a jármű típusa
+ - hűtős autó? 
+ - fuvarozsá napja (bármely nap, vagy a következő 3 nap valamelyike)
+ - az adott napon leghamarabb hány órától tud vállalni fuvarozást
+ - csak Debrecenen belül szállít, vagy az egész megyében?
+ - kapcsolati adatok
 
-    <dt>alapanyag-felajánlás</dt>
-    <dd>Alapanyag-beszállító hozza létre. Attribútumok:
+</dd>
+
+<dt>alapanyag-felajánlás</dt>
+<dd>Alapanyag-beszállító hozza létre. Attribútumok:
     
     
-    </dd>
+</dd>
 </dl>
 
 
