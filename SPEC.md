@@ -70,7 +70,6 @@ A felajánlókat nem authentikáljuk, viszont a rendszer a kapcsolati adataikat 
  - milyen alapanyag(ok)at tud felajánlani (szabadszöveges?)
  - az alapanyag biztosításának napja (bármely nap, vagy a következő 3 nap valamelyike)
  - meg tudja-e oldani az alapanyag(ok) szállítását (boolean) az étteremhez
- - fuvarozást meg tudja oldani?
  - fuvarozási igény (ha nem tudja megoldani, akkor kötelező megadni)
  - kapcsolati adatok
 </dd>
