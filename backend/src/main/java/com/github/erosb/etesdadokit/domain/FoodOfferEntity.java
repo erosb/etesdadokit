@@ -30,8 +30,9 @@ public class FoodOfferEntity {
 
     private Boolean needTransport;
 
-    private String address;
+    @OneToOne
+    private ContactEntity contactEntity;
 
-    @OneToMany
-    private List<ContactEntity> contactEntity;
+    @OneToOne
+    private AddressEntity addressEntity;
 }

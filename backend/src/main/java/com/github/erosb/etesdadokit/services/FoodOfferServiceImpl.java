@@ -15,10 +15,14 @@ public class FoodOfferServiceImpl implements FoodOfferService {
 
     private final FoodOfferMapper foodOfferMapper;
     private final FoodOfferRepository foodOfferRepository;
+    private final AddressService addressService;
+    private final ContactInfoService contactInfoService;
 
-    public FoodOfferServiceImpl(FoodOfferMapper foodOfferMapper, FoodOfferRepository foodOfferRepository) {
+    public FoodOfferServiceImpl(FoodOfferMapper foodOfferMapper, FoodOfferRepository foodOfferRepository, AddressService addressService, ContactInfoService contactInfoService) {
         this.foodOfferMapper = foodOfferMapper;
         this.foodOfferRepository = foodOfferRepository;
+        this.addressService = addressService;
+        this.contactInfoService = contactInfoService;
     }
 
     @Override
@@ -36,7 +40,12 @@ public class FoodOfferServiceImpl implements FoodOfferService {
     }
 
     private FoodOfferResponse saveAndReturnResponse(FoodOfferEntity foodOfferEntity) {
+        // TODO nem vagyok ebben biztos
+        addressService.createAddress(foodOfferEntity.getAddressEntity());
+        contactInfoService.createContactInfo(foodOfferEntity.getContactEntity());
+
         FoodOfferEntity savedFoodOfferEntity = foodOfferRepository.save(foodOfferEntity);
+
 
         FoodOfferResponse response = foodOfferMapper.foodOfferToResponse(savedFoodOfferEntity);
 

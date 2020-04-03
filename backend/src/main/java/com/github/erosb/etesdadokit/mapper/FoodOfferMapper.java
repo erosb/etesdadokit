@@ -1,18 +1,21 @@
 package com.github.erosb.etesdadokit.mapper;
 
-import com.github.erosb.etesdadokit.domain.ContactEntity;
 import com.github.erosb.etesdadokit.domain.FoodOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
-import com.github.erosb.etesdadokit.feature.offer.Address;
-import com.github.erosb.etesdadokit.feature.offer.Contact;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class FoodOfferMapper {
+
+    private final AddressMapper addressMapper;
+    private final ContactMapper contactMapper;
+
+    public FoodOfferMapper(AddressMapper addressMapper, ContactMapper contactMapper) {
+        this.addressMapper = addressMapper;
+        this.contactMapper = contactMapper;
+    }
+
 
     public FoodOfferResponse foodOfferToResponse(FoodOfferEntity foodOfferEntity) {
 
@@ -38,22 +41,9 @@ public class FoodOfferMapper {
                 .portion(request.getQuantity())
                 .deliveryDate(request.getTransportDate())
                 .notes(request.getIngredients())
-                .address(addressToAddressEntity(request.getAddress()))
-                // TODO .contactEntity(contactToContactEntity(request.getContact()))
+                .addressEntity(addressMapper.addressToAddressEntity(request.getAddress()))
+                .contactEntity(contactMapper.contactToContactEntity(request.getContact()))
                 .build();
     }
 
-    // TODO rewrite mapping, take into account field names and structure
-    public String addressToAddressEntity(Address address) {
-        return address.toString();
-    }
-
-    // TODO rewrite mapping, take into account field names and structure
-    public ContactEntity contactToContactEntity(Contact contact) {
-        final ContactEntity contactEntity = new ContactEntity();
-        contactEntity.setEmail(contact.getEmail());
-        contactEntity.setName(contact.getNameOrCompany());
-        contactEntity.setPhoneNumber(contact.getPhoneNumber());
-        return contactEntity;
-    }
 }

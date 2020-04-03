@@ -1,20 +1,20 @@
 package com.github.erosb.etesdadokit.services;
 
 import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.repository.ContactInfoRepository;
+import com.github.erosb.etesdadokit.repository.ContactRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContactInfoServiceImpl implements ContactInfoService {
 
-    private  final ContactInfoRepository contactInfoRepository;
+    private final ContactRepository contactRepository;
 
-    public ContactInfoServiceImpl(ContactInfoRepository contactInfoRepository) {
-        this.contactInfoRepository = contactInfoRepository;
+    public ContactInfoServiceImpl(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
     }
 
     @Override
     public ContactEntity createContactInfo(ContactEntity contactEntity) {
-        return contactInfoRepository.save(contactEntity);
+        return contactRepository.save(contactEntity);
     }
 }

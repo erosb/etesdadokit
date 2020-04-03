@@ -15,15 +15,17 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContactEntity {
+public class AddressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nameOrCompany;
+    private Integer zip;
 
-    private String email;
+    private String city;
 
-    private String phoneNumber;
+    private String addressLineOne;
+
+    private String addressLineTwo;
 }
