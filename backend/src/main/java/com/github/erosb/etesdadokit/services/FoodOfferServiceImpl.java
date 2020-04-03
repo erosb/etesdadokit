@@ -1,10 +1,9 @@
 package com.github.erosb.etesdadokit.services;
 
-import com.github.erosb.etesdadokit.domain.FoodOffer;
+import com.github.erosb.etesdadokit.domain.FoodOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
 import com.github.erosb.etesdadokit.mapper.FoodOfferMapper;
-import com.github.erosb.etesdadokit.repository.ContactInfoRepository;
 import com.github.erosb.etesdadokit.repository.FoodOfferRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +35,10 @@ public class FoodOfferServiceImpl implements FoodOfferService {
         return saveAndReturnResponse(foodOfferMapper.foodOfferRequestToFoodOffer(request));
     }
 
-    private FoodOfferResponse saveAndReturnResponse(FoodOffer foodOffer) {
-        FoodOffer savedFoodOffer = foodOfferRepository.save(foodOffer);
+    private FoodOfferResponse saveAndReturnResponse(FoodOfferEntity foodOfferEntity) {
+        FoodOfferEntity savedFoodOfferEntity = foodOfferRepository.save(foodOfferEntity);
 
-        FoodOfferResponse response = foodOfferMapper.foodOfferToResponse(savedFoodOffer);
+        FoodOfferResponse response = foodOfferMapper.foodOfferToResponse(savedFoodOfferEntity);
 
         return response;
     }

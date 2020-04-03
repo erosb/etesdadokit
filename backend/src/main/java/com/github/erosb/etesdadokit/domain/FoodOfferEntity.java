@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodOffer {
+public class FoodOfferEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +33,5 @@ public class FoodOffer {
     private String address;
 
     @OneToMany
-    private List<ContactInfo> contactInfo;
+    private List<ContactEntity> contactEntity;
 }

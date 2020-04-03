@@ -1,7 +1,7 @@
 package com.github.erosb.etesdadokit.bootstrap;
 
-import com.github.erosb.etesdadokit.domain.ContactInfo;
-import com.github.erosb.etesdadokit.domain.FoodOffer;
+import com.github.erosb.etesdadokit.domain.ContactEntity;
+import com.github.erosb.etesdadokit.domain.FoodOfferEntity;
 import com.github.erosb.etesdadokit.repository.ContactInfoRepository;
 import com.github.erosb.etesdadokit.repository.FoodOfferRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -29,21 +29,21 @@ public class Bootstrap implements CommandLineRunner {
     }
 
     private void loadFoodOffers() {
-        ContactInfo contactInfo = ContactInfo.builder()
+        ContactEntity contactEntity = ContactEntity.builder()
                 .email("test@test.com")
                 .name("Janos")
                 .phoneNumber("0630123456")
                 .build();
 
-        contactInfoRepository.save(contactInfo);
+        contactInfoRepository.save(contactEntity);
 
-        FoodOffer offer = FoodOffer.builder()
+        FoodOfferEntity offer = FoodOfferEntity.builder()
                 .id(1L)
                 .name("Pizza")
                 .portion(50)
                 .deliveryDate(LocalDate.now())
                 .address("Matyas 1")
-                .contactInfo(Arrays.asList(contactInfo))
+                .contactEntity(Arrays.asList(contactEntity))
                 .build();
 
         foodOfferRepository.save(offer);
