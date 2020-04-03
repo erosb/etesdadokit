@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -12,11 +11,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("user").password("user").roles("qwer")
-                .and()
-                .withUser("admin").password("admin").roles("USER", "ADMIN");
+        auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("USER", "ADMIN");
     }
 
     @Override
@@ -38,7 +33,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
                 // authenticated
+                .antMatchers("/planner").hasRole("ADMIN")
                 .anyRequest().authenticated()
+                .and()
+                .formLogin()
                 .and()
                 // exceptions
                 .exceptionHandling();

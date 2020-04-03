@@ -1,27 +1,25 @@
 package com.github.erosb.etesdadokit.feature.planner;
 
 import com.github.erosb.etesdadokit.configuration.SwaggerTags;
-import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferRequest;
-import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
+@RequestMapping("/planner")
 @Api(tags = {SwaggerTags.PLANNER})
 public class PlannerController {
 
-    @PostMapping("/planner/offers")
+    @GetMapping
     @ApiOperation(
-            value = "Creates a transport offer.",
-            response = TransportOfferResponse.class
+            value = "Main page for planner",
+            response = String.class
+
     )
-    public ResponseEntity<String> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
-        return ResponseEntity.ok(transportOfferRequest.toString());
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("ohai");
     }
 }
