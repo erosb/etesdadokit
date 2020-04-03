@@ -1,7 +1,8 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.feature.shared.Address;
-import com.github.erosb.etesdadokit.feature.shared.Contact;
+import com.github.erosb.etesdadokit.feature.offer.Address;
+import com.github.erosb.etesdadokit.feature.offer.Contact;
+import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,7 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -30,9 +33,12 @@ public class FoodOfferRequest {
     @NotNull
     private Boolean ableToTransport;
 
+    private TransportRequest transportRequest;
+
     @NotNull
     private Address address;
 
     @NotNull
-    private Contact contact;
+    @Size(min=1)
+    private List<Contact> contacts;
 }

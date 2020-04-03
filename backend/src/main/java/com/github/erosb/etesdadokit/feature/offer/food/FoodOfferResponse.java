@@ -1,7 +1,7 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.feature.shared.Address;
-import com.github.erosb.etesdadokit.feature.shared.Contact;
+import com.github.erosb.etesdadokit.feature.offer.Address;
+import com.github.erosb.etesdadokit.feature.offer.Contact;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
