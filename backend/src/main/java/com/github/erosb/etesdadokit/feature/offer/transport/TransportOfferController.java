@@ -41,8 +41,8 @@ public class TransportOfferController {
             value = "Return the given transport offer.",
             response = FoodOfferResponse.class
     )
-    public ResponseEntity<FoodOfferResponse> offerTransport(@RequestParam String id) {
-        return ResponseEntity.ok(new FoodOfferResponse());
+    public ResponseEntity<TransportOfferResponse> offerTransport(@RequestParam String id) {
+        return ResponseEntity.ok(new TransportOfferResponse());
     }
 
 }

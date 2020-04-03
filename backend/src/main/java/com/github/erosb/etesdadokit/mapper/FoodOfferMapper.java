@@ -1,17 +1,20 @@
 package com.github.erosb.etesdadokit.mapper;
 
 import com.github.erosb.etesdadokit.domain.FoodOffer;
-import com.github.erosb.etesdadokit.model.FoodOfferDTO;
+import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
+import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FoodOfferMapper {
 
-    public FoodOfferDTO foodOfferToFoodOfferDTO(FoodOffer foodOffer) {
-        if (foodOffer == null) {
+    public FoodOfferResponse foodOfferToResponse(FoodOffer foodOffer) {
+
+        if (foodOffer == null){
             return null;
         }
-        FoodOfferDTO dto = FoodOfferDTO.builder()
+
+        FoodOfferResponse response = FoodOfferResponse.builder()
                 .id(foodOffer.getId())
                 .name(foodOffer.getName())
                 .portion(foodOffer.getPortion())
@@ -22,25 +25,25 @@ public class FoodOfferMapper {
                 .contactInfo(foodOffer.getContactInfo())
                 .build();
 
-        return dto;
+        return response;
     }
 
-    public FoodOffer foodOfferDTOtoFoodOffer(FoodOfferDTO dto) {
-        if (dto == null) {
+    public FoodOffer foodOfferRequestToFoodOffer(FoodOfferRequest request) {
+        if (request == null) {
             return null;
         }
 
-        FoodOffer foodOffer = FoodOffer.builder()
-                .id(dto.getId())
-                .name(dto.getName())
-                .portion(dto.getPortion())
-                .deliveryDate(dto.getDeliveryDate())
-                .notes(dto.getNotes())
-                .needTransport(dto.getNeedTransport())
-                .address(dto.getAddress())
-                .contactInfo(dto.getContactInfo())
+        FoodOffer offer = FoodOffer.builder()
+                .id(request.getId())
+                .name(request.getName())
+                .portion(request.getPortion())
+                .deliveryDate(request.getDeliveryDate())
+                .notes(request.getNotes())
+                .needTransport(request.getNeedTransport())
+                .address(request.getAddress())
+                .contactInfo(request.getContactInfo())
                 .build();
 
-        return foodOffer;
+        return offer;
     }
 }
