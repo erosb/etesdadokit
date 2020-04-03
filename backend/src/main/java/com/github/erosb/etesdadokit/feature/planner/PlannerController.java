@@ -1,7 +1,9 @@
 package com.github.erosb.etesdadokit.feature.planner;
 
+import com.github.erosb.etesdadokit.configuration.SwaggerTags;
 import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferRequest;
 import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferResponse;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
+@Api(tags = {SwaggerTags.PLANNER})
 public class PlannerController {
 
     @PostMapping("/planner/offers")

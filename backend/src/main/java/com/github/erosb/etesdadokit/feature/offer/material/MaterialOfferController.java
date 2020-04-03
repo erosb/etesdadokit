@@ -1,6 +1,8 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
+import com.github.erosb.etesdadokit.configuration.SwaggerTags;
 import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/offer/material")
+@Api(tags = { SwaggerTags.OFFER })
 public class MaterialOfferController {
 
     @PostMapping("/")
