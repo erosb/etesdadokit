@@ -1,0 +1,36 @@
+form > legend, fieldset > legend {
+    font-size: 130%;
+    font-weight: bold;
+}
+
+fieldset {
+    margin-top: 2em;
+    background-color:  #fff178;
+    width: 30%;
+    -webkit-box-shadow: 3px 2px 20px 2px rgba(0,0,0,0.56); 
+    box-shadow: 3px 2px 20px 2px rgba(0,0,0,0.56);
+}
+
+form .form-group {
+    padding: 0.6em;
+}
+
+form .form-group label {
+    font-weight: bold;
+    display: block;
+}
+
+form input, form textarea {
+    border-radius: 3px;
+    border: 0.1em solid #bb685b;
+    padding: 0.2em;
+    color: #232323;
+    font-size: 130%;
+    font-family: "Baloo 2";
+
+}
+
+form fieldset {
+    border: 0;
+    margin-bottom: 2em;
+}
