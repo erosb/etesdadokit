@@ -1,6 +1,5 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
-import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,26 +22,27 @@ public class TransportOfferController {
             value = "Creates a transport offer.",
             response = TransportOfferResponse.class
     )
-    public ResponseEntity<String> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
-        return ResponseEntity.ok(transportOfferRequest.toString());
+    public ResponseEntity<TransportOfferResponse> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
+        return ResponseEntity.ok(TransportOfferResponse.builder().build());
     }
 
     @GetMapping
     @ApiOperation(
             value = "Return every transport offer.",
-            response = FoodOfferResponse.class
+            response = TransportOfferResponse.class,
+            responseContainer = "List"
     )
-    public ResponseEntity<List<FoodOfferResponse>> offerTransport() {
+    public ResponseEntity<List<TransportOfferResponse>> offerTransport() {
         return ResponseEntity.ok(Collections.emptyList());
     }
 
     @GetMapping("/{id}")
     @ApiOperation(
             value = "Return the given transport offer.",
-            response = FoodOfferResponse.class
+            response = TransportOfferResponse.class
     )
     public ResponseEntity<TransportOfferResponse> offerTransport(@RequestParam String id) {
-        return ResponseEntity.ok(new TransportOfferResponse());
+        return ResponseEntity.ok(TransportOfferResponse.builder().build());
     }
 
 }

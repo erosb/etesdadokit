@@ -18,7 +18,7 @@ public class MaterialOfferController {
             value = "Creates a material offer.",
             response = MaterialOfferRequest.class
     )
-    public ResponseEntity<String> offerFood(@RequestBody @Valid MaterialOfferRequest materialOfferRequest) {
-        return ResponseEntity.ok(materialOfferRequest.toString());
+    public ResponseEntity<MaterialOfferResponse> offerFood(@RequestBody @Valid MaterialOfferRequest materialOfferRequest) {
+        return ResponseEntity.ok(MaterialOfferResponse.builder().build());
     }
 }
