@@ -1,21 +1,28 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
+import com.github.erosb.etesdadokit.feature.shared.Contact;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
 public class TransportOfferResponse {
 
-    public Boolean accepted;
+    private Long id;
 
-    public Boolean isAccepted() {
-        return accepted;
-    }
+    public String vehicleCapacity;
 
-    public void setAccepted(Boolean accepted) {
-        this.accepted = accepted;
-    }
+    public Boolean refrigeratorCar;
 
-    @Override
-    public String toString() {
-        return "TransportOfferResponse{" +
-                "accepted=" + accepted +
-                '}';
-    }
+    //TODO fuvarozás napja (bármely nap, vagy a következő 3 nap valamelyike)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date transportDate;
+
+    private Integer firstAvailableHour;
+
+    private Boolean cityOnly;
+
+    private List<Contact> contacts;
 }

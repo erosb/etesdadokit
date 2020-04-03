@@ -1,30 +1,38 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.domain.ContactInfo;
+import com.github.erosb.etesdadokit.feature.shared.Address;
+import com.github.erosb.etesdadokit.feature.shared.Contact;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @Builder
 public class FoodOfferRequest {
 
-    private Long id;
-
+    @NotEmpty
     private String name;
 
-    private Integer portion;
+    @Min(50)
+    private Integer quantity;
 
-    private LocalDate deliveryDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate transportDate;
 
-    private String notes;
+    @NotEmpty
+    private String ingredients;
 
-    private Boolean needTransport;
+    @NotNull
+    private Boolean ableToTransport;
 
-    private String address;
+    @NotNull
+    private Address address;
 
-    private List<ContactInfo> contactInfo;
+    @NotNull
+    private Contact contact;
 }

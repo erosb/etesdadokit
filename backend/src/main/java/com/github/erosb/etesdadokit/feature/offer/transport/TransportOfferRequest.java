@@ -1,37 +1,35 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
+import com.github.erosb.etesdadokit.feature.shared.Contact;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
+@Data
 public class TransportOfferRequest {
 
     @NotEmpty
-    public String capacity;
+    public String vehicleCapacity;
 
     @NotNull
     public Boolean refrigeratorCar;
 
-    public String getCapacity() {
-        return capacity;
-    }
+    //TODO fuvarozás napja (bármely nap, vagy a következő 3 nap valamelyike)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date offerAvailableDate;
 
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
-    }
+    @Max(24)
+    @Min(0)
+    private Integer firstAvailableHour;
 
-    public boolean isAble() {
-        return refrigeratorCar;
-    }
+    @NotNull
+    private Boolean cityOnly;
 
-    public void setAble(boolean able) {
-        refrigeratorCar = able;
-    }
-
-    @Override
-    public String toString() {
-        return "TransportOfferRequest{" +
-                "capacity='" + capacity + '\'' +
-                ", isAble=" + refrigeratorCar +
-                '}';
-    }
+    @NotNull
+    private Contact contact;
 }

@@ -1,8 +1,10 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.domain.ContactInfo;
+import com.github.erosb.etesdadokit.feature.shared.Address;
+import com.github.erosb.etesdadokit.feature.shared.Contact;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,15 +17,16 @@ public class FoodOfferResponse {
 
     private String name;
 
-    private Integer portion;
+    private Integer quantity;
 
-    private LocalDate deliveryDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate transportDate;
 
-    private String notes;
+    private String ingredients;
 
-    private Boolean needTransport;
+    private Boolean ableToTransport;
 
-    private String address;
+    private Address address;
 
-    private List<ContactInfo> contactInfo;
+    private List<Contact> contacts;
 }
