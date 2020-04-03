@@ -22,13 +22,6 @@ public class FoodOfferMapper {
 
         FoodOfferResponse response = FoodOfferResponse.builder()
                 .id(foodOfferEntity.getId())
-                .name(foodOfferEntity.getName())
-                .quantity(foodOfferEntity.getPortion())
-                .transportDate(foodOfferEntity.getDeliveryDate())
-                .ingredients(foodOfferEntity.getNotes())
-                .ableToTransport(foodOfferEntity.getNeedTransport())
-                // .address(foodOffer.getAddress()) // TODO see addressToAddressEntity
-                // .contactInfo(foodOffer.getContactInfo()) // TODO see addressToAddressEntity
                 .build();
 
         return response;
@@ -45,9 +38,8 @@ public class FoodOfferMapper {
                 .portion(request.getQuantity())
                 .deliveryDate(request.getTransportDate())
                 .notes(request.getIngredients())
-                .needTransport(request.getAbleToTransport())
                 .address(addressToAddressEntity(request.getAddress()))
-                .contactEntity(contactToContactEntity(request.getContacts()))
+                // TODO .contactEntity(contactToContactEntity(request.getContact()))
                 .build();
     }
 
@@ -57,14 +49,11 @@ public class FoodOfferMapper {
     }
 
     // TODO rewrite mapping, take into account field names and structure
-    public List<ContactEntity> contactToContactEntity(List<Contact> contacts) {
-
-        return contacts.stream().map(contact -> {
-            final ContactEntity contactEntity = new ContactEntity();
-            contactEntity.setEmail(contact.getEmail());
-            contactEntity.setName(contact.getNameOrCompany());
-            contactEntity.setPhoneNumber(contact.getPhoneNumber());
-            return contactEntity;
-        }).collect(Collectors.toList());
+    public ContactEntity contactToContactEntity(Contact contact) {
+        final ContactEntity contactEntity = new ContactEntity();
+        contactEntity.setEmail(contact.getEmail());
+        contactEntity.setName(contact.getNameOrCompany());
+        contactEntity.setPhoneNumber(contact.getPhoneNumber());
+        return contactEntity;
     }
 }

@@ -3,10 +3,10 @@ package com.github.erosb.etesdadokit.feature.offer.transport;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -38,10 +38,10 @@ public class TransportOfferController {
 
     @GetMapping("/{id}")
     @ApiOperation(
-            value = "Return the given transport offer.",
+            value = "Return a specific transport offer.",
             response = TransportOfferResponse.class
     )
-    public ResponseEntity<TransportOfferResponse> offerTransport(@RequestParam String id) {
+    public ResponseEntity<TransportOfferResponse> offerTransport(@PathVariable String id) {
         return ResponseEntity.ok(TransportOfferResponse.builder().build());
     }
 

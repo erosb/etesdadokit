@@ -30,15 +30,11 @@ public class FoodOfferRequest {
     @NotEmpty
     private String ingredients;
 
-    @NotNull
-    private Boolean ableToTransport;
-
     private TransportRequest transportRequest;
 
     @NotNull
     private Address address;
 
     @NotNull
-    @Size(min=1)
-    private List<Contact> contacts;
+    private Contact contact;
 }

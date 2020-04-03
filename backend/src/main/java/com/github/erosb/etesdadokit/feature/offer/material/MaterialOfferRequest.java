@@ -22,15 +22,11 @@ public class MaterialOfferRequest {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date offerAvailableDate;
 
-    @NotNull
-    private Boolean ableToTransport;
-
     private TransportRequest transportRequest;
 
     @NotNull
     private Address address;
 
     @NotNull
-    @Size(min=1)
-    private List<Contact> contacts;
+    private Contact contact;
 }
