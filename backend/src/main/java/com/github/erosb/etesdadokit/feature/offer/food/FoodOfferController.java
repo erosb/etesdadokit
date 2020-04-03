@@ -36,8 +36,9 @@ public class FoodOfferController {
             response = AcknowledgeResponse.class
     )
     public ResponseEntity<AcknowledgeResponse> offerFood(@RequestBody @Valid FoodOfferRequest foodOfferRequest) {
-        foodOfferService.createFoodOffer(foodOfferRequest);
-        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
+        FoodOfferResponse response = foodOfferService.createFoodOffer(foodOfferRequest);
+        Long id = response.getId();
+        return ResponseEntity.ok(AcknowledgeResponse.builder().id(id).build());
     }
 
     @GetMapping
@@ -58,7 +59,7 @@ public class FoodOfferController {
             response = FoodOfferResponse.class
     )
     public ResponseEntity<FoodOfferResponse> foodOffer(@PathVariable String id) {
-        return ResponseEntity.ok(FoodOfferResponse.builder().build());
+        return ResponseEntity.ok(foodOfferService.findById(Long.valueOf(id)));
     }
 
 }

@@ -5,23 +5,10 @@ import com.github.erosb.etesdadokit.feature.offer.Contact;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ContactMapper {
+public class ContactMapper implements Mapper<ContactEntity, Contact>{
 
-    Contact contactEntityToContact(ContactEntity contactEntity) {
-        if (contactEntity == null) {
-            return null;
-        }
-
-        Contact contact = Contact.builder()
-                .nameOrCompany(contactEntity.getNameOrCompany())
-                .email(contactEntity.getEmail())
-                .phoneNumber(contactEntity.getPhoneNumber())
-                .build();
-
-        return contact;
-    }
-
-    ContactEntity contactToContactEntity(Contact contact) {
+    @Override
+    public ContactEntity dtoToEntity(Contact contact) {
         if (contact == null) {
             return null;
         }
@@ -33,5 +20,20 @@ public class ContactMapper {
                 .build();
 
         return contactEntity;
+    }
+
+    @Override
+    public Contact entityToDTO(ContactEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+
+        Contact contact = Contact.builder()
+                .nameOrCompany(entity.getNameOrCompany())
+                .email(entity.getEmail())
+                .phoneNumber(entity.getPhoneNumber())
+                .build();
+
+        return contact;
     }
 }

@@ -10,10 +10,12 @@ public class FoodOfferMapper {
 
     private final AddressMapper addressMapper;
     private final ContactMapper contactMapper;
+    private final TransportRequestMapper transportRequestMapper;
 
-    public FoodOfferMapper(AddressMapper addressMapper, ContactMapper contactMapper) {
+    public FoodOfferMapper(AddressMapper addressMapper, ContactMapper contactMapper, TransportRequestMapper transportRequestMapper) {
         this.addressMapper = addressMapper;
         this.contactMapper = contactMapper;
+        this.transportRequestMapper = transportRequestMapper;
     }
 
 
@@ -25,6 +27,12 @@ public class FoodOfferMapper {
 
         FoodOfferResponse response = FoodOfferResponse.builder()
                 .id(foodOfferEntity.getId())
+                .name(foodOfferEntity.getName())
+                .quantity(foodOfferEntity.getQuantity())
+                .transportDate(foodOfferEntity.getTransportDate())
+                .ingredients(foodOfferEntity.getIngredients())
+                .address(addressMapper.entityToDTO(foodOfferEntity.getAddressEntity()))
+                .contact(contactMapper.entityToDTO(foodOfferEntity.getContactEntity()))
                 .build();
 
         return response;
@@ -38,11 +46,12 @@ public class FoodOfferMapper {
         return FoodOfferEntity.builder()
 //                .id(request.getId())
                 .name(request.getName())
-                .portion(request.getQuantity())
-                .deliveryDate(request.getTransportDate())
-                .notes(request.getIngredients())
-                .addressEntity(addressMapper.addressToAddressEntity(request.getAddress()))
-                .contactEntity(contactMapper.contactToContactEntity(request.getContact()))
+                .quantity(request.getQuantity())
+                .transportDate(request.getTransportDate())
+                .ingredients(request.getIngredients())
+                .transportRequest(transportRequestMapper.dtoToEntity(request.getTransportRequest()))
+                .addressEntity(addressMapper.dtoToEntity(request.getAddress()))
+                .contactEntity(contactMapper.dtoToEntity(request.getContact()))
                 .build();
     }
 

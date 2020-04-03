@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface FoodOfferService {
 
+    FoodOfferResponse findById(Long id);
+
     List<FoodOfferResponse> getAllFoodOfferings();
 
 

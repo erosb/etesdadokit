@@ -1,6 +1,7 @@
 package com.github.erosb.etesdadokit.feature.offer;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalTime;
 
 @Data
+@Builder
 public class TransportRequest {
 
     @DateTimeFormat(pattern = "HH:mm")

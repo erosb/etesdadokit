@@ -22,13 +22,14 @@ public class FoodOfferEntity {
 
     private String name;
 
-    private Integer portion;
+    private Integer quantity;
 
-    private LocalDate deliveryDate;
+    private LocalDate transportDate;
 
-    private String notes;
+    private String ingredients;
 
-    private Boolean needTransport;
+    @OneToOne
+    private TransportRequestEntity transportRequest;
 
     @OneToOne
     private ContactEntity contactEntity;
