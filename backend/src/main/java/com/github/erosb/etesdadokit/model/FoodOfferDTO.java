@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
-public class FoodOfferingDTO {
+public class FoodOfferDTO {
 
     private Long id;
 
