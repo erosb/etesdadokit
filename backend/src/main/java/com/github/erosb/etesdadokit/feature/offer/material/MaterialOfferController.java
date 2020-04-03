@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
+import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +21,10 @@ public class MaterialOfferController {
     @PostMapping("/")
     @ApiOperation(
             value = "Creates a material offer.",
-            response = MaterialOfferRequest.class
+            response = AcknowledgeResponse.class
     )
-    public ResponseEntity<MaterialOfferResponse> offerFood(@RequestBody @Valid MaterialOfferRequest materialOfferRequest) {
-        return ResponseEntity.ok(MaterialOfferResponse.builder().build());
+    public ResponseEntity<AcknowledgeResponse> offerFood(@RequestBody @Valid MaterialOfferRequest materialOfferRequest) {
+        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
     }
 
     @GetMapping

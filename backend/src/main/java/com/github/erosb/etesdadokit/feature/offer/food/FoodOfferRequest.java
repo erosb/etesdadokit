@@ -3,6 +3,7 @@ package com.github.erosb.etesdadokit.feature.offer.food;
 import com.github.erosb.etesdadokit.feature.offer.Address;
 import com.github.erosb.etesdadokit.feature.offer.Contact;
 import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,9 +20,11 @@ import java.util.List;
 public class FoodOfferRequest {
 
     @NotEmpty
+    @ApiModelProperty("The offered food name")
     private String name;
 
     @Min(50)
+    @ApiModelProperty("The offered quantity, the minimum value is 50")
     private Integer quantity;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

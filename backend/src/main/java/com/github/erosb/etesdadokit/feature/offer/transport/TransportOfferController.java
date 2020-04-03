@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
+import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +21,10 @@ public class TransportOfferController {
     @PostMapping
     @ApiOperation(
             value = "Creates a transport offer.",
-            response = TransportOfferResponse.class
+            response = AcknowledgeResponse.class
     )
-    public ResponseEntity<TransportOfferResponse> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
-        return ResponseEntity.ok(TransportOfferResponse.builder().build());
+    public ResponseEntity<AcknowledgeResponse> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
+        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
     }
 
     @GetMapping

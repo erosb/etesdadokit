@@ -3,6 +3,7 @@ package com.github.erosb.etesdadokit.feature.offer.material;
 import com.github.erosb.etesdadokit.feature.offer.Address;
 import com.github.erosb.etesdadokit.feature.offer.Contact;
 import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class MaterialOfferRequest {
 
     @NotEmpty
+    @ApiModelProperty("List of the required ingredients")
     private String ingredients;
 
     // TODO az alapanyag biztosításának napja (bármely nap, vagy a következő 3 nap valamelyike)
@@ -25,8 +27,10 @@ public class MaterialOfferRequest {
     private TransportRequest transportRequest;
 
     @NotNull
+    @ApiModelProperty("The offer related address")
     private Address address;
 
     @NotNull
+    @ApiModelProperty("The offer related contact")
     private Contact contact;
 }

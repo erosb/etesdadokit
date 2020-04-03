@@ -1,6 +1,7 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
 import com.github.erosb.etesdadokit.feature.offer.Contact;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,22 +15,28 @@ import java.util.Date;
 public class TransportOfferRequest {
 
     @NotEmpty
+    @ApiModelProperty("The requested capacity of the vehicle or the vehicle type")
     public String vehicleCapacity;
 
     @NotNull
+    @ApiModelProperty("Should be a refrigerator car or not")
     public Boolean refrigeratorCar;
 
     //TODO fuvarozás napja (bármely nap, vagy a következő 3 nap valamelyike)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @ApiModelProperty("The date when the offer is active")
     private Date offerAvailableDate;
 
     @Max(24)
     @Min(0)
+    @ApiModelProperty("First available hour")
     private Integer firstAvailableHour;
 
     @NotNull
+    @ApiModelProperty("The offer is available only inside the city")
     private Boolean cityOnly;
 
     @NotNull
+    @ApiModelProperty("The offer related contact")
     private Contact contact;
 }

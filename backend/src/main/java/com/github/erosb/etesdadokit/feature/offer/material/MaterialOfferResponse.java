@@ -1,12 +1,26 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
+import com.github.erosb.etesdadokit.feature.offer.Address;
+import com.github.erosb.etesdadokit.feature.offer.Contact;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 @Builder
 public class MaterialOfferResponse {
 
     private Long id;
+
+    private String ingredients;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date offerDate;
+
+    private Address address;
+
+    private Contact contact;
 
 }

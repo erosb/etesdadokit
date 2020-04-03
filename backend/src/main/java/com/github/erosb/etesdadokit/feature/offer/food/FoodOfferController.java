@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
+import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import com.github.erosb.etesdadokit.services.FoodOfferService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +27,11 @@ public class FoodOfferController {
     @PostMapping("/")
     @ApiOperation(
             value = "Creates a food offer.",
-            response = FoodOfferResponse.class
+            response = AcknowledgeResponse.class
     )
-    public ResponseEntity<FoodOfferResponse> offerFood(@RequestBody @Valid FoodOfferRequest foodOfferRequest) {
+    public ResponseEntity<AcknowledgeResponse> offerFood(@RequestBody @Valid FoodOfferRequest foodOfferRequest) {
         foodOfferService.createFoodOffer(foodOfferRequest);
-        return ResponseEntity.ok(FoodOfferResponse.builder().build());
+        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
     }
 
     @GetMapping
