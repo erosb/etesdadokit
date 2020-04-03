@@ -1,4 +1,4 @@
-package com.github.erosb.etesdadokit.feature.shared;
+package com.github.erosb.etesdadokit.feature.offer;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package com.github.erosb.etesdadokit.services;
 
-import com.github.erosb.etesdadokit.domain.ContactInfo;
+import com.github.erosb.etesdadokit.domain.ContactEntity;
 
 public interface ContactInfoService {
 
-    ContactInfo createContactInfo(ContactInfo contactInfo);
+    ContactEntity createContactInfo(ContactEntity contactEntity);
 }
