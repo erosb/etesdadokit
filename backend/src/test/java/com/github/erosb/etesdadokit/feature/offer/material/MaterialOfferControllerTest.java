@@ -1,12 +1,10 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
@@ -14,7 +12,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class MaterialOfferControllerTest {
@@ -23,7 +20,7 @@ public class MaterialOfferControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testOk() throws Exception {
+    void testOk() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(readJson("/material-offer/testOk.json")))
@@ -32,7 +29,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingRootMandatoryFields() throws Exception {
+    void testMissingRootMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingMandatoryFields-address.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -50,7 +47,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyRootMandatoryFields() throws Exception {
+    void testEmptyRootMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyRootMandatoryFields.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -58,7 +55,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingContactMandatoryFields() throws Exception {
+    void testMissingContactMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +73,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyContactMandatoryFields() throws Exception {
+    void testEmptyContactMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -94,7 +91,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingAddressMandatoryFields() throws Exception {
+    void testMissingAddressMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -112,7 +109,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyAddressMandatoryFields() throws Exception {
+    void testEmptyAddressMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -130,7 +127,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingOptionalFields() throws Exception {
+    void testMissingOptionalFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingOptionalFields_transportRequest.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -148,7 +145,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyOptionalFields() throws Exception {
+    void testEmptyOptionalFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))

@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class TransportOfferServiceImpl implements TransportOfferService {
 
@@ -31,7 +33,7 @@ public class TransportOfferServiceImpl implements TransportOfferService {
                 .findAll()
                 .stream()
                 .map(transportOfferMapper::entityToResponse)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
@@ -40,6 +42,15 @@ public class TransportOfferServiceImpl implements TransportOfferService {
                 .findByTransportDate(transportDate)
                 .map(transportOfferMapper::entityToResponse)
                 .orElse(null);
+    }
+
+    @Override
+    public List<TransportOfferResponse> listByDate(LocalDate day) {
+        if (day == null) {
+            return findAll();
+        } else {
+            return repository.getByTransportDate(day).stream().map(transportOfferMapper::entityToResponse).collect(toList());
+        }
     }
 
     private TransportOfferResponse saveEntityAndReturnResponse(TransportOfferEntity entity) {

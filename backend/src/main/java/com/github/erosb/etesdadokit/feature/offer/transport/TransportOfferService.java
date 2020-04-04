@@ -14,4 +14,5 @@ public interface TransportOfferService {
 
     TransportOfferResponse getTransportOfferByDate(LocalDate transportDate);
 
+    List<TransportOfferResponse> listByDate(LocalDate day);
 }
