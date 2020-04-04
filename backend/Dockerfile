@@ -1,13 +1,11 @@
-FROM openjdk:11
-FROM maven:alpine
+FROM maven:3.6.3-jdk-11 AS builder
 
-# image layer
 WORKDIR /app
 ADD pom.xml /app
-RUN mvn verify clean --fail-never
+RUN mvn dependency:go-offline
 
-# Image layer: with the application
+FROM builder
 COPY . /app
 RUN mvn clean install -DskipTests
-EXPOSE 8080
+
 ENTRYPOINT ["java","-jar","/app/target/etesdadokit-0.0.1-SNAPSHOT.jar"]

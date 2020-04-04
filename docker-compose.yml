@@ -1,13 +1,20 @@
 version: '3'
 services:
-    backend:
-        build:
-            context: ./backend
-        ports:
-            - "8080:8080"
-    frontend:
-        image: node:13
-        volumes:
-            - ./frontend:/app
-        entrypoint: ["npm", "start"]
-        working_dir: /app
+
+  backend:
+    build:
+      context: ./backend
+    network_mode: host
+    ports:
+      - 8080:8080
+
+  frontend:
+    image: node:13
+    network_mode: host
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./etesdadokit-frontend:/app
+    entrypoint: npm start
+    working_dir: /app
