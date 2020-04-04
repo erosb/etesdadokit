@@ -39,9 +39,15 @@ class TransportForm extends React.Component {
         this.setState(prevState => {
             if (saveType) {
                 prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][name] = name === "refrigeratorCar" ? this.fixCheckboxValue(value) : value
+                prevState.formValues[saveType][name] = value
             } else {
                 prevState.formValues[name] = value
+
+                if (name === "refrigeratorCar")
+                    prevState.formValues[name] = this.fixCheckboxValue(value)
+
+                if (name === "cityOnly")
+                    prevState.formValues[name] = this.fixCheckboxValue(value)
             }
             return ({
                 ...prevState
@@ -102,7 +108,7 @@ class TransportForm extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Hányra menjen leghamarabb?</label>
+                        <label>Hányra menjen leghamarabb? (óra)</label>
                         <input placeholder="10:10" name="firstAvailableHour" id="firstAvailableHour" size={30} />
                     </div>
                 </fieldset>
