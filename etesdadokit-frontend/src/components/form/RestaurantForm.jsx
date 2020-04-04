@@ -95,7 +95,7 @@ class RestaurantForm extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Hány adagot tudsz készíteni?</label>
+                        <label>Hány adagot tudsz készíteni? (minimum 50)</label>
                         <input type="number" id="quantity" name="quantity" min="50" max="1000" />
                     </div>
 
@@ -118,13 +118,9 @@ class RestaurantForm extends React.Component {
 
                 </fieldset>
 
-
                 <SubFormContact />
 
                 <SubformAddress />
-
-
-
 
                 <input type="submit" value="Felajánlás elküldése" />
             </form>
