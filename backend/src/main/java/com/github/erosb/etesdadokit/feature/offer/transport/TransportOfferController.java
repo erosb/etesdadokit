@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +24,21 @@ import java.util.List;
 @Api(tags = {SwaggerTags.OFFER})
 public class TransportOfferController {
 
+    private final TransportOfferService transportOfferService;
+
+    public TransportOfferController(TransportOfferService transportOfferService) {
+        this.transportOfferService = transportOfferService;
+    }
+
     @PostMapping
     @ApiOperation(
             value = "Creates a transport offer.",
             response = AcknowledgeResponse.class
     )
     public ResponseEntity<AcknowledgeResponse> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
-        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
+        TransportOfferResponse response = transportOfferService.createTransportOffer(transportOfferRequest);
+        Long id = response.getId();
+        return ResponseEntity.ok(AcknowledgeResponse.builder().id(id).build());
     }
 
     @GetMapping
@@ -43,7 +50,7 @@ public class TransportOfferController {
     public ResponseEntity<List<TransportOfferResponse>> listTransportOffers(
             @ApiParam("The day for which the available transport offers in yyyy-mm-dd format")
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date day) {
-        return ResponseEntity.ok(Collections.emptyList());
+        return ResponseEntity.ok(transportOfferService.findAll());
     }
 
 }

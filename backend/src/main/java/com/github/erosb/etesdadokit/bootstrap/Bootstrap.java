@@ -7,6 +7,8 @@ import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRepository;
 import com.github.erosb.etesdadokit.feature.offer.material.MaterialOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.material.MaterialOfferRepository;
+import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferEntity;
+import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferRepository;
 import com.github.erosb.etesdadokit.repository.AddressRepository;
 import com.github.erosb.etesdadokit.repository.ContactRepository;
 import com.github.erosb.etesdadokit.repository.TransportRequestRepository;
@@ -25,17 +27,19 @@ public class Bootstrap implements CommandLineRunner {
     private final ContactRepository contactRepository;
     private final AddressRepository addressRepository;
     private final TransportRequestRepository transportRequestRepository;
+    private final TransportOfferRepository transportOfferRepository;
 
     public Bootstrap(FoodOfferRepository foodOfferRepository,
                      MaterialOfferRepository materialOfferRepository,
                      ContactRepository contactRepository,
                      AddressRepository addressRepository,
-                     TransportRequestRepository transportRequestRepository) {
+                     TransportRequestRepository transportRequestRepository, TransportOfferRepository transportOfferRepository) {
         this.foodOfferRepository = foodOfferRepository;
         this.materialOfferRepository = materialOfferRepository;
         this.contactRepository = contactRepository;
         this.addressRepository = addressRepository;
         this.transportRequestRepository = transportRequestRepository;
+        this.transportOfferRepository = transportOfferRepository;
     }
 
 
@@ -46,6 +50,7 @@ public class Bootstrap implements CommandLineRunner {
         loadTransportRequest();
         loadFoodOffers();
         loadMaterialOffers();
+        loadTransportOffers();
     }
 
     ContactEntity contactEntity;
@@ -110,5 +115,19 @@ public class Bootstrap implements CommandLineRunner {
                         .addressEntity(addressEntity)
                         .contactEntity(contactEntity)
                         .build());
+    }
+
+    private void loadTransportOffers() {
+        transportOfferRepository.save(
+                TransportOfferEntity.builder()
+                        .id(1L)
+                        .vehicleCapacity("normal")
+                        .refrigeratorCar(true)
+                        .transportDate(LocalDate.now())
+                        .firstAvailableHour(2)
+                        .cityOnly(false)
+                        .contact(contactEntity)
+                        .build()
+        );
     }
 }
