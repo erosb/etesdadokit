@@ -1,5 +1,5 @@
-import React from 'react';
-import './Form.css';
+import React from 'react'
+import './Form.css'
 import SubFormContact from './SubFormContact'
 /**
  * {
@@ -16,109 +16,168 @@ import SubFormContact from './SubFormContact'
 }
  */
 
-
 class TransportForm extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            formValues: {}
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      formValues: {},
     }
+  }
 
+  fixCheckboxValue = (value) => {
+    return value === 'on' ? true : false
+  }
 
+  onChange = (event) => {
+    const saveType = event.target.getAttribute('savetype')
+    const {
+      target: { name, value },
+    } = event
 
-    fixCheckboxValue = (value) => {
-        return value === "on" ? true : false
-    }
+    this.setState((prevState) => {
+      if (saveType) {
+        prevState.formValues[saveType] = prevState.formValues[saveType]
+          ? prevState.formValues[saveType]
+          : {}
+        prevState.formValues[saveType][name] = value
+      } else {
+        prevState.formValues[name] = value
 
-    onChange = (event) => {
-        const saveType = event.target.getAttribute("savetype")
-        const { target: { name, value } } = event
+        if (name === 'refrigeratorCar') prevState.formValues[name] = this.fixCheckboxValue(value)
 
-        this.setState(prevState => {
-            if (saveType) {
-                prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][name] = value
-            } else {
-                prevState.formValues[name] = value
+        if (name === 'cityOnly') prevState.formValues[name] = this.fixCheckboxValue(value)
+      }
+      return {
+        ...prevState,
+      }
+    })
+  }
 
-                if (name === "refrigeratorCar")
-                    prevState.formValues[name] = this.fixCheckboxValue(value)
+  onSubmit = (event) => {
+    event.preventDefault()
+    const { formValues } = this.state
+    const url = '/offer/transport/'
 
-                if (name === "cityOnly")
-                    prevState.formValues[name] = this.fixCheckboxValue(value)
-            }
-            return ({
-                ...prevState
-            })
+    try {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          console.log(data)
         })
+    } catch (e) {
+      console.log(e)
     }
+  }
 
-    onSubmit = (event) => {
-        event.preventDefault()
-        const { formValues } = this.state
-        const url = "/offer/transport/"
+  render() {
+    return (
+      <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
+        <SubFormContact />
 
-        try {
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formValues)
-            }).then(response => response.text())
-                .then(data => {
-                    console.log(data)
-                });
-        } catch (e) {
-            console.log(e)
-        }
-    }
+        <div>
+          <div className="has-text-centered is-size-3 margin-top-2">Szállítás</div>
 
-    render() {
-        return (
-            <form style={{ gridArea: "form" }} onChange={this.onChange} onSubmit={this.onSubmit}>
+          <div className="field is-horizontal">
+            <div className="field-label">
+              <label className="label">Csak városon belül szállítasz?</label>
+            </div>
+            <div className="field-body">
+              <div className="field is-narrow">
+                <div className="control">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="cityOnly"
+                    id="cityOnly"
+                    size={30}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <SubFormContact />
+          <div className="field is-horizontal">
+            <div className="field-label">
+              <label className="label">Dátum</label>
+            </div>
+            <div className="field-body">
+              <div className="field is-narrow">
+                <div className="control">
+                  <input
+                    className="input"
+                    type="date"
+                    name="offerAvailableDate"
+                    id="offerAvailableDate"
+                    size={30}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <fieldset>
-                    <div>
-                        <legend>Szállítás</legend>
-                    </div>
+          <div className="field is-horizontal">
+            <div className="field-label">
+              <label className="label">Hűtős kocsi?</label>
+            </div>
+            <div className="field-body">
+              <div className="field is-narrow">
+                <div className="control">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="refrigeratorCar"
+                    id="refrigeratorCar"
+                    size={30}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-                    <div className="form-group">
-                        <label>Csak városon belül szállítasz?</label>
-                        <input type="checkbox" name="cityOnly" id="cityOnly" size={30} />
-                    </div>
+          <div className="field is-horizontal">
+            <div className="field-label">
+              <label className="label">Mekkora raktere legyen?</label>
+            </div>
+            <div className="field-body">
+              <div className="field is-narrow">
+                <div className="control">
+                  <input className="input" name="vehicleCapacity" id="vehicleCapacity" size={30} />
+                </div>
+              </div>
+            </div>
+          </div>
 
-                    <div className="form-group">
-                        <label>Dátum</label>
-                        <input type="date" name="offerAvailableDate" id="offerAvailableDate" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Hűtős kocsi?</label>
-                        <input type="checkbox" name="refrigeratorCar" id="refrigeratorCar" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Mekkora raktere legyen?</label>
-                        <input name="vehicleCapacity" id="vehicleCapacity" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Hányra menjen leghamarabb? (óra)</label>
-                        <input placeholder="10:10" name="firstAvailableHour" id="firstAvailableHour" size={30} />
-                    </div>
-                </fieldset>
-
-
-
-                <input type="submit" value="Felajánlás elküldése" />
-            </form>
-        )
-    }
+          <div className="field is-horizontal">
+            <div className="field-label">
+              <label className="label">Hányra menjen leghamarabb? (óra)</label>
+            </div>
+            <div className="field-body">
+              <div className="field is-narrow">
+                <div className="control">
+                  <input
+                    className="input"
+                    placeholder="10:10"
+                    name="firstAvailableHour"
+                    id="firstAvailableHour"
+                    size={30}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="has-text-centered margin-top-1">
+          <input className="button" type="submit" value="Felajánlás elküldése" />
+        </div>
+      </form>
+    )
+  }
 }
 
-export default TransportForm;
+export default TransportForm
