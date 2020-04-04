@@ -1,17 +1,17 @@
 package com.github.erosb.etesdadokit.bootstrap;
 
-import com.github.erosb.etesdadokit.domain.AddressEntity;
-import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
+import com.github.erosb.etesdadokit.common.address.AddressEntity;
+import com.github.erosb.etesdadokit.common.contact.ContactEntity;
+import com.github.erosb.etesdadokit.common.transportRrequest.TransportRequestEntity;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRepository;
 import com.github.erosb.etesdadokit.feature.offer.material.MaterialOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.material.MaterialOfferRepository;
 import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.transport.TransportOfferRepository;
-import com.github.erosb.etesdadokit.repository.AddressRepository;
-import com.github.erosb.etesdadokit.repository.ContactRepository;
-import com.github.erosb.etesdadokit.repository.TransportRequestRepository;
+import com.github.erosb.etesdadokit.common.address.AddressRepository;
+import com.github.erosb.etesdadokit.common.contact.ContactRepository;
+import com.github.erosb.etesdadokit.common.transportRrequest.TransportRequestRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

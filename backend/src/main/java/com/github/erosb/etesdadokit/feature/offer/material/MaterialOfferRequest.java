@@ -1,7 +1,7 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
-import com.github.erosb.etesdadokit.feature.offer.Address;
-import com.github.erosb.etesdadokit.feature.offer.Contact;
+import com.github.erosb.etesdadokit.common.address.Address;
+import com.github.erosb.etesdadokit.common.contact.Contact;
 import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,10 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Data
 public class MaterialOfferRequest {

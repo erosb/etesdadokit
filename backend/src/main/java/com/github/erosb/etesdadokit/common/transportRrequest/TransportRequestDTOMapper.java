@@ -1,7 +1,7 @@
-package com.github.erosb.etesdadokit.mapper;
+package com.github.erosb.etesdadokit.common.transportRrequest;
 
-import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
 import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
+import com.github.erosb.etesdadokit.common.mapper.DTOMapper;
 import org.springframework.stereotype.Component;
 
 @Component

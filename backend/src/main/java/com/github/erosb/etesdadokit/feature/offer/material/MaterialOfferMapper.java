@@ -1,9 +1,9 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
-import com.github.erosb.etesdadokit.mapper.AddressDTOMapper;
-import com.github.erosb.etesdadokit.mapper.ContactDTOMapper;
-import com.github.erosb.etesdadokit.mapper.RequestResponseMapper;
-import com.github.erosb.etesdadokit.mapper.TransportRequestDTOMapper;
+import com.github.erosb.etesdadokit.common.address.AddressDTOMapper;
+import com.github.erosb.etesdadokit.common.contact.ContactDTOMapper;
+import com.github.erosb.etesdadokit.common.mapper.RequestResponseMapper;
+import com.github.erosb.etesdadokit.common.transportRrequest.TransportRequestDTOMapper;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package com.github.erosb.etesdadokit.domain;
+package com.github.erosb.etesdadokit.common.transportRrequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

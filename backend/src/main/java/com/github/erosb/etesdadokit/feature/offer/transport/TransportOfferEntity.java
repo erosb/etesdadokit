@@ -1,6 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
-import com.github.erosb.etesdadokit.domain.ContactEntity;
+import com.github.erosb.etesdadokit.common.contact.ContactEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
