@@ -1,7 +1,6 @@
-package com.github.erosb.etesdadokit.mapper;
+package com.github.erosb.etesdadokit.common.address;
 
-import com.github.erosb.etesdadokit.domain.AddressEntity;
-import com.github.erosb.etesdadokit.feature.offer.Address;
+import com.github.erosb.etesdadokit.common.mapper.DTOMapper;
 import org.springframework.stereotype.Component;
 
 @Component

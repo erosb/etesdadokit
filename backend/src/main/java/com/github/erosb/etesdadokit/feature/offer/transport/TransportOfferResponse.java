@@ -1,6 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
-import com.github.erosb.etesdadokit.feature.offer.Contact;
+import com.github.erosb.etesdadokit.common.contact.Contact;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
