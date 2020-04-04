@@ -10,7 +10,7 @@ const SubFormTransportRequest = () => {
           <label className="label">Hűtős kocsira van szükség?</label>
         </div>
         <div className="field-body">
-          <div className="field is-narrow">
+          <div className="field">
             <div className="control">
               <input
                 className="checkbox"
@@ -30,7 +30,7 @@ const SubFormTransportRequest = () => {
           <label className="label">Mekkora raktere legyen?</label>
         </div>
         <div className="field-body">
-          <div className="field is-narrow">
+          <div className="field">
             <div className="control">
               <input
                 className="input"
@@ -49,7 +49,7 @@ const SubFormTransportRequest = () => {
           <label className="label">Hányra érkezzen?</label>
         </div>
         <div className="field-body">
-          <div className="field is-narrow">
+          <div className="field">
             <div className="control">
               <input
                 className="input"

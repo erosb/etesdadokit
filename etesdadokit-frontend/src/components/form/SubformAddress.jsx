@@ -11,7 +11,7 @@ const SubformAddress = () => {
           <label className="label">Város</label>
         </div>
         <div className="field-body">
-          <div className="field is-narrow">
+          <div className="field">
             <div className="control">
               <input
                 className="input"
@@ -31,7 +31,7 @@ const SubformAddress = () => {
           <label className="label">Irányítószám</label>
         </div>
         <div className="field-body">
-          <div className="field is-narrow">
+          <div className="field">
             <input
               className="input"
               placeholder="1111"
@@ -49,7 +49,7 @@ const SubformAddress = () => {
           <label className="label">Utca, házszám</label>
         </div>
         <div className="field-body">
-          <div className="field is-narrow">
+          <div className="field">
             <div className="control">
               <input
                 className="input"
@@ -69,7 +69,7 @@ const SubformAddress = () => {
           <label className="label">Emelet, ajtó, kapucsengő</label>
         </div>
           <div className="field-body">
-            <div className="field is-narrow">
+            <div className="field">
               <div className="control">
                 <input className="input"
             placeholder=""
