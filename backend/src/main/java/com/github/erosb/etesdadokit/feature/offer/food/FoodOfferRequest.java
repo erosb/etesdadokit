@@ -33,12 +33,11 @@ public class FoodOfferRequest {
     @ApiModelProperty(value = "The offered quantity, the minimum value is 50", required = true)
     private Integer quantity;
 
-    @NotNull
-    @ApiModelProperty(required = true)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @ApiModelProperty("The date when the offer is active")
     private LocalDate transportDate;
 
     @NotBlank

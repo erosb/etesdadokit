@@ -16,8 +16,6 @@ public class MaterialOfferResponse {
 
     private String ingredients;
 
-    private Boolean availableAnytime;
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate offerDate;
 

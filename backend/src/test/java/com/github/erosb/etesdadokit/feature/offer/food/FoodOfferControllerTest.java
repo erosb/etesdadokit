@@ -110,11 +110,6 @@ public class FoodOfferControllerTest {
                 .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().quantity(null).build()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
-
-        mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().transportDate(null).build()))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -295,6 +290,11 @@ public class FoodOfferControllerTest {
 
         mockMvc.perform(post("/offer/food/")
                 .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().transportRequest(null).build()))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(post("/offer/food/")
+                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().transportDate(null).build()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 

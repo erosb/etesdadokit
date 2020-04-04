@@ -25,8 +25,6 @@ public class MaterialOfferEntity {
 
     private String ingredients;
 
-    private Boolean availableAnytime;
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate offerDate;
 

@@ -209,6 +209,11 @@ public class MaterialOfferControllerTest {
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/offer/material/")
+                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().offerAvailableDate(null).build()))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(post("/offer/material/")
                 .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
                         .address(materialOfferRequest.getAddress()
                                 .toBuilder()
@@ -238,7 +243,6 @@ public class MaterialOfferControllerTest {
 
     private MaterialOfferRequest validMaterialOfferRequest() {
         return MaterialOfferRequest.builder()
-                .availableAnytime(true)
                 .ingredients("liszt,só")
                 .offerAvailableDate(LocalDate.now())
                 .contact(Contact.builder()
