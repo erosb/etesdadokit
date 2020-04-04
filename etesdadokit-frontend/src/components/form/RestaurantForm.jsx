@@ -90,7 +90,7 @@ class RestaurantForm extends React.Component {
     return (
       <div>
         <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-          <div className="has-text-centered is-size-3 margin-top-1">Készétel felajánlás</div>
+          <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
 
           <div className="field is-horizontal margin-top-1">
             <div className="field-label">
