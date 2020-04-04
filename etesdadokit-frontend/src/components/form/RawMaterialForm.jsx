@@ -42,13 +42,13 @@ class RawMaterialForm extends React.Component {
 
     onChange = (event) => {
         const saveType = event.target.getAttribute("savetype")
-        const { target: { id, value } } = event
+        const { target: { name, value } } = event
         this.setState(prevState => {
             if (saveType) {
                 prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][id] = value
+                prevState.formValues[saveType][name] = value
             } else {
-                prevState.formValues[id] = value
+                prevState.formValues[name] = value
             }
             return ({
                 ...prevState
@@ -57,12 +57,9 @@ class RawMaterialForm extends React.Component {
     }
 
     onSubmit = (event) => {
-        //TODO: transport
-        //TODO transportRequest
-        //TODO: date format yyyy-mm-dd
         event.preventDefault()
         const { formValues } = this.state
-        const url = "/offer/food"
+        const url = "/offer/rawmaterial"
 
         try {
             fetch(url, {
@@ -81,15 +78,36 @@ class RawMaterialForm extends React.Component {
     }
 
     render() {
+        const { formValues } = this.state
         return (
-            <form style={{ gridArea: "form" }}>
-                "ingredients": "string",
-                "offerAvailableDate": "2020-04-04T12:25:34.991Z",
+            <form style={{ gridArea: "form" }} onChange={this.onChange} onSubmit={this.onSubmit}>
+
+                <fieldset>
+                    <div>
+                        <legend>Hozzávaló felajánlás</legend>
+                    </div>
+                    <div className="form-group">
+                        <label>Milyen hozzávalót tudsz felajánlani?</label>
+                        <textarea cols={30} rows={4} name="ingredients" id="ingredients"></textarea>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Mikor lesz elérhető?</label>
+                        <input type="date" id="offerAvailableDate" name="offerAvailableDate" />
+                    </div>
+                    <div className="form-group">
+                        <label>Meg tudod oldani a kiszállítást étteremhez?</label>
+                        <input type="radio" name="canResolveTransport" value="yes" /> Igen, meg tudom oldani
+                        <input type="radio" name="canResolveTransport" value="no" /> Nem tudom megoldani
+                    </div>
+                    {formValues.canResolveTransport === "no" && <SubFormTransportRequest />}
+
+                </fieldset>
+
                 <SubformAddress />
 
                 <SubFormContact />
 
-                <SubFormTransportRequest />
                 <input type="submit" value="Felajánlás elküldése" />
             </form >
         )

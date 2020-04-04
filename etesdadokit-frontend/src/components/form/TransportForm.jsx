@@ -29,13 +29,13 @@ class TransportForm extends React.Component {
 
     onChange = (event) => {
         const saveType = event.target.getAttribute("savetype")
-        const { target: { id, value } } = event
+        const { target: { name, value } } = event
         this.setState(prevState => {
             if (saveType) {
                 prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][id] = value
+                prevState.formValues[saveType][name] = value
             } else {
-                prevState.formValues[id] = value
+                prevState.formValues[name] = value
             }
             return ({
                 ...prevState
@@ -87,7 +87,7 @@ class TransportForm extends React.Component {
 
                     <div className="form-group">
                         <label>Hűtős kocsi?</label>
-                        <input name="refrigeratorCar" id="refrigeratorCar" size={30} />
+                        <input type="checkbox" name="refrigeratorCar" id="refrigeratorCar" size={30} />
                     </div>
 
                     <div className="form-group">

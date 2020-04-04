@@ -13,7 +13,7 @@ const SubFormTransportRequest = () => {
 
         <div className="form-group">
             <label>Hűtős kocsi?</label>
-            <input name="requestRefrigeratorCar" id="requestRefrigeratorCar" savetype="transportRequest" size={30} />
+            <input type="checkbox" name="requestRefrigeratorCar" id="requestRefrigeratorCar" savetype="transportRequest" size={30} />
         </div>
 
         <div className="form-group">
