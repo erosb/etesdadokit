@@ -16,13 +16,13 @@ body {
   grid-area: intro;
   font-size: 130%;
   text-align: justify;
-  background-color: #72bb8f; /* #72bb96 #74d0a1 #a6decc;*/
+  background-color: rgba(0, 0, 0, 0.032); /* #72bb96 #74d0a1 #a6decc;*/
   
-  border-radius: 0 0 .5em .5em;
+  /* border-radius: 0 0 .5em .5em; */
   padding: 0em 3em 1.6em 3em;
   /*border: .15em solid #28864f;*/
-  -webkit-box-shadow: 3px 2px 20px 2px rgba(0,0,0,0.56); 
-  box-shadow: 3px 2px 20px 2px rgba(0,0,0,0.56);
+  /* -webkit-box-shadow: 3px 2px 20px 2px rgba(0,0,0,0.56); */
+  /* box-shadow: 3px 2px 20px 2px rgba(0,0,0,0.56); */
 }
 
 .intro h2 {
