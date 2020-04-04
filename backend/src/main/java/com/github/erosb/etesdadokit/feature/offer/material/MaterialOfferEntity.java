@@ -1,43 +1,40 @@
-package com.github.erosb.etesdadokit.feature.offer.food;
+package com.github.erosb.etesdadokit.feature.offer.material;
 
 import com.github.erosb.etesdadokit.domain.AddressEntity;
 import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
+import com.github.erosb.etesdadokit.feature.offer.Address;
+import com.github.erosb.etesdadokit.feature.offer.Contact;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodOfferEntity {
+public class MaterialOfferEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private Integer quantity;
+    private String ingredients;
 
     private Boolean availableAnytime;
 
-    private LocalDate transportDate;
-
-    private String ingredients;
-
-    @OneToOne
-    private TransportRequestEntity transportRequest;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date offerDate;
 
     @OneToOne
-    private ContactEntity contactEntity;
+    private AddressEntity address;
 
     @OneToOne
-    private AddressEntity addressEntity;
+    private ContactEntity contact;
+
 }
