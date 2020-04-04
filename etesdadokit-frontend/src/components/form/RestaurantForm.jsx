@@ -104,6 +104,7 @@ class RestaurantForm extends React.Component {
                         <textarea cols={30} rows={4} name="ingredients" id="ingredients"></textarea>
                     </div>
 
+
                     <div className="form-group">
                         <label>Mikor lesz elérhető?</label>
                         <input type="date" id="transportDate" name="transportDate" />

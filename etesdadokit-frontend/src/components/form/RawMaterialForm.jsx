@@ -52,7 +52,13 @@ class RawMaterialForm extends React.Component {
         this.setState(prevState => {
             if (saveType) {
                 prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][name] = name === "requestRefrigeratorCar" ? this.fixCheckboxValue(value) : value
+
+                prevState.formValues[saveType][name] = value
+
+                if (name === "requestRefrigeratorCar") {
+                    prevState.formValues[saveType][name] = this.fixCheckboxValue(value)
+                }
+
             } else {
                 prevState.formValues[name] = value
             }
@@ -97,10 +103,20 @@ class RawMaterialForm extends React.Component {
                         <textarea cols={30} rows={4} name="ingredients" id="ingredients"></textarea>
                     </div>
 
+
+
                     <div className="form-group">
-                        <label>Mikor lesz elérhető?</label>
-                        <input type="date" id="offerAvailableDate" name="offerAvailableDate" />
+                        <label>Bármikor elérhető?</label>
+                        <input type="radio" name="availableAnytime" value="yes" /> Igen
+                        <input type="radio" name="availableAnytime" value="no" /> Nem
                     </div>
+
+                    {formValues.availableAnytime === "no" &&
+                        <div className="form-group">
+                            <label>Mikor lesz elérhető?</label>
+                            <input type="date" id="offerAvailableDate" name="offerAvailableDate" />
+                        </div>}
+
                     <div className="form-group">
                         <label>Meg tudod oldani a kiszállítást étteremhez?</label>
                         <input type="radio" name="canResolveTransport" value="yes" /> Igen, meg tudom oldani
