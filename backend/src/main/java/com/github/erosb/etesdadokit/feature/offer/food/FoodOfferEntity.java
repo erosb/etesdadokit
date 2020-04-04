@@ -1,5 +1,8 @@
-package com.github.erosb.etesdadokit.domain;
+package com.github.erosb.etesdadokit.feature.offer.food;
 
+import com.github.erosb.etesdadokit.domain.AddressEntity;
+import com.github.erosb.etesdadokit.domain.ContactEntity;
+import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,10 +1,8 @@
-package com.github.erosb.etesdadokit.services;
+package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.domain.FoodOfferEntity;
-import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
-import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
-import com.github.erosb.etesdadokit.mapper.FoodOfferMapper;
-import com.github.erosb.etesdadokit.repository.FoodOfferRepository;
+import com.github.erosb.etesdadokit.services.AddressService;
+import com.github.erosb.etesdadokit.services.ContactInfoService;
+import com.github.erosb.etesdadokit.services.TransportRequestService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

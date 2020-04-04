@@ -1,8 +1,11 @@
-package com.github.erosb.etesdadokit.mapper;
+package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.domain.FoodOfferEntity;
+import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferEntity;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
+import com.github.erosb.etesdadokit.mapper.AddressMapper;
+import com.github.erosb.etesdadokit.mapper.ContactMapper;
+import com.github.erosb.etesdadokit.mapper.TransportRequestMapper;
 import org.springframework.stereotype.Component;
 
 @Component

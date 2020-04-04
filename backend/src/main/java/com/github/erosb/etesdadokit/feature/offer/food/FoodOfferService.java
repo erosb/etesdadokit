@@ -1,4 +1,4 @@
-package com.github.erosb.etesdadokit.services;
+package com.github.erosb.etesdadokit.feature.offer.food;
 
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;

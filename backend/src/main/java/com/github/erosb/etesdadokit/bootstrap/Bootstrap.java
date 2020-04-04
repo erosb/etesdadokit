@@ -2,11 +2,11 @@ package com.github.erosb.etesdadokit.bootstrap;
 
 import com.github.erosb.etesdadokit.domain.AddressEntity;
 import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.domain.FoodOfferEntity;
+import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferEntity;
 import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
 import com.github.erosb.etesdadokit.repository.AddressRepository;
 import com.github.erosb.etesdadokit.repository.ContactRepository;
-import com.github.erosb.etesdadokit.repository.FoodOfferRepository;
+import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRepository;
 import com.github.erosb.etesdadokit.repository.TransportRequestRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
