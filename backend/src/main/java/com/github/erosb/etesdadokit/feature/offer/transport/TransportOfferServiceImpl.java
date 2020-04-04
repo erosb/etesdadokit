@@ -3,6 +3,7 @@ package com.github.erosb.etesdadokit.feature.offer.transport;
 import com.github.erosb.etesdadokit.common.contact.ContactInfoService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,14 @@ public class TransportOfferServiceImpl implements TransportOfferService {
                 .stream()
                 .map(transportOfferMapper::entityToResponse)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public TransportOfferResponse getTransportOfferByDate(LocalDate transportDate) {
+        return repository
+                .findByTransportDate(transportDate)
+                .map(transportOfferMapper::entityToResponse)
+                .orElse(null);
     }
 
     private TransportOfferResponse saveEntityAndReturnResponse(TransportOfferEntity entity) {

@@ -7,12 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -50,6 +45,17 @@ public class TransportOfferController {
             @ApiParam("The day for which the available transport offers in yyyy-mm-dd format")
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
         return ResponseEntity.ok(transportOfferService.findAll());
+    }
+
+    @GetMapping("/date")
+    @ApiOperation(
+            value = "Get food offer by date.",
+            response = TransportOfferResponse.class
+    )
+    public ResponseEntity<TransportOfferResponse> getTransportOfferByDate(
+            @RequestParam(name = "date")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate transportDate) {
+        return ResponseEntity.ok(transportOfferService.getTransportOfferByDate(transportDate));
     }
 
 }
