@@ -17,11 +17,16 @@ import javax.validation.Valid;
 @Api(tags = {SwaggerTags.PLANNER})
 public class DeliveryPlanController {
 
+    private final DeliveryPlanService deliveryPlanService;
+
+    public DeliveryPlanController(DeliveryPlanService deliveryPlanService) {
+        this.deliveryPlanService = deliveryPlanService;
+    }
+
     @GetMapping
     @ApiOperation(
             value = "Main page for planner",
             response = String.class
-
     )
     public ResponseEntity<String> index() {
         return ResponseEntity.ok("ohai");
