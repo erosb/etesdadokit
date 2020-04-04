@@ -7,12 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -51,6 +46,15 @@ public class FoodOfferController {
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
 
         return ResponseEntity.ok(foodOfferService.getAllFoodOfferings());
+    }
+
+    @GetMapping("{id}")
+    @ApiOperation(
+            value = "Get food offer by id.",
+            response = FoodOfferResponse.class
+    )
+    public ResponseEntity<FoodOfferResponse> getFoodOfferById(@PathVariable Long id) {
+        return ResponseEntity.ok(foodOfferService.getById(id));
     }
 
 }

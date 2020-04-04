@@ -9,4 +9,6 @@ public interface FoodOfferService {
     List<FoodOfferResponse> getAllFoodOfferings();
 
     FoodOfferResponse createFoodOffer(FoodOfferRequest foodOfferRequest);
+
+    FoodOfferResponse getById(Long id);
 }

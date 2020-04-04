@@ -50,6 +50,13 @@ public class FoodOfferServiceImpl implements FoodOfferService {
         return saveEntityAndReturnResponse(foodOfferMapper.requestToEntity(request));
     }
 
+    @Override
+    public FoodOfferResponse getById(Long id) {
+        return foodOfferRepository.findById(id)
+                .map(foodOfferMapper::entityToResponse)
+                .orElse(null);
+    }
+
     private FoodOfferResponse saveEntityAndReturnResponse(FoodOfferEntity foodOfferEntity) {
         addressService.createAddress(foodOfferEntity.getAddressEntity());
         contactInfoService.createContactInfo(foodOfferEntity.getContactEntity());
