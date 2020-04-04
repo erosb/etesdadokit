@@ -1,5 +1,7 @@
 import React from 'react';
 import CarListing from './CarListing'
+import FoodListing from './FoodListing'
+
 import Offering from '../../Offering'
 
 const PairLogistics = () => {
@@ -7,6 +9,7 @@ const PairLogistics = () => {
         <div>
             <Offering />
             <CarListing />
+            <FoodListing />
         </div>
     );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 
 
-const Car = () => {
+const Car = (details) => {
+    console.log(details)
     return (
         <div>
             Fuvar

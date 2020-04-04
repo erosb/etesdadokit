@@ -1,17 +1,16 @@
 import React from 'react';
-import Car from './Car'
+import Food from './Food'
 
-class CarListing extends React.Component {
+class FoodListing extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             list: []
         }
     }
-
-    componentDidMount() {
+    async componentDidMount() {
         try {
-            const url = "/offer/transport"
+            const url = "/offer/food"
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
@@ -28,13 +27,13 @@ class CarListing extends React.Component {
         if (typeof list === "string") {
             newArr = JSON.parse(list)
         }
-        console.log(newArr)
+
         return (
             <div>
-                {Array.isArray(newArr) && newArr.map(car => (<Car details={car} />))}
+                {Array.isArray(newArr) && newArr.map(food => (<Food details={food} />))}
             </div>
         );
     }
 }
 
-export default CarListing
+export default FoodListing
