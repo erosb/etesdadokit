@@ -95,12 +95,41 @@ class RestaurantForm extends React.Component {
                         <textarea cols={30} rows={4} name="ingredients" id="ingredients"></textarea>
                     </div>
 
+                </fieldset>
+
+                <fieldset>
+                    <div>
+                        <legend>Szállítás</legend>
+                    </div>
+
+
                     <div className="form-group">
                         <label>Meg tudod oldani a kiszállítást a kórházhoz?</label>
                         <input type="radio" /> Igen, meg tudom oldani
                     <input type="radio" /> Nem tudom megoldani
                     </div>
+
+                    <div className="form-group">
+                        <label>Dátum</label>
+                        <input type="date" name="transportDate" id="transportDate" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Hűtős kocsi?</label>
+                        <input name="requestRefrigeratorCar" id="requestRefrigeratorCar" savetype="transportRequest" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Mekkora raktere legyen?</label>
+                        <input name="requestVehicleCapacity" id="requestVehicleCapacity" savetype="transportRequest" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Hányra menjen?</label>
+                        <input placeholder="10:10" name="timeToPickUp" id="timeToPickUp" savetype="transportRequest" size={30} />
+                    </div>
                 </fieldset>
+
 
                 <fieldset>
                     <div>
