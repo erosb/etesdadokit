@@ -11,14 +11,17 @@ import javax.validation.constraints.NotEmpty;
 @Builder(toBuilder = true)
 public class Contact {
 
-    @NotEmpty @ApiModelProperty(required = true)
+    @NotEmpty
+    @ApiModelProperty(required = true)
     private String nameOrCompany;
 
     @Email
-    @NotEmpty @ApiModelProperty(required = true)
+    @NotEmpty
+    @ApiModelProperty(required = true)
     private String email;
 
-    @NotEmpty @ApiModelProperty(required = true)
+    @NotEmpty
+    @ApiModelProperty(required = true)
     private String phoneNumber;
 
 }

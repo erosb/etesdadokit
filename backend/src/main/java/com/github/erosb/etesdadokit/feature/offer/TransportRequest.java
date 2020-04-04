@@ -22,13 +22,18 @@ public class TransportRequest {
     @JsonDeserialize(using = LocalTimeDeserializer.class)
     @JsonFormat(pattern = "HH:mm")
     @DateTimeFormat(pattern = "HH:mm")
-    @ApiModelProperty(value = "The time when the offerer request the pick up")
+    @ApiModelProperty(
+            value = "The time when the offerer request the pick up, the format is HH:mm",
+            example = "10:10"
+    )
     private LocalTime timeToPickUp;
 
-    @NotEmpty @ApiModelProperty(required = true)
+    @NotEmpty
+    @ApiModelProperty(required = true)
     private String requestVehicleCapacity;
 
-    @NotNull @ApiModelProperty(required = true)
+    @NotNull
+    @ApiModelProperty(required = true)
     private Boolean requestRefrigeratorCar;
 
 }

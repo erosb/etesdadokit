@@ -129,7 +129,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testMissingContentMandatoryFields() throws Exception {
+    public void testMissingContactMandatoryFields() throws Exception {
         FoodOfferRequest foodOfferRequest = validFoodRequest();
 
         mockMvc.perform(post("/offer/food/")
@@ -167,7 +167,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testEmptyContentMandatoryFields() throws Exception {
+    public void testEmptyContactMandatoryFields() throws Exception {
         FoodOfferRequest foodOfferRequest = validFoodRequest();
 
         mockMvc.perform(post("/offer/food/")
@@ -281,7 +281,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testOptionalFields() throws Exception {
+    public void testMissingOptionalFields() throws Exception {
         FoodOfferRequest foodOfferRequest = validFoodRequest();
 
         mockMvc.perform(post("/offer/food/")
@@ -299,6 +299,22 @@ public class FoodOfferControllerTest {
                 ))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testEmptyOptionalFields() throws Exception {
+        FoodOfferRequest foodOfferRequest = validFoodRequest();
+
+        mockMvc.perform(post("/offer/food/")
+                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
+                        .address(foodOfferRequest.getAddress()
+                                .toBuilder()
+                                .addressLineTwo("")
+                                .build()
+                        ).build()
+                ))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
 
     private FoodOfferRequest validFoodRequest() {

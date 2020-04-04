@@ -11,13 +11,16 @@ import java.util.List;
 @Data
 public class DeliveryPlanRequest {
 
-    @NotNull @ApiModelProperty(required = true)
+    @NotNull
+    @ApiModelProperty(required = true)
     private LocalDate date;
 
-    @NotNull @ApiModelProperty(required = true)
+    @NotNull
+    @ApiModelProperty(required = true)
     private FoodSupplyTask foodSupplyTask;
 
-    @NotNull @ApiModelProperty(required = true)
+    @NotNull
+    @ApiModelProperty(required = true)
     private List<MaterialSupplyTask> materialSupplyTasks;
 
     @Nullable
