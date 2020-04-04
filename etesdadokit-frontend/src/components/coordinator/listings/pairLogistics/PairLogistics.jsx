@@ -1,16 +1,21 @@
 import React from 'react';
-import CarListing from './CarListing'
 import FoodListing from './FoodListing'
-
-import Offering from '../../Offering'
+import Food from './Food'
 
 const PairLogistics = () => {
-    return (
-        <div>
-            <Offering />
-            <CarListing />
+
+    const url = window.location.href
+    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+        params = {},
+        match;
+    while (match = regex.exec(url)) {
+        params[match[1]] = match[2];
+    }
+
+    return (<div>
+        {"for" in params ? <div> RÉSZLETEK </div> :
             <FoodListing />
-        </div>
+        } </div>
     );
 }
 

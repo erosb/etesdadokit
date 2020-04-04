@@ -6,13 +6,14 @@ class CarListing extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            list: []
+            list: [],
+            date: this.props.date || ''
         }
     }
 
     componentDidMount() {
         try {
-            const url = "/offer/transport"
+            const url = `/offer/transport?day=${this.state.date}`
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
