@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -18,7 +18,7 @@ public class TransportOfferResponse {
     public Boolean refrigeratorCar;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date transportDate;
+    private LocalDate transportDate;
 
     private Integer firstAvailableHour;
 
