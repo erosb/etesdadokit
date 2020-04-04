@@ -50,7 +50,6 @@ const Car = ({ details, pairToFood }) => {
 
     //POST delivery plan
     const onClick = (event) => {
-        console.log(event.target)
         const { target: { id } } = event
         const sendDeliveryPlan = {
             date: transportDate,
@@ -61,7 +60,8 @@ const Car = ({ details, pairToFood }) => {
             transferTask: {
                 acceptedTransferOfferId: transferId,
                 departureTime: parsedFood.timeToPickUp
-            }
+            },
+            materialSupplyTasks: []
         }
 
         const url = '/delivery-plan'

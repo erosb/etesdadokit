@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import './Form.css'
 import SubFormContact from './SubFormContact'
 import SubformAddress from './SubformAddress'
@@ -29,165 +31,166 @@ import SubFormTransportRequest from './SubFormTransportRequest'
  */
 
 class RestaurantForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      formValues: {},
+    constructor(props) {
+        super(props)
+        this.state = {
+            formValues: {},
+        }
     }
-  }
 
-  fixCheckboxValue = (value) => {
-    return value === 'on' ? true : false
-  }
+    fixCheckboxValue = (value) => {
+        return value === 'on' ? true : false
+    }
 
-  onChange = (event) => {
-    const saveType = event.target.getAttribute('savetype')
-    const {
-      target: { name, value },
-    } = event
+    onChange = (event) => {
+        const saveType = event.target.getAttribute('savetype')
+        const {
+            target: { name, value },
+        } = event
 
-    this.setState((prevState) => {
-      if (saveType) {
-        prevState.formValues[saveType] = prevState.formValues[saveType]
-          ? prevState.formValues[saveType]
-          : {}
-        prevState.formValues[saveType][name] =
-          name === 'requestRefrigeratorCar' ? this.fixCheckboxValue(value) : value
-      } else {
-        prevState.formValues[name] = value
-      }
-      return {
-        ...prevState,
-      }
-    })
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault()
-    const { formValues } = this.state
-
-    const url = '/offer/food/'
-
-    try {
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues),
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data)
+        this.setState((prevState) => {
+            if (saveType) {
+                prevState.formValues[saveType] = prevState.formValues[saveType]
+                    ? prevState.formValues[saveType]
+                    : {}
+                prevState.formValues[saveType][name] =
+                    name === 'requestRefrigeratorCar' ? this.fixCheckboxValue(value) : value
+            } else {
+                prevState.formValues[name] = value
+            }
+            return {
+                ...prevState,
+            }
         })
-    } catch (e) {
-      console.log(e)
     }
-  }
 
-  render() {
-    const { formValues } = this.state
-    return (
-      <div>
-        <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-          <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
+    onSubmit = (event) => {
+        event.preventDefault()
+        const { formValues } = this.state
 
-          <div className="field is-horizontal margin-top-1">
-            <div className="field-label">
-              <label className="label">Milyen ételt tudsz felajánlani?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input className="input" name="name" id="name" type="text" />
-                </div>
-              </div>
-            </div>
-          </div>
+        const url = '/offer/food/'
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Hány adagot tudsz készíteni? (minimum 50)</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min="50"
-                    max="1000"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        try {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formValues),
+            })
+                .then((response) => response.text())
+                .then((data) => {
+                    console.log(data)
+                })
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Milyen fontosabb hozzávalók kellenek hozzá?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    cols={30}
-                    rows={4}
-                    name="ingredients"
-                    id="ingredients"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
+    render() {
+        const { formValues } = this.state
+        return (
+            <div>
+                <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
+                    <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Mikor lesz elérhető?</label>
-            </div>
-            <div className="field-body">
-              <div className="field is-narrow">
-                <div className="control">
-                  <input className="input" type="date" id="transportDate" name="transportDate" />
-                </div>
-              </div>
-            </div>
-          </div>
+                    <div className="field is-horizontal margin-top-1">
+                        <div className="field-label">
+                            <label className="label">Milyen ételt tudsz felajánlani?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field">
+                                <div className="control">
+                                    <input className="input" name="name" id="name" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Meg tudod oldani a kiszállítást a kórházhoz?</label>
-            </div>
-            <div className="field-body">
-              <div className="field is-narrow">
-                <div className="control">
-                  <label className="radio">
-                    <input className="radio" type="radio" name="canResolveTransport" value="yes" />{' '}
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Hány adagot tudsz készíteni? (minimum 50)</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field">
+                                <div className="control">
+                                    <input
+                                        className="input"
+                                        type="number"
+                                        id="quantity"
+                                        name="quantity"
+                                        min="50"
+                                        max="1000"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Milyen fontosabb hozzávalók kellenek hozzá?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field">
+                                <div className="control">
+                                    <textarea
+                                        className="textarea"
+                                        cols={30}
+                                        rows={4}
+                                        name="ingredients"
+                                        id="ingredients"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Mikor lesz elérhető?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field is-narrow">
+                                <div className="control">
+                                    <input className="input" type="date" id="transportDate" name="transportDate" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Meg tudod oldani a kiszállítást a kórházhoz?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field is-narrow">
+                                <div className="control">
+                                    <label className="radio">
+                                        <input className="radio" type="radio" name="canResolveTransport" value="yes" />{' '}
                     Igen, meg tudom oldani
                   </label>
-                  <label className="radio">
-                    <input className="radio" type="radio" name="canResolveTransport" value="no" />{' '}
+                                    <label className="radio">
+                                        <input className="radio" type="radio" name="canResolveTransport" value="no" />{' '}
                     Nem tudom megoldani
                   </label>
-                </div>
-              </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {formValues.canResolveTransport === 'no' && <SubFormTransportRequest />}
+
+                    <SubFormContact />
+
+                    <SubformAddress />
+                    <div className="has-text-centered margin-top-1">
+                        <Link href="/"><button className="button"> Vissza</button></Link>
+                        <input className="button" type="submit" value="Felajánlás elküldése" />
+                    </div>
+                </form>
             </div>
-          </div>
-          {formValues.canResolveTransport === 'no' && <SubFormTransportRequest />}
-
-          <SubFormContact />
-
-          <SubformAddress />
-          <div className="has-text-centered margin-top-1">
-            <input className="button" type="submit" value="Felajánlás elküldése" />
-          </div>
-        </form>
-      </div>
-    )
-  }
+        )
+    }
 }
 
 export default RestaurantForm
