@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,8 +17,10 @@ public class MaterialOfferResponse {
 
     private String ingredients;
 
+    private Boolean availableAnytime;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date offerDate;
+    private LocalDate offerDate;
 
     private Address address;
 

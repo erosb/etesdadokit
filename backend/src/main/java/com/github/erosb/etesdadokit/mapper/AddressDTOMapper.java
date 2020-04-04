@@ -5,7 +5,7 @@ import com.github.erosb.etesdadokit.feature.offer.Address;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddressMapper implements Mapper<AddressEntity, Address>{
+public class AddressDTOMapper implements DTOMapper<AddressEntity, Address> {
 
     @Override
     public Address entityToDTO(AddressEntity addressEntity) {

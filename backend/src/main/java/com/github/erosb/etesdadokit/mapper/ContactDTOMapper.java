@@ -5,7 +5,7 @@ import com.github.erosb.etesdadokit.feature.offer.Contact;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ContactMapper implements Mapper<ContactEntity, Contact>{
+public class ContactDTOMapper implements DTOMapper<ContactEntity, Contact> {
 
     @Override
     public ContactEntity dtoToEntity(Contact contact) {
