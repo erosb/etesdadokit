@@ -7,7 +7,8 @@ class CarListing extends React.Component {
         super(props)
         this.state = {
             list: [],
-            date: this.props.date || ''
+            date: this.props.date || '',
+            pairToFood: this.props.pairToFood || null
         }
     }
 
@@ -25,7 +26,7 @@ class CarListing extends React.Component {
     }
 
     render() {
-        const { list } = this.state
+        const { list, pairToFood } = this.state
         let newArr = list
         if (typeof list === "string") {
             newArr = JSON.parse(list)
@@ -41,7 +42,7 @@ class CarListing extends React.Component {
                         <th>Ráérés</th>
                         <th>Kapacitás</th>
                     </tr>
-                    {Array.isArray(newArr) && newArr.map(car => (<Car details={car} />))}
+                    {Array.isArray(newArr) && newArr.map(car => (<Car details={car} pairToFood={pairToFood} />))}
                 </tbody>
             </table>
         );

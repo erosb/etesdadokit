@@ -1,4 +1,10 @@
 * {
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
+
+td {
+  min-width: 200px;
+}
+
