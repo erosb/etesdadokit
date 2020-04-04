@@ -7,12 +7,8 @@ import java.time.LocalTime;
 @Data
 public class TransferTask {
 
-    private int contactInfoId;
+    private long acceptedTransferOfferId;
 
     private LocalTime departureTime;
-
-    private int sourceAddressId;
-
-    private int destinationAddressId;
 
 }

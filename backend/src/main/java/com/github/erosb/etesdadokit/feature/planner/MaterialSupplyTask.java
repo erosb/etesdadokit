@@ -6,7 +6,7 @@ import org.springframework.lang.Nullable;
 @Data
 public class MaterialSupplyTask {
 
-    private int acceptedMaterialOfferId;
+    private long acceptedMaterialOfferId;
 
     @Nullable
     private TransferTask transferTask;

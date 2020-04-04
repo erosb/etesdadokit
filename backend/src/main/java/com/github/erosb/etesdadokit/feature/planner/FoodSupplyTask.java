@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class FoodSupplyTask {
 
-    private int acceptedFoodOfferId;
+    private long acceptedFoodOfferId;
 
     private int portions;
 }
