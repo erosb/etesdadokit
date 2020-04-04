@@ -1,9 +1,10 @@
-form > legend, fieldset > legend {
+legend {
     font-size: 130%;
     font-weight: bold;
 }
 
 fieldset {
+    padding: 20px;
     margin-top: 2em;
     background-color:  #fff178;
     width: 30%;
