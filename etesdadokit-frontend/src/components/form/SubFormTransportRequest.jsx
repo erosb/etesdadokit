@@ -3,16 +3,11 @@ import React from 'react';
 const SubFormTransportRequest = () => {
     return (<fieldset>
         <div>
-            <legend>Szállítás</legend>
+            <legend>Szállítás kérés</legend>
         </div>
 
         <div className="form-group">
-            <label>Dátum</label>
-            <input type="date" name="transportDate" id="transportDate" size={30} />
-        </div>
-
-        <div className="form-group">
-            <label>Hűtős kocsi?</label>
+            <label>Hűtős kocsira van szükség?</label>
             <input type="checkbox" name="requestRefrigeratorCar" id="requestRefrigeratorCar" savetype="transportRequest" size={30} />
         </div>
 
@@ -22,7 +17,7 @@ const SubFormTransportRequest = () => {
         </div>
 
         <div className="form-group">
-            <label>Hányra menjen?</label>
+            <label>Hányra érkezzen?</label>
             <input placeholder="10:10" name="timeToPickUp" id="timeToPickUp" savetype="transportRequest" size={30} />
         </div>
     </fieldset>)
