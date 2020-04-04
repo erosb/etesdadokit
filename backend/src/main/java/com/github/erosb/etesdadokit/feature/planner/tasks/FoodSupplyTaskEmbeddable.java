@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Embeddable
 public class FoodSupplyTaskEmbeddable {
 
-    private long acceptedFoodOfferId;
+    private Long acceptedFoodOfferId;
 
-    private int portions;
+    private Integer portions;
 }

@@ -6,6 +6,7 @@ package com.github.erosb.etesdadokit.feature.planner;
 
         import javax.validation.constraints.NotNull;
         import java.time.LocalDate;
+        import java.util.ArrayList;
         import java.util.List;
 
 @Data
@@ -19,9 +20,7 @@ public class DeliveryPlanRequest {
     @ApiModelProperty(required = true)
     private FoodSupplyTask foodSupplyTask;
 
-    @NotNull
-    @ApiModelProperty(required = true)
-    private List<MaterialSupplyTask> materialSupplyTasks;
+    private List<MaterialSupplyTask> materialSupplyTasks = new ArrayList<>();
 
     @Nullable
     private TransferTask transferTask;

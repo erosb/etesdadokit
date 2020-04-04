@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class TransferTaskEmbeddable {
 
-    private long acceptedTransferOfferId;
+    private Long acceptedTransferOfferId;
 
     private LocalTime departureTime;
 }

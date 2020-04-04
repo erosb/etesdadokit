@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 public class TransferTaskMapper implements DTOMapper<TransferTaskEmbeddable, TransferTask> {
     @Override
     public TransferTaskEmbeddable dtoToEntity(TransferTask dto) {
+        if (dto == null) {
+            return null;
+        }
         return TransferTaskEmbeddable
                 .builder()
                 .acceptedTransferOfferId(dto.getAcceptedTransferOfferId())
@@ -17,6 +20,9 @@ public class TransferTaskMapper implements DTOMapper<TransferTaskEmbeddable, Tra
 
     @Override
     public TransferTask entityToDTO(TransferTaskEmbeddable entity) {
+        if (entity == null) {
+            return null;
+        }
         return TransferTask
                 .builder()
                 .acceptedTransferOfferId(entity.getAcceptedTransferOfferId())
