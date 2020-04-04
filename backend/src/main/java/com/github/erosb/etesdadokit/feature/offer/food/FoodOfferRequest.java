@@ -25,32 +25,32 @@ import java.time.LocalDate;
 public class FoodOfferRequest {
 
     @NotEmpty
-    @ApiModelProperty("The offered food name")
+    @ApiModelProperty(value = "The offered food name", required = true)
     private String name;
 
     @Min(50)
     @NotNull
-    @ApiModelProperty("The offered quantity, the minimum value is 50")
+    @ApiModelProperty(value = "The offered quantity, the minimum value is 50", required = true)
     private Integer quantity;
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate transportDate;
 
-    @NotBlank
+    @NotBlank @ApiModelProperty(required = true)
     private String ingredients;
 
     @Valid
     private TransportRequest transportRequest;
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     @Valid
     private Address address;
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     @Valid
     private Contact contact;
 }

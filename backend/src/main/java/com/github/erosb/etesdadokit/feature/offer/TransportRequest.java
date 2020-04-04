@@ -25,10 +25,10 @@ public class TransportRequest {
     @ApiModelProperty(value = "The time when the offerer request the pick up")
     private LocalTime timeToPickUp;
 
-    @NotEmpty
+    @NotEmpty @ApiModelProperty(required = true)
     private String requestVehicleCapacity;
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     private Boolean requestRefrigeratorCar;
 
 }

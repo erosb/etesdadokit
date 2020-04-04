@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.feature.planner;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.lang.Nullable;
 
@@ -10,13 +11,13 @@ import java.util.List;
 @Data
 public class DeliveryPlanRequest {
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     private LocalDate date;
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     private FoodSupplyTask foodSupplyTask;
 
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     private List<MaterialSupplyTask> materialSupplyTasks;
 
     @Nullable
