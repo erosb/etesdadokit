@@ -3,9 +3,13 @@
 
 import React from 'react';
 import { Link } from "react-router-dom";
+import Message from '../static/Intro'
+import Donate from '../static/Donate'
 
 const FormRoutes = () => {
   return (<div>
+    <Message />
+
     <h2 id="want-to-support">Hogyan tudsz segíteni minket?</h2>
 
     <h3>Felajánlással</h3>
@@ -30,7 +34,9 @@ const FormRoutes = () => {
       </li>
     </ul>
 
-
+    <div className="donations-col">
+      <Donate />
+    </div>
   </div>)
 }
 

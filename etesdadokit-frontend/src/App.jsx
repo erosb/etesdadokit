@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css'
 import RestaurantForm from './components/form/RestaurantForm'
 import FormRoutes from './components/form/FormRoutes'
-import Message from './components/static/Intro'
-import Donate from './components/static/Donate'
+
 
 import PairLogistics from './components/coordinator/listings/pairLogistics/PairLogistics'
 import TransportForm from './components/form/TransportForm';
@@ -36,42 +35,33 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
-
-        <Message />
-
-        <div className="container">
-          {this.state.chosenOffering || (
-            <div>
-              <BrowserRouter>
-                <Switch>
-                  <Route path="/restaurant">
-                    <RestaurantForm />
-                  </Route>
-                  <Route path="/shipping">
-                    <TransportForm />
-                  </Route>
-                  <Route path="/raw-material">
-                    <RawMaterialForm />
-                  </Route>
-                  <Route path="/logistics">
-                    <PairLogistics />
-                  </Route>
-                  <Route path="/offer/food">
-                    <Offering />
-                  </Route>
-                  <Route path="/">
-                    <FormRoutes />
-                  </Route>
-                </Switch>
-              </BrowserRouter>
-            </div>
-          )}
-        </div>
-
-        <div className="donations-col">
-          <Donate />
-        </div>
+      <div className="container">
+        {this.state.chosenOffering || (
+          <div>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/restaurant">
+                  <RestaurantForm />
+                </Route>
+                <Route path="/shipping">
+                  <TransportForm />
+                </Route>
+                <Route path="/raw-material">
+                  <RawMaterialForm />
+                </Route>
+                <Route path="/logistics">
+                  <PairLogistics />
+                </Route>
+                <Route path="/offer/food">
+                  <Offering />
+                </Route>
+                <Route path="/">
+                  <FormRoutes />
+                </Route>
+              </Switch>
+            </BrowserRouter>
+          </div>
+        )}
       </div>
     )
   }
