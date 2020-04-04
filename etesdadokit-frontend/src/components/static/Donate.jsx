@@ -4,7 +4,6 @@ import React from 'react';
 const Donations = () => {
   return (
     <div>
-      <h3>Pénzbeli segítséggel</h3>
 
       <p className="bank-transfer-details">
         Ha banki átutalással szeretnél támogatni minket, akkor az alábbi adatokad add meg:
