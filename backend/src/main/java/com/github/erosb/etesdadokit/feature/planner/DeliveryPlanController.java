@@ -5,13 +5,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/planner")
+@RequestMapping("/delivery-plan")
 @Api(tags = {SwaggerTags.PLANNER})
-public class PlannerController {
+public class DeliveryPlanController {
 
     @GetMapping
     @ApiOperation(
@@ -21,5 +22,10 @@ public class PlannerController {
     )
     public ResponseEntity<String> index() {
         return ResponseEntity.ok("ohai");
+    }
+
+    @PostMapping
+    public ResponseEntity<String> createDeliveryPlan(DeliveryPlanRequest planRequest) {
+        return ResponseEntity.ok().build();
     }
 }
