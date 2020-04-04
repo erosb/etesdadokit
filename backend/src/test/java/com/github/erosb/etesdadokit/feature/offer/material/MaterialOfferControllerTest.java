@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -34,6 +35,15 @@ public class MaterialOfferControllerTest {
     @Before
     public void setup() {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
+
+    @Test
+    public void testOk() throws Exception {
+        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
+
+        mockMvc.perform(post("/offer/material/").content(mapper.writeValueAsString(materialOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").isNotEmpty());
     }
 
     @Test
