@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -7,8 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.IOException;
+import java.time.LocalDate;
+
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
+import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -18,6 +25,9 @@ public class MaterialOfferControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper mapper;
 
     @Test
     void testOk() throws Exception {
@@ -150,6 +160,31 @@ public class MaterialOfferControllerTest {
                 .content(readJson("/material-offer/testEmptyOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testFindAndFilterByDate() throws Exception {
+        MaterialOfferRequest offer1 = mapper.readerFor(MaterialOfferRequest.class).readValue(getClass().
+                getResourceAsStream("/material-offer/testOk.json"));
+        offer1 = offer1.toBuilder().offerAvailableDate(LocalDate.parse("2020-03-04")).build();
+
+        MaterialOfferRequest offer2 = offer1.toBuilder().offerAvailableDate(LocalDate.parse("2020-03-05")).build();
+
+        mockMvc.perform(post("/offer/material/")
+                .content(mapper.writeValueAsString(offer1))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+        mockMvc.perform(post("/offer/material/")
+                .content(mapper.writeValueAsString(offer2))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        mockMvc.perform(get("/offer/material?day=2020-03-04")).andDo(print())
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
+
+        mockMvc.perform(get("/offer/material")).andDo(print())
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
+
     }
 
 }

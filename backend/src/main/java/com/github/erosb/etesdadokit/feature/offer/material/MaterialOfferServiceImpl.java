@@ -5,8 +5,11 @@ import com.github.erosb.etesdadokit.common.contact.ContactInfoService;
 import com.github.erosb.etesdadokit.common.transportRrequest.TransportRequestService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class MaterialOfferServiceImpl implements MaterialOfferService {
@@ -37,7 +40,7 @@ public class MaterialOfferServiceImpl implements MaterialOfferService {
                 .findAll()
                 .stream()
                 .map(materialOfferMapper::entityToResponse)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private MaterialOfferResponse saveEntityAndReturnResponse(MaterialOfferEntity entity){
@@ -51,5 +54,13 @@ public class MaterialOfferServiceImpl implements MaterialOfferService {
         MaterialOfferResponse response = materialOfferMapper.entityToResponse(saved);
 
         return response;
+    }
+
+    @Override
+    public List<MaterialOfferResponse> listByDate(LocalDate day) {
+        if (day == null) {
+            return findAll();
+        }
+        return repository.findByOfferDate(day).stream().map(materialOfferMapper::entityToResponse).collect(toList());
     }
 }

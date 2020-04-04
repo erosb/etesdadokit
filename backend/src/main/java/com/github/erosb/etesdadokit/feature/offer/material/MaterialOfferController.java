@@ -50,8 +50,7 @@ public class MaterialOfferController {
     public ResponseEntity<List<MaterialOfferResponse>> listMaterials(
         @ApiParam("The day for which the available material offers in yyyy-mm-dd format")
         @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
-
-        return ResponseEntity.ok(materialOfferService.findAll());
+        return ResponseEntity.ok(materialOfferService.listByDate(day));
     }
 
 }
