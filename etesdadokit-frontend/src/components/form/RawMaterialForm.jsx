@@ -59,7 +59,7 @@ class RawMaterialForm extends React.Component {
     onSubmit = (event) => {
         event.preventDefault()
         const { formValues } = this.state
-        const url = "/offer/material"
+        const url = "/offer/material/"
 
         try {
             fetch(url, {

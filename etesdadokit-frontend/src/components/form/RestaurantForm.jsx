@@ -56,7 +56,7 @@ class RestaurantForm extends React.Component {
         event.preventDefault()
         const { formValues } = this.state
 
-        const url = "/offer/food"
+        const url = "/offer/food/"
 
         try {
             fetch(url, {
@@ -89,12 +89,17 @@ class RestaurantForm extends React.Component {
 
                     <div className="form-group">
                         <label>Hány adagot tudsz készíteni?</label>
-                        <input type="number" id="quantity" name="quantity" min="10" max="1000" />
+                        <input type="number" id="quantity" name="quantity" min="50" max="1000" />
                     </div>
 
                     <div className="form-group">
                         <label>Milyen fontosabb hozzávalók kellenek hozzá?</label>
                         <textarea cols={30} rows={4} name="ingredients" id="ingredients"></textarea>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Mikor lesz elérhető?</label>
+                        <input type="date" id="transportDate" name="transportDate" />
                     </div>
 
                     <div className="form-group">

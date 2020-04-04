@@ -46,7 +46,7 @@ class TransportForm extends React.Component {
     onSubmit = (event) => {
         event.preventDefault()
         const { formValues } = this.state
-        const url = "/offer/transport"
+        const url = "/offer/transport/"
 
         try {
             fetch(url, {
