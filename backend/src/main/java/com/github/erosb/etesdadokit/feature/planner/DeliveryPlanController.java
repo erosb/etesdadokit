@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class DeliveryPlanController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createDeliveryPlan(DeliveryPlanRequest planRequest) {
+    public ResponseEntity<String> createDeliveryPlan(@RequestBody DeliveryPlanRequest planRequest) {
         return ResponseEntity.ok().build();
     }
 }
