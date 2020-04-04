@@ -6,8 +6,8 @@ zöld: #508c88
 */
 
 body {
-  background-color:  #fffae0; /*#ffeb3b*/
-  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+  background-color:  rgba(0, 0, 0, 0.01); /*#fffae0; #ffeb3b*/
+  font-family: 'Open Sans', sans-serif;/*"Baloo 2", Arial, Helvetica, sans-serif;*/
   color: #232323;
   margin: 0 0 3em 0;
 }
@@ -203,6 +203,7 @@ img.fb-logo {
   margin-inline-start: 0;
 }
 
+/*
 .donations-row{
   display: flex;
   flex-direction: column;
@@ -212,3 +213,4 @@ img.fb-logo {
   min-width: 500px;
   max-width: 100%;
 }
+*/

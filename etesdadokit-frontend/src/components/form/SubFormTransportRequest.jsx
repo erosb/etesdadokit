@@ -1,26 +1,70 @@
-import React from 'react';
+import React from 'react'
 
 const SubFormTransportRequest = () => {
-    return (<fieldset>
-        <div>
-            <legend>Szállítás kérés</legend>
-        </div>
+  return (
+    <div>
+      <legend className="label has-text-centered">Szállítás kérés</legend>
 
-        <div className="form-group">
-            <label>Hűtős kocsira van szükség?</label>
-            <input type="checkbox" name="requestRefrigeratorCar" id="requestRefrigeratorCar" savetype="transportRequest" size={30} />
+      <div className="field is-horizontal">
+        <div className="field-label">
+          <label className="label">Hűtős kocsira van szükség?</label>
         </div>
+        <div className="field-body">
+          <div className="field is-narrow">
+            <div className="control">
+              <input
+                className="checkbox"
+                type="checkbox"
+                name="requestRefrigeratorCar"
+                id="requestRefrigeratorCar"
+                savetype="transportRequest"
+                size={30}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div className="form-group">
-            <label>Mekkora raktere legyen?</label>
-            <input name="requestVehicleCapacity" id="requestVehicleCapacity" savetype="transportRequest" size={30} />
+      <div className="field is-horizontal">
+        <div className="field-label">
+          <label className="label">Mekkora raktere legyen?</label>
         </div>
+        <div className="field-body">
+          <div className="field is-narrow">
+            <div className="control">
+              <input
+                className="input"
+                name="requestVehicleCapacity"
+                id="requestVehicleCapacity"
+                savetype="transportRequest"
+                size={30}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div className="form-group">
-            <label>Hányra érkezzen?</label>
-            <input placeholder="10:10" name="timeToPickUp" id="timeToPickUp" savetype="transportRequest" size={30} />
+      <div className="field is-horizontal">
+        <div className="field-label">
+          <label className="label">Hányra érkezzen?</label>
         </div>
-    </fieldset>)
+        <div className="field-body">
+          <div className="field is-narrow">
+            <div className="control">
+              <input
+                className="input"
+                placeholder="10:10"
+                name="timeToPickUp"
+                id="timeToPickUp"
+                savetype="transportRequest"
+                size={30}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default SubFormTransportRequest

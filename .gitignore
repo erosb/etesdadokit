@@ -2,3 +2,4 @@
 *.idea
 
 etesdadokit-frontend/node_modules
+/frontend

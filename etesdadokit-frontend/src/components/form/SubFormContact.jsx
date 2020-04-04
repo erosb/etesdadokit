@@ -1,29 +1,71 @@
-import React from 'react';
+import React from 'react'
 
 const SubFormContact = () => {
+  return (
+    <div>
+      <legend className="label has-text-centered">Kapcsolat</legend>
 
-    return (
-        <fieldset>
-            <div>
-                <legend>Kapcsolat</legend>
+      <div className="field is-horizontal first-field">
+        <div className="field-label">
+          <label className="label">Cégnév, vagy kapcsolattartó neve (saját neved)</label>
+        </div>
+        <div className="field-body">
+          <div className="field">
+            <div className="controll">
+              <input
+                className="input"
+                placeholder=""
+                name="nameOrCompany"
+                id="nameOrCompany"
+                savetype="contact"
+                size={30}
+              />
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="form-group">
-                <label>Cégnév, vagy kapcsolattartó neve (saját neved)</label>
-                <input placeholder="" name="nameOrCompany" id="nameOrCompany" savetype="contact" size={30} />
+      <div className="field is-horizontal">
+        <div className="field-label">
+          <label className="label">Email cím</label>
+        </div>
+        <div className="field-body">
+          <div className="field">
+            <div className="control">
+              <input
+                className="input"
+                placeholder="neved@example.org"
+                name="email"
+                id="email"
+                savetype="contact"
+                size={30}
+              />
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="form-group">
-                <label>Email cím</label>
-                <input placeholder="neved@example.org" name="email" id="email" savetype="contact" size={30} />
+      <div className="field is-horizontal">
+        <div className="field-label">
+          <label className="label">Telefonszám</label>
+        </div>
+        <div className="field-body">
+          <div className="field">
+            <div className="control">
+              <input
+                className="input"
+                placeholder="06-30-123-4567"
+                name="phoneNumber"
+                id="phoneNumber"
+                savetype="contact"
+                size={30}
+              />
             </div>
-
-            <div className="form-group">
-                <label>Telefonszám</label>
-                <input placeholder="06-30-123-4567" name="phoneNumber" id="phoneNumber" savetype="contact" size={30} />
-            </div>
-        </fieldset>)
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
-
 
 export default SubFormContact
