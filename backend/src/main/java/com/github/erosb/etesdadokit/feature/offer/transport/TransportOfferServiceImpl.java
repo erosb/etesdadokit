@@ -1,6 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
-import com.github.erosb.etesdadokit.services.ContactInfoService;
+import com.github.erosb.etesdadokit.common.contact.ContactInfoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

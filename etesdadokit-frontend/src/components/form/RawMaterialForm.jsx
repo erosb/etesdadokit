@@ -1,6 +1,8 @@
 import React from 'react';
 import './Form.css';
-
+import SubFormContact from './SubFormContact'
+import SubformAddress from './SubformAddress';
+import SubFormTransportRequest from './SubFormTransportRequest'
 
 /**
  * {
@@ -30,54 +32,68 @@ import './Form.css';
 }
  */
 
-const RawMaterialForm = () => {
-    return (
-        <form style={{ gridArea: "form" }}>
-            <h2>Készétel felajánlás</h2>
-            <div className="form-group">
-                <label>Milyen ételt tudsz felajánlani?</label>
-                <input name="txt-dish" id="txt-dish" size={30} />
-            </div>
+class RawMaterialForm extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            formValues: {}
+        }
+    }
 
-            <div className="form-group">
-                <label>Hány adagot tudsz készíteni?</label>
-                <input type="number" name="dish-count" min="10" max="1000" />
-            </div>
+    onChange = (event) => {
+        const saveType = event.target.getAttribute("savetype")
+        const { target: { id, value } } = event
+        this.setState(prevState => {
+            if (saveType) {
+                prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
+                prevState.formValues[saveType][id] = value
+            } else {
+                prevState.formValues[id] = value
+            }
+            return ({
+                ...prevState
+            })
+        })
+    }
 
-            <div className="form-group">
-                <label>Milyen fontosabb hozzávalók kellenek hozzá?</label>
-                <textarea cols={30} rows={4} name="txt-ingredients"></textarea>
-            </div>
+    onSubmit = (event) => {
+        //TODO: transport
+        //TODO transportRequest
+        //TODO: date format yyyy-mm-dd
+        event.preventDefault()
+        const { formValues } = this.state
+        const url = "/offer/food"
 
-            <div className="form-group">
-                <label>Meg tudod oldani a kiszállítást a kórházhoz?</label>
-                <input type="radio" /> Igen, meg tudom oldani
-            <input type="radio" /> Nem tudom megoldani
-        </div>
+        try {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formValues)
+            }).then(response => response.text())
+                .then(data => {
+                    console.log(data)
+                });
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
-            <fieldset>
-                <legend>
-                    Kapcsolat
-            </legend>
-                <div className="form-group">
-                    <label>Cégnév, vagy kapcsolattartó neve (saját neved)</label>
-                    <input placeholder="" size={30} />
-                </div>
+    render() {
+        return (
+            <form style={{ gridArea: "form" }}>
+                "ingredients": "string",
+                "offerAvailableDate": "2020-04-04T12:25:34.991Z",
+                <SubformAddress />
 
-                <div className="form-group">
-                    <label>Email cím</label>
-                    <input placeholder="neved@example.org" size={30} />
-                </div>
+                <SubFormContact />
 
-                <div className="form-group">
-                    <label>Telefonszám</label>
-                    <input placeholder="06-30-123-4567" size={30} />
-                </div>
-            </fieldset>
-
-            <input type="submit" value="Felajánlás elküldése" />
-        </form>
-    )
+                <SubFormTransportRequest />
+                <input type="submit" value="Felajánlás elküldése" />
+            </form >
+        )
+    }
 }
 
 export default RawMaterialForm;

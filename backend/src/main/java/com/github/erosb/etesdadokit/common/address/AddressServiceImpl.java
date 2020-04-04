@@ -1,7 +1,5 @@
-package com.github.erosb.etesdadokit.services;
+package com.github.erosb.etesdadokit.common.address;
 
-import com.github.erosb.etesdadokit.domain.AddressEntity;
-import com.github.erosb.etesdadokit.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
 @Service

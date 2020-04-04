@@ -1,7 +1,6 @@
-package com.github.erosb.etesdadokit.mapper;
+package com.github.erosb.etesdadokit.common.contact;
 
-import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.feature.offer.Contact;
+import com.github.erosb.etesdadokit.common.mapper.DTOMapper;
 import org.springframework.stereotype.Component;
 
 @Component

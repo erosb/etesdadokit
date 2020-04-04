@@ -1,7 +1,5 @@
-package com.github.erosb.etesdadokit.services;
+package com.github.erosb.etesdadokit.common.transportRrequest;
 
-import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
-import com.github.erosb.etesdadokit.repository.TransportRequestRepository;
 import org.springframework.stereotype.Service;
 
 @Service

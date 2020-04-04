@@ -1,4 +1,4 @@
-package com.github.erosb.etesdadokit.mapper;
+package com.github.erosb.etesdadokit.common.mapper;
 
 public interface RequestResponseMapper<E, K, L>{
 

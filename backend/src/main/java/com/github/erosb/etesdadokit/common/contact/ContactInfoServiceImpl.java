@@ -1,7 +1,5 @@
-package com.github.erosb.etesdadokit.services;
+package com.github.erosb.etesdadokit.common.contact;
 
-import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.repository.ContactRepository;
 import org.springframework.stereotype.Service;
 
 @Service
