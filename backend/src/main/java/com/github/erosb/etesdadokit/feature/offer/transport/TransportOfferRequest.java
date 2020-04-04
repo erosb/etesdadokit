@@ -1,10 +1,17 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.github.erosb.etesdadokit.common.contact.Contact;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -12,31 +19,36 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
+@Builder(toBuilder = true)
 public class TransportOfferRequest {
 
     @NotEmpty
-    @ApiModelProperty("The requested capacity of the vehicle or the vehicle type")
+    @ApiModelProperty(value = "The requested capacity of the vehicle or the vehicle type", required = true)
     public String vehicleCapacity;
 
     @NotNull
-    @ApiModelProperty("Should be a refrigerator car or not")
+    @ApiModelProperty(value = "Should be a refrigerator car or not", required = true)
     public Boolean refrigeratorCar;
 
-    //TODO fuvarozás napja (bármely nap, vagy a következő 3 nap valamelyike)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty("The date when the offer is active")
     private LocalDate offerAvailableDate;
 
     @Max(24)
     @Min(0)
-    @ApiModelProperty("First available hour")
+    @NotNull
+    @ApiModelProperty(value = "First available hour", required = true)
     private Integer firstAvailableHour;
 
     @NotNull
-    @ApiModelProperty("The offer is available only inside the city")
+    @ApiModelProperty(value = "The offer is available only inside the city", required = true)
     private Boolean cityOnly;
 
     @NotNull
-    @ApiModelProperty("The offer related contact")
+    @Valid
+    @ApiModelProperty(value = "The offer related contact", required = true)
     private Contact contact;
 }

@@ -29,7 +29,6 @@ public class MaterialOfferMapper implements RequestResponseMapper<MaterialOfferE
         return MaterialOfferResponse.builder()
                 .id(entity.getId())
                 .ingredients(entity.getIngredients())
-                .availableAnytime(entity.getAvailableAnytime())
                 .offerDate(entity.getOfferDate())
                 .address(addressMapper.entityToDTO(entity.getAddressEntity()))
                 .contact(contactMapper.entityToDTO(entity.getContactEntity()))
@@ -43,7 +42,6 @@ public class MaterialOfferMapper implements RequestResponseMapper<MaterialOfferE
 
         return MaterialOfferEntity.builder()
                 .ingredients(request.getIngredients())
-                .availableAnytime(request.getAvailableAnytime())
                 .offerDate(request.getOfferAvailableDate())
                 .addressEntity(addressMapper.dtoToEntity(request.getAddress()))
                 .contactEntity(contactMapper.dtoToEntity(request.getContact()))

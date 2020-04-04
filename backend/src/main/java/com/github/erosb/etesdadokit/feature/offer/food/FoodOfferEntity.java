@@ -26,8 +26,6 @@ public class FoodOfferEntity {
 
     private Integer quantity;
 
-    private Boolean availableAnytime;
-
     private LocalDate transportDate;
 
     private String ingredients;

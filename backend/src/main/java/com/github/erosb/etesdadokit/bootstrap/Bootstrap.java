@@ -109,7 +109,6 @@ public class Bootstrap implements CommandLineRunner {
                 MaterialOfferEntity.builder()
                         .id(1L)
                         .ingredients("raw material ingredient")
-                        .availableAnytime(true)
                         .offerDate(LocalDate.now())
                         .transportRequestEntity(transportRequestEntity)
                         .addressEntity(addressEntity)

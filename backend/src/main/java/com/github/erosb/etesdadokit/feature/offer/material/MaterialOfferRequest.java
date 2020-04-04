@@ -26,15 +26,12 @@ public class MaterialOfferRequest {
     @ApiModelProperty(value = "List of the required ingredients", required = true)
     private String ingredients;
 
-    @NotNull
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @ApiModelProperty("The date when the offer is active")
     private LocalDate offerAvailableDate;
-
-    @NotNull
-    private Boolean availableAnytime;
 
     @Valid
     private TransportRequest transportRequest;
