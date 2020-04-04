@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.github.erosb.etesdadokit.common.contact.Contact;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -12,8 +14,6 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -39,6 +39,10 @@ public class TransportOfferRequest {
     private LocalDate offerAvailableDate;
 
     @NotNull
+    @JsonSerialize(using = LocalTimeSerializer.class)
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    @JsonFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "hh:mm")
     @ApiModelProperty(value = "The time of the day from which the transport vehicle and driver is available", required = true)
     private LocalTime availableFrom;
 
