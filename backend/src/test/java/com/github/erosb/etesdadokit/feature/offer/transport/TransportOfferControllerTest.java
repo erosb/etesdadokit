@@ -18,8 +18,8 @@ import java.time.LocalTime;
 
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
 import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -203,10 +203,10 @@ public class TransportOfferControllerTest {
             mockMvc.perform(post("/offer/transport").contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(transportOffer2))).andExpect(status().isOk());
 
-            mockMvc.perform(get("/offer/transport?day=2020-02-02")).andDo(print())
+            mockMvc.perform(get("/offer/transport?day=2020-02-02"))
             .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
 
-            mockMvc.perform(get("/offer/transport")).andDo(print())
+            mockMvc.perform(get("/offer/transport"))
                     .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
         }
 

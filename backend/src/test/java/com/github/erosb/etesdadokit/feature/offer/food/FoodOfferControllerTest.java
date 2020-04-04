@@ -1,22 +1,27 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
+
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class FoodOfferControllerTest {
@@ -24,16 +29,19 @@ public class FoodOfferControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper mapper;
+
     @Test
-    public void testOk() throws Exception {
+    void testOk() throws Exception {
         mockMvc.perform(post("/offer/food/").content(readJson("/food-offer/testOk.json")).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").isNotEmpty());
     }
 
     @Test
-    @Ignore("TODO mapper.readValue is not working")
-    public void testWithAllFields() throws Exception {
+    @Disabled("TODO mapper.readValue is not working")
+    void testWithAllFields() throws Exception {
         String response = mockMvc.perform(post("/offer/food/").content(readJson("/food-offer/testOk.json")).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn()
@@ -63,7 +71,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testMissingRootMandatoryFields() throws Exception {
+    void testMissingRootMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testMissingRootMandatoryFields_address.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -91,7 +99,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testEmptyRootMandatoryFields() throws Exception {
+    void testEmptyRootMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testEmptyRootMandatoryFields_ingredients.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -109,7 +117,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testMissingContactMandatoryFields() throws Exception {
+    void testMissingContactMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testMissingContactMandatoryFields_contact_nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -127,7 +135,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testEmptyContactMandatoryFields() throws Exception {
+    void testEmptyContactMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testEmptyContactMandatoryFields_contact_nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -145,7 +153,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testMissingAddressMandatoryFields() throws Exception {
+    void testMissingAddressMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testMissingAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -163,7 +171,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testEmptyAddressMandatoryFields() throws Exception {
+    void testEmptyAddressMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testEmptyAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -181,7 +189,7 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testMissingOptionalFields() throws Exception {
+    void testMissingOptionalFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testMissingOptionalFields_transportRequest.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -199,11 +207,36 @@ public class FoodOfferControllerTest {
     }
 
     @Test
-    public void testEmptyOptionalFields() throws Exception {
+    void testEmptyOptionalFields() throws Exception {
         mockMvc.perform(post("/offer/food/")
                 .content(readJson("/food-offer/testEmptyOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    void testFindAndFilterByDate() throws Exception {
+        FoodOfferRequest offer1 = mapper.readerFor(FoodOfferRequest.class).readValue(
+                getClass().getResourceAsStream("/food-offer/testOk.json"));
+        offer1 = offer1.toBuilder().transportDate(LocalDate.parse("2020-03-04")).build();
+
+        FoodOfferRequest offer2 = offer1.toBuilder().transportDate(LocalDate.parse("2020-03-05")).build();
+
+        mockMvc.perform(post("/offer/food/")
+                .content(mapper.writeValueAsString(offer1))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        mockMvc.perform(post("/offer/food/")
+                .content(mapper.writeValueAsString(offer2))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        mockMvc.perform(get("/offer/food?day=2020-03-04"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
+
+        mockMvc.perform(get("/offer/food"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
+    }
 }

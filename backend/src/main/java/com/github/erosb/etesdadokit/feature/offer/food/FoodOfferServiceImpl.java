@@ -5,8 +5,11 @@ import com.github.erosb.etesdadokit.common.contact.ContactInfoService;
 import com.github.erosb.etesdadokit.common.transportRrequest.TransportRequestService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class FoodOfferServiceImpl implements FoodOfferService {
@@ -42,7 +45,7 @@ public class FoodOfferServiceImpl implements FoodOfferService {
         return foodOfferRepository.findAll()
                 .stream()
                 .map(foodOfferMapper::entityToResponse)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
@@ -67,5 +70,14 @@ public class FoodOfferServiceImpl implements FoodOfferService {
         FoodOfferEntity savedFoodOfferEntity = foodOfferRepository.save(foodOfferEntity);
 
         return foodOfferMapper.entityToResponse(savedFoodOfferEntity);
+    }
+
+    @Override
+    public List<FoodOfferResponse> listFoodOfferings(LocalDate day) {
+        if (day == null) {
+            return getAllFoodOfferings();
+        } else {
+            return foodOfferRepository.findByTransportDate(day).stream().map(foodOfferMapper::entityToResponse).collect(toList());
+        }
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
@@ -163,6 +164,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void testFindAndFilterByDate() throws Exception {
         MaterialOfferRequest offer1 = mapper.readerFor(MaterialOfferRequest.class).readValue(getClass().
                 getResourceAsStream("/material-offer/testOk.json"));
@@ -179,10 +181,10 @@ public class MaterialOfferControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful());
 
-        mockMvc.perform(get("/offer/material?day=2020-03-04")).andDo(print())
+        mockMvc.perform(get("/offer/material?day=2020-03-04"))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
 
-        mockMvc.perform(get("/offer/material")).andDo(print())
+        mockMvc.perform(get("/offer/material"))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
 
     }

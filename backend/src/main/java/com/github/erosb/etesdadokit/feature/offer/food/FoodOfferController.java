@@ -45,7 +45,7 @@ public class FoodOfferController {
             @ApiParam("The day for which the available food offers should be returned in yyyy-mm-dd format")
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
 
-        return ResponseEntity.ok(foodOfferService.getAllFoodOfferings());
+        return ResponseEntity.ok(foodOfferService.listFoodOfferings(day));
     }
 
     @GetMapping("{id}")
