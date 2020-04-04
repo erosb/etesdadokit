@@ -1,7 +1,8 @@
 import React from 'react';
 import './Form.css';
-
-
+import SubFormContact from './SubFormContact'
+import SubformAddress from './SubformAddress';
+import SubFormTransportRequest from './SubFormTransportRequest'
 /**
  * {
   "address": {
@@ -37,13 +38,13 @@ class RestaurantForm extends React.Component {
 
     onChange = (event) => {
         const saveType = event.target.getAttribute("savetype")
-        const { target: { id, value } } = event
+        const { target: { name, value } } = event
         this.setState(prevState => {
             if (saveType) {
                 prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][id] = value
+                prevState.formValues[saveType][name] = value
             } else {
-                prevState.formValues[id] = value
+                prevState.formValues[name] = value
             }
             return ({
                 ...prevState
@@ -54,6 +55,7 @@ class RestaurantForm extends React.Component {
     onSubmit = (event) => {
         event.preventDefault()
         const { formValues } = this.state
+
         const url = "/offer/food"
 
         try {
@@ -73,7 +75,7 @@ class RestaurantForm extends React.Component {
     }
 
     render() {
-        console.log(this.state)
+        const { formValues } = this.state
         return (
             <form style={{ gridArea: "form" }} onChange={this.onChange} onSubmit={this.onSubmit}>
                 <fieldset>
@@ -95,89 +97,22 @@ class RestaurantForm extends React.Component {
                         <textarea cols={30} rows={4} name="ingredients" id="ingredients"></textarea>
                     </div>
 
-                </fieldset>
-
-                <fieldset>
-                    <div>
-                        <legend>Szállítás</legend>
-                    </div>
-
-
                     <div className="form-group">
                         <label>Meg tudod oldani a kiszállítást a kórházhoz?</label>
-                        <input type="radio" /> Igen, meg tudom oldani
-                    <input type="radio" /> Nem tudom megoldani
+                        <input type="radio" name="canResolveTransport" value="yes" /> Igen, meg tudom oldani
+                        <input type="radio" name="canResolveTransport" value="no" /> Nem tudom megoldani
                     </div>
+                    {formValues.canResolveTransport === "no" && <SubFormTransportRequest />}
 
-                    <div className="form-group">
-                        <label>Dátum</label>
-                        <input type="date" name="transportDate" id="transportDate" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Hűtős kocsi?</label>
-                        <input name="requestRefrigeratorCar" id="requestRefrigeratorCar" savetype="transportRequest" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Mekkora raktere legyen?</label>
-                        <input name="requestVehicleCapacity" id="requestVehicleCapacity" savetype="transportRequest" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Hányra menjen?</label>
-                        <input placeholder="10:10" name="timeToPickUp" id="timeToPickUp" savetype="transportRequest" size={30} />
-                    </div>
                 </fieldset>
 
 
-                <fieldset>
-                    <div>
-                        <legend>Kapcsolat</legend>
-                    </div>
+                <SubFormContact />
 
-                    <div className="form-group">
-                        <label>Cégnév, vagy kapcsolattartó neve (saját neved)</label>
-                        <input placeholder="" name="nameOrCompany" id="nameOrCompany" savetype="contact" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Email cím</label>
-                        <input placeholder="neved@example.org" name="email" id="email" savetype="contact" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Telefonszám</label>
-                        <input placeholder="06-30-123-4567" name="phoneNumber" id="phoneNumber" savetype="contact" size={30} />
-                    </div>
-                </fieldset>
+                <SubformAddress />
 
 
-                <fieldset>
-                    <div>
-                        <legend>Cím</legend>
-                    </div>
 
-                    <div className="form-group">
-                        <label>Város</label>
-                        <input placeholder="" name="city" id="city" savetype="address" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Irányítószám</label>
-                        <input placeholder="1111" name="zip" id="zip" savetype="address" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Utca, házszám</label>
-                        <input placeholder="" name="addressLineOne" id="addressLineOne" savetype="address" size={30} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Emelet, ajtó, kapucsengő</label>
-                        <input placeholder="" name="addressLineTwo" id="addressLineTwo" savetype="address" size={30} />
-                    </div>
-                </fieldset>
 
                 <input type="submit" value="Felajánlás elküldése" />
             </form>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Form.css';
-
+import SubFormContact from './SubFormContact'
 /**
  * {
   "cityOnly": true,
@@ -17,54 +17,96 @@ import './Form.css';
  */
 
 
-const TransportForm = () => {
-    return (
-        <form style={{ gridArea: "form" }}>
-            <h2>Készétel felajánlás</h2>
-            <div className="form-group">
-                <label>Milyen ételt tudsz felajánlani?</label>
-                <input name="txt-dish" id="txt-dish" size={30} />
-            </div>
+class TransportForm extends React.Component {
 
-            <div className="form-group">
-                <label>Hány adagot tudsz készíteni?</label>
-                <input type="number" name="dish-count" min="10" max="1000" />
-            </div>
+    constructor(props) {
+        super(props)
+        this.state = {
+            formValues: {}
+        }
+    }
 
-            <div className="form-group">
-                <label>Milyen fontosabb hozzávalók kellenek hozzá?</label>
-                <textarea cols={30} rows={4} name="txt-ingredients"></textarea>
-            </div>
 
-            <div className="form-group">
-                <label>Meg tudod oldani a kiszállítást a kórházhoz?</label>
-                <input type="radio" /> Igen, meg tudom oldani
-            <input type="radio" /> Nem tudom megoldani
-        </div>
+    onChange = (event) => {
+        const saveType = event.target.getAttribute("savetype")
+        const { target: { id, value } } = event
+        this.setState(prevState => {
+            if (saveType) {
+                prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
+                prevState.formValues[saveType][id] = value
+            } else {
+                prevState.formValues[id] = value
+            }
+            return ({
+                ...prevState
+            })
+        })
+    }
 
-            <fieldset>
-                <legend>
-                    Kapcsolat
-            </legend>
-                <div className="form-group">
-                    <label>Cégnév, vagy kapcsolattartó neve (saját neved)</label>
-                    <input placeholder="" size={30} />
-                </div>
+    onSubmit = (event) => {
+        event.preventDefault()
+        const { formValues } = this.state
+        const url = "/offer/transport"
 
-                <div className="form-group">
-                    <label>Email cím</label>
-                    <input placeholder="neved@example.org" size={30} />
-                </div>
+        try {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formValues)
+            }).then(response => response.text())
+                .then(data => {
+                    console.log(data)
+                });
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
-                <div className="form-group">
-                    <label>Telefonszám</label>
-                    <input placeholder="06-30-123-4567" size={30} />
-                </div>
-            </fieldset>
+    render() {
+        return (
+            <form style={{ gridArea: "form" }} onChange={this.onChange} onSubmit={this.onSubmit}>
 
-            <input type="submit" value="Felajánlás elküldése" />
-        </form>
-    )
+                <SubFormContact />
+
+                <fieldset>
+                    <div>
+                        <legend>Szállítás</legend>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Csak városon belül szállítasz?</label>
+                        <input type="checkbox" name="cityOnly" id="cityOnly" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Dátum</label>
+                        <input type="date" name="offerAvailableDate" id="offerAvailableDate" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Hűtős kocsi?</label>
+                        <input name="refrigeratorCar" id="refrigeratorCar" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Mekkora raktere legyen?</label>
+                        <input name="vehicleCapacity" id="vehicleCapacity" size={30} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Hányra menjen leghamarabb?</label>
+                        <input placeholder="10:10" name="firstAvailableHour" id="firstAvailableHour" size={30} />
+                    </div>
+                </fieldset>
+
+
+
+                <input type="submit" value="Felajánlás elküldése" />
+            </form>
+        )
+    }
 }
 
 export default TransportForm;

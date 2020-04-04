@@ -7,6 +7,8 @@ import Message from './components/static/Message';
 import Donate from './components/static/Donate';
 
 import PairLogistics from './components/coordinator/listings/pairLogistics/PairLogistics'
+import TransportForm from './components/form/TransportForm';
+import RawMaterialForm from './components/form/RawMaterialForm';
 
 export class App extends Component {
   constructor(props) {
@@ -47,6 +49,15 @@ export class App extends Component {
                     <Route path="/restaurant">
                       <RestaurantForm />
                     </Route>
+                    <Route path="/shipping">
+                      <TransportForm />
+                    </Route>
+                    <Route path="/raw-material">
+                      <RawMaterialForm />
+                    </Route>
+                    <Route path="/logistics">
+                      <PairLogistics />
+                    </Route>
                     <Route path="/">
                       <FormRoutes />
                     </Route>
@@ -60,7 +71,6 @@ export class App extends Component {
             <Donate />
           </div>
         </div>
-        <div><PairLogistics /></div>
       </div>
     );
   }
