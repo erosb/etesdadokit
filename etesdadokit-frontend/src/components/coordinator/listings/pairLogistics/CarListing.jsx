@@ -1,5 +1,6 @@
 import React from 'react';
 import Car from './Car'
+import './CarList.css'
 
 class CarListing extends React.Component {
     constructor(props) {
@@ -30,9 +31,18 @@ class CarListing extends React.Component {
         }
         console.log(newArr)
         return (
-            <div>
-                {Array.isArray(newArr) && newArr.map(car => (<Car details={car} />))}
-            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Név/cégnév</th>
+                        <th>Email</th>
+                        <th>Telefon</th>
+                        <th>Ráérés</th>
+                        <th>Kapacitás</th>
+                    </tr>
+                    {Array.isArray(newArr) && newArr.map(car => (<Car details={car} />))}
+                </tbody>
+            </table>
         );
     }
 }
