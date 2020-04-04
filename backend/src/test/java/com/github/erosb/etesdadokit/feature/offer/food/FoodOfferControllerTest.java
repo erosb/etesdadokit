@@ -2,9 +2,9 @@ package com.github.erosb.etesdadokit.feature.offer.food;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import com.github.erosb.etesdadokit.common.address.Address;
 import com.github.erosb.etesdadokit.common.contact.Contact;
+import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -38,6 +38,15 @@ public class FoodOfferControllerTest {
     @Before
     public void setup() {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
+
+    @Test
+    public void testOk() throws Exception {
+        FoodOfferRequest foodOfferRequest = validFoodRequest();
+
+        mockMvc.perform(post("/offer/food/").content(mapper.writeValueAsString(foodOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").isNotEmpty());
     }
 
     @Test
