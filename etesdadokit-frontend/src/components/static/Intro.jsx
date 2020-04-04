@@ -2,8 +2,7 @@ import React from 'react';
 
 const Intro = () => {
   return (
-    <div className="intro">
-      <h2>Kik vagyunk mi?</h2>
+    <div className="intro has-text-centered">
       <p>
         Az <a href="https://www.facebook.com/groups/195786688381007">#EtesdADokit Facebook csoport</a>
                 &nbsp;azért jött létre, hogy <strong>segítse az egészségügyben dolgozókat</strong>.
@@ -11,20 +10,20 @@ const Intro = () => {
                 &nbsp;<strong>vitaminokban gazdag étrendre</strong> lesz szükségük.
             </p>
 
-      <p>
+      <p><br />
         Amire biztos szükség van: szakácsok, éttermek, konyhák, beszállítók, hűtők-hűtőkocsik,
         marketinges, logisztika,
         csomagolóanyagok. Főleg kapcsolatok, hogy hogyan is lehet <strong>összeszervezni
         és eljuttatni az ételt</strong>.
             </p>
 
-      <p>
+      <p><br />
         Abszolút elsődleges szempont a biztonság, az éttermeknek a
         HACCP kívánalmaknak meg kell felelnie, a szakácsok
         védőfelszerelésben (szájmaszk+kesztyűben) főznének.
             </p>
 
-      <p>
+      <p><br />
         <a href="https://www.facebook.com/groups/195786688381007">
           <img
             src="./fb-logo.png"
@@ -38,4 +37,4 @@ const Intro = () => {
   );
 }
 
-export default Intro
+export default Intro;
