@@ -8,19 +8,16 @@ import './Offering.css'
  */
 const OfferingDataSheet = (offering) => {
 
-    //TODO: offering supposed to be a single something, not an array
-    let newArr = []
+    let parsedOffering = {}
     if (typeof offering.offering === "string") {
-        newArr = JSON.parse(offering.offering)
+        parsedOffering = JSON.parse(offering.offering)
     }
-
-    console.log(newArr[0])
 
     const { name, quantity, transportDate, ingredients,
         contact: { nameOrCompany, email, phoneNumber },
         transportRequest: { timeToPickUp, requestRefrigeratorCar, requestVehicleCapacity },
         address: { city, zip, addressLineOne, addressLinetwo }
-    } = newArr[0]
+    } = parsedOffering
 
     return (
         <div className="offering-details">

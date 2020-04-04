@@ -12,22 +12,14 @@ class Offering extends React.Component {
     }
 
     componentDidMount() {
-        const getFoodFromUrl = "/offer/food?day="
-
+        const getFoodFromUrl = "/offer/food/"
         const url = window.location.href
-        var regex = /[?&]([^=#]+)=([^&#]*)/g,
-            params = {},
-            match;
-        while (match = regex.exec(url)) {
-            params[match[1]] = match[2];
-        }
+        const urlsSplit = url.split(getFoodFromUrl)
 
-        const dayParam = params.day
-
-        fetch(`${getFoodFromUrl}${dayParam}`)
+        fetch(`${getFoodFromUrl}${urlsSplit[1]}`)
             .then(response => response.text())
             .then(data => {
-                this.setState({ offering: data, dayParam })
+                this.setState({ offering: data, dayParam: data.transportDate })
             });
 
     }
@@ -38,7 +30,7 @@ class Offering extends React.Component {
             <div>
                 {offering && <div>
                     <OfferingDataSheet offering={offering} />
-                    <CarListing date={dayParam} />
+                    <CarListing date={dayParam} pairToFood={offering} />
                 </div>}
             </div>
         )

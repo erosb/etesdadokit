@@ -7,7 +7,7 @@ const Food = (details) => {
     const transportClass = transportRequest ? "need-transport" : "no-transport-needed"
 
     return (
-        <Link to={`/offer/food?day=${transportDate}`}>
+        <Link to={`/offer/food/${id}`}>
             <div id={id} className={`food-box ${transportClass}`}>
                 <div> {quantity} adag {name}</div>
                 <div>Kiszállítás:  {transportDate}</div>
