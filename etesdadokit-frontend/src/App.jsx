@@ -7,14 +7,9 @@ import Message from './components/static/Intro'
 import Donate from './components/static/Donate'
 
 import PairLogistics from './components/coordinator/listings/pairLogistics/PairLogistics'
-<<<<<<< HEAD
 import TransportForm from './components/form/TransportForm';
 import RawMaterialForm from './components/form/RawMaterialForm';
 import Offering from './components/coordinator/Offering';
-=======
-import TransportForm from './components/form/TransportForm'
-import RawMaterialForm from './components/form/RawMaterialForm'
->>>>>>> origin/master
 
 export class App extends Component {
   constructor(props) {
@@ -61,6 +56,9 @@ export class App extends Component {
                   </Route>
                   <Route path="/logistics">
                     <PairLogistics />
+                  </Route>
+                  <Route path="/offer/food">
+                    <Offering />
                   </Route>
                   <Route path="/">
                     <FormRoutes />
