@@ -1,12 +1,5 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.erosb.etesdadokit.common.address.Address;
-import com.github.erosb.etesdadokit.common.contact.Contact;
-import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
-import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,9 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
+import static com.github.erosb.etesdadokit.JsonReader.readJson;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -33,18 +24,9 @@ public class FoodOfferControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private ObjectMapper mapper = new ObjectMapper();
-
-    @Before
-    public void setup() {
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    }
-
     @Test
     public void testOk() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
-        mockMvc.perform(post("/offer/food/").content(mapper.writeValueAsString(foodOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/offer/food/").content(readJson("/food-offer/testOk.json")).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").isNotEmpty());
     }
@@ -52,19 +34,17 @@ public class FoodOfferControllerTest {
     @Test
     @Ignore("TODO mapper.readValue is not working")
     public void testWithAllFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
-        String response = mockMvc.perform(post("/offer/food/").content(mapper.writeValueAsString(foodOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+        String response = mockMvc.perform(post("/offer/food/").content(readJson("/food-offer/testOk.json")).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
 
-        AcknowledgeResponse resp = mapper.readValue(response, AcknowledgeResponse.class);
+//   TODO     AcknowledgeResponse resp = mapper.readValue(response, AcknowledgeResponse.class);
 
-        mockMvc.perform(get("/offer/food/").content(mapper.writeValueAsString(foodOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/offer/food/").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("[1].id").value(resp.getId()))
+//     TODO           .andExpect(jsonPath("[1].id").value(resp.getId()))
                 .andExpect(jsonPath("[1].name").value("Pizza"))
                 .andExpect(jsonPath("[1].quantity").value("50"))
                 .andExpect(jsonPath("[1].transportDate").value("2020-04-04"))
@@ -84,270 +64,146 @@ public class FoodOfferControllerTest {
 
     @Test
     public void testMissingRootMandatoryFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().address(null).build()))
+                .content(readJson("/food-offer/testMissingRootMandatoryFields_address.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().contact(null).build()))
+                .content(readJson("/food-offer/testMissingRootMandatoryFields_contact.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().ingredients(null).build()))
+                .content(readJson("/food-offer/testMissingRootMandatoryFields_ingredients.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().name(null).build()))
+                .content(readJson("/food-offer/testMissingRootMandatoryFields_name.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().quantity(null).build()))
+                .content(readJson("/food-offer/testMissingRootMandatoryFields_quantity.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testEmptyRootMandatoryFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().ingredients("").build()))
+                .content(readJson("/food-offer/testEmptyRootMandatoryFields_ingredients.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().name("").build()))
+                .content(readJson("/food-offer/testEmptyRootMandatoryFields_name.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().quantity(0).build()))
+                .content(readJson("/food-offer/testEmptyRootMandatoryFields_quantity_0.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testMissingContactMandatoryFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .contact(foodOfferRequest.getContact()
-                                .toBuilder()
-                                .nameOrCompany(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingContactMandatoryFields_contact_nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .contact(foodOfferRequest.getContact()
-                                .toBuilder()
-                                .email(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingContactMandatoryFields_contact_email.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .contact(foodOfferRequest.getContact()
-                                .toBuilder()
-                                .phoneNumber(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingContactMandatoryFields_contact_phoneNumber.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testEmptyContactMandatoryFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .contact(foodOfferRequest.getContact()
-                                .toBuilder()
-                                .nameOrCompany("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyContactMandatoryFields_contact_nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .contact(foodOfferRequest.getContact()
-                                .toBuilder()
-                                .email("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyContactMandatoryFields_contact_email.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .contact(foodOfferRequest.getContact()
-                                .toBuilder()
-                                .phoneNumber("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyContactMandatoryFields_contact_phoneNumber.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testMissingAddressMandatoryFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .city(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineOne(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingAddressMandatoryFields_address_addressLineOne.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .zip(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingAddressMandatoryFields_address_zip.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testEmptyAddressMandatoryFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .city("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineOne("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyAddressMandatoryFields_address_addressLineOne.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .zip(0)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyAddressMandatoryFields_address_zip_0.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testMissingOptionalFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().transportRequest(null).build()))
+                .content(readJson("/food-offer/testMissingOptionalFields_transportRequest.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder().transportDate(null).build()))
+                .content(readJson("/food-offer/testMissingOptionalFields_transportRequest.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineTwo(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testMissingOptionalFields_contact_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void testEmptyOptionalFields() throws Exception {
-        FoodOfferRequest foodOfferRequest = validFoodRequest();
-
         mockMvc.perform(post("/offer/food/")
-                .content(mapper.writeValueAsString(foodOfferRequest.toBuilder()
-                        .address(foodOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineTwo("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/food-offer/testEmptyOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
-    private FoodOfferRequest validFoodRequest() {
-        return FoodOfferRequest.builder()
-                .name("Pizza")
-                .ingredients("liszt,tojas")
-                .transportDate(LocalDate.now())
-                .quantity(50)
-                .contact(Contact.builder()
-                        .email("test@test.hu")
-                        .nameOrCompany("Teszt Elek")
-                        .phoneNumber("+3650666666")
-                        .build())
-                .address(Address.builder()
-                        .addressLineOne("Liget utca 666")
-                        .addressLineTwo("5. épület")
-                        .city("Győr")
-                        .zip(9025)
-                        .build())
-                .transportRequest(TransportRequest.builder()
-                        .requestRefrigeratorCar(true)
-                        .requestVehicleCapacity("2 láda")
-                        .timeToPickUp(LocalTime.now())
-                        .build())
-                .build();
-    }
 }

@@ -1,0 +1,22 @@
+{
+  "name" : "Pizza",
+  "quantity" : 50,
+  "transportDate" : "2020-04-04",
+  "ingredients" : "liszt,tojas",
+  "transportRequest" : {
+    "timeToPickUp" : "19:41",
+    "requestVehicleCapacity" : "2 láda",
+    "requestRefrigeratorCar" : true
+  },
+  "address" : {
+    "zip" : 9025,
+    "city" : "Győr",
+    "addressLineOne" : "Liget utca 666",
+    "addressLineTwo" : "5. épület"
+  },
+  "contact" : {
+    "nameOrCompany" : "Teszt Elek",
+    "email" : "",
+    "phoneNumber" : "+3650666666"
+  }
+}
