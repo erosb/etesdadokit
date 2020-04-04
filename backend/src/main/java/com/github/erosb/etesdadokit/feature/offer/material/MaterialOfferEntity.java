@@ -2,8 +2,6 @@ package com.github.erosb.etesdadokit.feature.offer.material;
 
 import com.github.erosb.etesdadokit.domain.AddressEntity;
 import com.github.erosb.etesdadokit.domain.ContactEntity;
-import com.github.erosb.etesdadokit.feature.offer.Address;
-import com.github.erosb.etesdadokit.feature.offer.Contact;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
