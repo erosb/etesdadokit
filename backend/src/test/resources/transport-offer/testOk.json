@@ -1,0 +1,12 @@
+{
+  "vehicleCapacity": "2m3",
+  "refrigeratorCar": true,
+  "offerAvailableDate": "2020-04-04",
+  "availableFrom": "12:00",
+  "cityOnly": true,
+  "contact": {
+    "nameOrCompany": "Teszt Elek",
+    "email": "test@test.hu",
+    "phoneNumber": "+3650666666"
+  }
+}

@@ -17,6 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Builder(toBuilder = true)
@@ -37,11 +38,9 @@ public class TransportOfferRequest {
     @ApiModelProperty("The date when the offer is active")
     private LocalDate offerAvailableDate;
 
-    @Max(24)
-    @Min(0)
     @NotNull
-    @ApiModelProperty(value = "First available hour", required = true)
-    private Integer firstAvailableHour;
+    @ApiModelProperty(value = "The time of the day from which the transport vehicle and driver is available", required = true)
+    private LocalTime availableFrom;
 
     @NotNull
     @ApiModelProperty(value = "The offer is available only inside the city", required = true)

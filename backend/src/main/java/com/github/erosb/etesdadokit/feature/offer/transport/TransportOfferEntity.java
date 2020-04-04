@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -27,7 +28,7 @@ public class TransportOfferEntity {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate transportDate;
 
-    private Integer firstAvailableHour;
+    private LocalTime availableFrom;
 
     private Boolean cityOnly;
 

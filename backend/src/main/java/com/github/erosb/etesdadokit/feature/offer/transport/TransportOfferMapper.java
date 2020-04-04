@@ -23,7 +23,7 @@ public class TransportOfferMapper implements RequestResponseMapper<TransportOffe
                 .transportDate(entity.getTransportDate())
                 .cityOnly(entity.getCityOnly())
                 .contact(contactMapper.entityToDTO(entity.getContact()))
-                .firstAvailableHour(entity.getFirstAvailableHour())
+                .availableFrom(entity.getAvailableFrom())
                 .build();
     }
 
@@ -35,7 +35,7 @@ public class TransportOfferMapper implements RequestResponseMapper<TransportOffe
                 .transportDate(request.getOfferAvailableDate())
                 .cityOnly(request.getCityOnly())
                 .contact(contactMapper.dtoToEntity(request.getContact()))
-                .firstAvailableHour(request.getFirstAvailableHour())
+                .availableFrom(request.getAvailableFrom())
                 .build();
     }
 }

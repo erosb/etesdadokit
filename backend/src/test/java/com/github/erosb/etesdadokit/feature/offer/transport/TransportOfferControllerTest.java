@@ -14,7 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
+import static com.github.erosb.etesdadokit.JsonReader.readJson;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,9 +38,7 @@ public class TransportOfferControllerTest {
 
     @Test
     public void testOk() throws Exception {
-        TransportOfferRequest transportOfferRequest = validTransportOfferRequest();
-
-        mockMvc.perform(post("/offer/transport/").content(mapper.writeValueAsString(transportOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/offer/transport/").content(readJson("/transport-offer/testOk.json")).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").isNotEmpty());
     }
@@ -58,7 +58,7 @@ public class TransportOfferControllerTest {
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/transport/")
-                .content(mapper.writeValueAsString(transportOfferRequest.toBuilder().firstAvailableHour(null).build()))
+                .content(mapper.writeValueAsString(transportOfferRequest.toBuilder().availableFrom(null).build()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
@@ -76,11 +76,6 @@ public class TransportOfferControllerTest {
     @Test
     public void testEmptyRootMandatoryFields() throws Exception {
         TransportOfferRequest transportOfferRequest = validTransportOfferRequest();
-
-        mockMvc.perform(post("/offer/transport/")
-                .content(mapper.writeValueAsString(transportOfferRequest.toBuilder().firstAvailableHour(25).build()))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/transport/")
                 .content(mapper.writeValueAsString(transportOfferRequest.toBuilder().vehicleCapacity("").build()))
@@ -166,10 +161,8 @@ public class TransportOfferControllerTest {
 
     @Test
     public void testMissingOptionalFields() throws Exception {
-        TransportOfferRequest transportOfferRequest = validTransportOfferRequest();
-
         mockMvc.perform(post("/offer/transport/")
-                .content(mapper.writeValueAsString(transportOfferRequest.toBuilder().offerAvailableDate(null).build()))
+                .content(readJson("/transport-offer/testMissingOptionalFields.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -177,7 +170,7 @@ public class TransportOfferControllerTest {
     private TransportOfferRequest validTransportOfferRequest() {
         return TransportOfferRequest.builder()
                 .cityOnly(true)
-                .firstAvailableHour(10)
+                .availableFrom(LocalTime.NOON)
                 .refrigeratorCar(true)
                 .vehicleCapacity("2m3")
                 .offerAvailableDate(LocalDate.now())

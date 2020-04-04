@@ -6,6 +6,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Builder
@@ -20,7 +21,7 @@ public class TransportOfferResponse {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate transportDate;
 
-    private Integer firstAvailableHour;
+    private LocalTime availableFrom;
 
     private Boolean cityOnly;
 

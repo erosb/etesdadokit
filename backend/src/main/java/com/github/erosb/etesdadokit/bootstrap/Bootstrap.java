@@ -123,7 +123,7 @@ public class Bootstrap implements CommandLineRunner {
                         .vehicleCapacity("normal")
                         .refrigeratorCar(true)
                         .transportDate(LocalDate.now())
-                        .firstAvailableHour(2)
+                        .availableFrom(LocalTime.NOON)
                         .cityOnly(false)
                         .contact(contactEntity)
                         .build()
