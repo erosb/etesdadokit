@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Form.css'
 import SubFormContact from './SubFormContact'
 import SubformAddress from './SubformAddress'
@@ -33,150 +34,151 @@ import SubFormTransportRequest from './SubFormTransportRequest'
  */
 
 class RawMaterialForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      formValues: {},
-    }
-  }
-
-  fixCheckboxValue = (value) => {
-    return value === 'on' ? true : false
-  }
-
-  onChange = (event) => {
-    const saveType = event.target.getAttribute('savetype')
-    const {
-      target: { name, value },
-    } = event
-
-    this.setState((prevState) => {
-      if (saveType) {
-        prevState.formValues[saveType] = prevState.formValues[saveType]
-          ? prevState.formValues[saveType]
-          : {}
-
-        prevState.formValues[saveType][name] = value
-
-        if (name === 'requestRefrigeratorCar') {
-          prevState.formValues[saveType][name] = this.fixCheckboxValue(value)
+    constructor(props) {
+        super(props)
+        this.state = {
+            formValues: {},
         }
-      } else {
-        prevState.formValues[name] = value
-      }
-      return {
-        ...prevState,
-      }
-    })
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault()
-    const { formValues } = this.state
-    const url = '/offer/material/'
-
-    try {
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues),
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data)
-        })
-    } catch (e) {
-      console.log(e)
     }
-  }
 
-  render() {
-    const { formValues } = this.state
-    return (
-      <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-        <div>
-          <div className="has-text-centered is-size-3 margin-top-2">Hozzávaló felajánlás</div>
+    fixCheckboxValue = (value) => {
+        return value === 'on' ? true : false
+    }
 
-          <div className="field is-horizontal margin-top-1">
-            <div className="field-label">
-              <label className="label">Milyen hozzávalót tudsz felajánlani?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    cols={30}
-                    rows={4}
-                    name="ingredients"
-                    id="ingredients"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
+    onChange = (event) => {
+        const saveType = event.target.getAttribute('savetype')
+        const {
+            target: { name, value },
+        } = event
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Bármikor elérhető?</label>
-            </div>
-            <div className="field-body">
-              <div className="field is-narrow">
-                <div className="control">
-                  <input className="radio" type="radio" name="availableAnytime" value="yes" /> Igen
+        this.setState((prevState) => {
+            if (saveType) {
+                prevState.formValues[saveType] = prevState.formValues[saveType]
+                    ? prevState.formValues[saveType]
+                    : {}
+
+                prevState.formValues[saveType][name] = value
+
+                if (name === 'requestRefrigeratorCar') {
+                    prevState.formValues[saveType][name] = this.fixCheckboxValue(value)
+                }
+            } else {
+                prevState.formValues[name] = value
+            }
+            return {
+                ...prevState,
+            }
+        })
+    }
+
+    onSubmit = (event) => {
+        event.preventDefault()
+        const { formValues } = this.state
+        const url = '/offer/material/'
+
+        try {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formValues),
+            })
+                .then((response) => response.text())
+                .then((data) => {
+                    console.log(data)
+                })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    render() {
+        const { formValues } = this.state
+        return (
+            <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
+                <div>
+                    <div className="has-text-centered is-size-3 margin-top-2">Hozzávaló felajánlás</div>
+
+                    <div className="field is-horizontal margin-top-1">
+                        <div className="field-label">
+                            <label className="label">Milyen hozzávalót tudsz felajánlani?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field">
+                                <div className="control">
+                                    <textarea
+                                        className="textarea"
+                                        cols={30}
+                                        rows={4}
+                                        name="ingredients"
+                                        id="ingredients"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Bármikor elérhető?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field is-narrow">
+                                <div className="control">
+                                    <input className="radio" type="radio" name="availableAnytime" value="yes" /> Igen
                   <input className="radio" type="radio" name="availableAnytime" value="no" /> Nem
                 </div>
-              </div>
-            </div>
-          </div>
+                            </div>
+                        </div>
+                    </div>
 
-          {formValues.availableAnytime === 'no' && (
-            <div className="field is-horizontal">
-              <div className="field-label">
-                <label className="label">Mikor lesz elérhető?</label>
-              </div>
-              <div className="field-body">
-                <div className="field is-narrow">
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="date"
-                      id="offerAvailableDate"
-                      name="offerAvailableDate"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+                    {formValues.availableAnytime === 'no' && (
+                        <div className="field is-horizontal">
+                            <div className="field-label">
+                                <label className="label">Mikor lesz elérhető?</label>
+                            </div>
+                            <div className="field-body">
+                                <div className="field is-narrow">
+                                    <div className="control">
+                                        <input
+                                            className="input"
+                                            type="date"
+                                            id="offerAvailableDate"
+                                            name="offerAvailableDate"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Meg tudod oldani a kiszállítást étteremhez?</label>
-            </div>
-            <div className="field-body">
-              <div className="field is-narrow">
-                <input className="radio" type="radio" name="canResolveTransport" value="yes" />{' '}
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Meg tudod oldani a kiszállítást étteremhez?</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field is-narrow">
+                                <input className="radio" type="radio" name="canResolveTransport" value="yes" />{' '}
                 Igen, meg tudom oldani
                 <input className="radio" type="radio" name="canResolveTransport" value="no" /> Nem
                 tudom megoldani
               </div>
-            </div>
-          </div>
-          {formValues.canResolveTransport === 'no' && <SubFormTransportRequest />}
-        </div>
+                        </div>
+                    </div>
+                    {formValues.canResolveTransport === 'no' && <SubFormTransportRequest />}
+                </div>
 
-        <SubformAddress />
+                <SubformAddress />
 
-        <SubFormContact />
-        <div className="has-text-centered margin-top-1">
-          <input className="button" type="submit" value="Felajánlás elküldése" />
-        </div>
-      </form>
-    )
-  }
+                <SubFormContact />
+                <div className="has-text-centered margin-top-1">
+                    <Link href="/"><button className="button"> Vissza</button></Link>
+                    <input className="button" type="submit" value="Felajánlás elküldése" />
+                </div>
+            </form>
+        )
+    }
 }
 
 export default RawMaterialForm

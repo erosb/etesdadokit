@@ -6,8 +6,7 @@ class Offering extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            offering: null,
-            date: ''
+            offering: null
         }
     }
 
@@ -19,18 +18,19 @@ class Offering extends React.Component {
         fetch(`${getFoodFromUrl}${urlsSplit[1]}`)
             .then(response => response.text())
             .then(data => {
-                this.setState({ offering: data, dayParam: data.transportDate })
+                this.setState({ offering: data })
             });
 
     }
 
     render() {
-        const { offering, dayParam } = this.state
+        const { offering } = this.state
+
         return (
             <div>
                 {offering && <div>
                     <OfferingDataSheet offering={offering} />
-                    <CarListing date={dayParam} pairToFood={offering} />
+                    {offering && <CarListing pairToFood={offering} />}
                 </div>}
             </div>
         )

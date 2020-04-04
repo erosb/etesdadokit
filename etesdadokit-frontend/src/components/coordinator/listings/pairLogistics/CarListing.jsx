@@ -5,16 +5,22 @@ import './CarList.css'
 class CarListing extends React.Component {
     constructor(props) {
         super(props)
+
+
         this.state = {
             list: [],
-            date: this.props.date || '',
             pairToFood: this.props.pairToFood || null
         }
     }
 
     componentDidMount() {
         try {
-            const url = `/offer/transport?day=${this.state.date}`
+            let newArr = this.props.pairToFood
+            if (typeof newArr === "string") {
+                newArr = JSON.parse(this.props.pairToFood)
+            }
+
+            const url = `/offer/transport?day=${newArr.transportDate}`
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
