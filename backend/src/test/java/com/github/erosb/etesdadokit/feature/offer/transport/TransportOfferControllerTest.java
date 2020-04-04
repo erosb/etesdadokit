@@ -3,25 +3,24 @@ package com.github.erosb.etesdadokit.feature.offer.transport;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.erosb.etesdadokit.common.contact.Contact;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TransportOfferControllerTest {
@@ -31,9 +30,10 @@ public class TransportOfferControllerTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Before
+    @BeforeEach
     public void setup() {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//        mapper.getSerializationConfig().
     }
 
     @Test
@@ -180,5 +180,30 @@ public class TransportOfferControllerTest {
                         .phoneNumber("+3650666666")
                         .build())
                 .build();
+    }
+
+    @Nested
+    class GETTest {
+
+        @Test
+        void testGet() throws Exception {
+            TransportOfferRequest transportOffer1 = validTransportOfferRequest().toBuilder()
+                    .offerAvailableDate(LocalDate.of(2020, 2, 2))
+                    .build();
+
+            mockMvc.perform(post("/offer/transport").contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(transportOffer1))).andExpect(status().isOk());
+
+            TransportOfferRequest transportOffer2 = validTransportOfferRequest().toBuilder()
+                    .offerAvailableDate(LocalDate.of(2020, 3, 3))
+                    .build();
+
+            mockMvc.perform(post("/offer/transport").contentType(MediaType.APPLICATION_JSON)
+                    .content(mapper.writeValueAsString(transportOffer1))).andExpect(status().isOk());
+
+            mockMvc.perform(get("/offer/transport?day=2020-02-02")).andDo(print())
+            .andExpect(status().isOk());
+        }
+
     }
 }
