@@ -7,13 +7,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class Contact {
 
     @NotEmpty
     private String nameOrCompany;
 
     @Email
+    @NotEmpty
     private String email;
 
     @NotEmpty

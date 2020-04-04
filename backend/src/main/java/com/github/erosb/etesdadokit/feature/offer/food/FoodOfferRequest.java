@@ -1,5 +1,10 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.github.erosb.etesdadokit.feature.offer.Address;
 import com.github.erosb.etesdadokit.feature.offer.Contact;
 import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
@@ -8,15 +13,15 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class FoodOfferRequest {
 
     @NotEmpty
@@ -24,20 +29,28 @@ public class FoodOfferRequest {
     private String name;
 
     @Min(50)
+    @NotNull
     @ApiModelProperty("The offered quantity, the minimum value is 50")
     private Integer quantity;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate transportDate;
 
-    @NotEmpty
+    @NotBlank
     private String ingredients;
 
+    @Valid
     private TransportRequest transportRequest;
 
     @NotNull
+    @Valid
     private Address address;
 
     @NotNull
+    @Valid
     private Contact contact;
 }

@@ -47,21 +47,18 @@ public class FoodOfferServiceImpl implements FoodOfferService {
 
     @Override
     public FoodOfferResponse createFoodOffer(FoodOfferRequest request) {
-
         return saveEntityAndReturnResponse(foodOfferMapper.requestToEntity(request));
     }
 
     private FoodOfferResponse saveEntityAndReturnResponse(FoodOfferEntity foodOfferEntity) {
         addressService.createAddress(foodOfferEntity.getAddressEntity());
         contactInfoService.createContactInfo(foodOfferEntity.getContactEntity());
-        if (foodOfferEntity.getTransportRequestEntity() != null)
+        if (foodOfferEntity.getTransportRequestEntity() != null) {
             transportRequestService.createTransportRequest(foodOfferEntity.getTransportRequestEntity());
+        }
 
         FoodOfferEntity savedFoodOfferEntity = foodOfferRepository.save(foodOfferEntity);
 
-
-        FoodOfferResponse response = foodOfferMapper.entityToResponse(savedFoodOfferEntity);
-
-        return response;
+        return foodOfferMapper.entityToResponse(savedFoodOfferEntity);
     }
 }

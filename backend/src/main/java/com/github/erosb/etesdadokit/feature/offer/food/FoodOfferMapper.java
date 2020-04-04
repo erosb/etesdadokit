@@ -34,6 +34,7 @@ public class FoodOfferMapper implements RequestResponseMapper<FoodOfferEntity, F
                 .ingredients(entity.getIngredients())
                 .address(addressMapper.entityToDTO(entity.getAddressEntity()))
                 .contact(contactMapper.entityToDTO(entity.getContactEntity()))
+                .transportRequest(transportRequestMapper.entityToDTO(entity.getTransportRequestEntity()))
                 .build();
     }
 
