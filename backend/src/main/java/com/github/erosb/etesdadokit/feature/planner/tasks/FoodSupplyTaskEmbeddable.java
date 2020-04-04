@@ -14,10 +14,6 @@ import javax.persistence.*;
 @Embeddable
 public class FoodSupplyTaskEmbeddable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private long acceptedFoodOfferId;
 
     private int portions;

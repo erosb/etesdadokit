@@ -15,10 +15,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class TransferTaskEmbeddable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private long acceptedTransferOfferId;
 
     private LocalTime departureTime;
