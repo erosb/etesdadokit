@@ -24,13 +24,21 @@ import java.util.List;
 @Api(tags = { SwaggerTags.OFFER })
 public class MaterialOfferController {
 
+    private final MaterialOfferService materialOfferService;
+
+    public MaterialOfferController(MaterialOfferService materialOfferService) {
+        this.materialOfferService = materialOfferService;
+    }
+
     @PostMapping("/")
     @ApiOperation(
             value = "Creates a material offer.",
             response = AcknowledgeResponse.class
     )
     public ResponseEntity<AcknowledgeResponse> offerMaterial(@RequestBody @Valid MaterialOfferRequest materialOfferRequest) {
-        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
+        MaterialOfferResponse response = materialOfferService.createMaterialOffer(materialOfferRequest);
+        Long id = response.getId();
+        return ResponseEntity.ok(AcknowledgeResponse.builder().id(id).build());
     }
 
     @GetMapping
@@ -43,7 +51,7 @@ public class MaterialOfferController {
         @ApiParam("The day for which the available material offers in yyyy-mm-dd format")
         @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
 
-        return ResponseEntity.ok(Collections.emptyList());
+        return ResponseEntity.ok(materialOfferService.findAll());
     }
 
 }

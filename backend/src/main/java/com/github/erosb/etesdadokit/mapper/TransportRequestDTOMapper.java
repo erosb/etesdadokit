@@ -5,7 +5,7 @@ import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TransportRequestMapper implements Mapper<TransportRequestEntity, TransportRequest> {
+public class TransportRequestDTOMapper implements DTOMapper<TransportRequestEntity, TransportRequest> {
 
 
     @Override

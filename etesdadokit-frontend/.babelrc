@@ -1,0 +1,18 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    [
+      "@dr.pogodin/babel-preset-svgr",
+      {
+        "mimicCreateReactApp": true,
+        // Because the prettier's --"semi": false-- configuration breaks this plugin's create react app mimic
+        "svgr": {
+          "plugins": ["@svgr/plugin-svgo", "@svgr/plugin-jsx", "@svgr/plugin-prettier"],
+          "runtimeConfig": false
+        }
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}

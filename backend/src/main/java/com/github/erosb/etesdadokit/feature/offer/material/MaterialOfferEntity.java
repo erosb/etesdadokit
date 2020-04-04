@@ -2,17 +2,14 @@ package com.github.erosb.etesdadokit.feature.offer.material;
 
 import com.github.erosb.etesdadokit.domain.AddressEntity;
 import com.github.erosb.etesdadokit.domain.ContactEntity;
+import com.github.erosb.etesdadokit.domain.TransportRequestEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -34,9 +31,12 @@ public class MaterialOfferEntity {
     private LocalDate offerDate;
 
     @OneToOne
-    private AddressEntity address;
+    private TransportRequestEntity transportRequestEntity;
 
     @OneToOne
-    private ContactEntity contact;
+    private AddressEntity addressEntity;
+
+    @OneToOne
+    private ContactEntity contactEntity;
 
 }

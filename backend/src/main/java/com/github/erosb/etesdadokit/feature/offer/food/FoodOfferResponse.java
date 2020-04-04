@@ -2,6 +2,7 @@ package com.github.erosb.etesdadokit.feature.offer.food;
 
 import com.github.erosb.etesdadokit.feature.offer.Address;
 import com.github.erosb.etesdadokit.feature.offer.Contact;
+import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,4 +27,6 @@ public class FoodOfferResponse {
     private Address address;
 
     private Contact contact;
+
+    private TransportRequest transportRequest;
 }

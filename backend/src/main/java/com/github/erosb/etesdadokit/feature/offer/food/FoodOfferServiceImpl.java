@@ -33,7 +33,7 @@ public class FoodOfferServiceImpl implements FoodOfferService {
     @Override
     public FoodOfferResponse findById(Long id) {
         return foodOfferRepository.findById(id)
-                .map(foodOfferMapper::foodOfferToResponse)
+                .map(foodOfferMapper::entityToResponse)
                 .get();
     }
 
@@ -41,28 +41,24 @@ public class FoodOfferServiceImpl implements FoodOfferService {
     public List<FoodOfferResponse> getAllFoodOfferings() {
         return foodOfferRepository.findAll()
                 .stream()
-                .map(foodOfferMapper::foodOfferToResponse)
+                .map(foodOfferMapper::entityToResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
     public FoodOfferResponse createFoodOffer(FoodOfferRequest request) {
-
-        return saveAndReturnResponse(foodOfferMapper.foodOfferRequestToFoodOffer(request));
+        return saveEntityAndReturnResponse(foodOfferMapper.requestToEntity(request));
     }
 
-    private FoodOfferResponse saveAndReturnResponse(FoodOfferEntity foodOfferEntity) {
-        // TODO nem vagyok ebben biztos
+    private FoodOfferResponse saveEntityAndReturnResponse(FoodOfferEntity foodOfferEntity) {
         addressService.createAddress(foodOfferEntity.getAddressEntity());
         contactInfoService.createContactInfo(foodOfferEntity.getContactEntity());
-        if (foodOfferEntity.getTransportRequest() != null)
-            transportRequestService.createTransportRequest(foodOfferEntity.getTransportRequest());
+        if (foodOfferEntity.getTransportRequestEntity() != null) {
+            transportRequestService.createTransportRequest(foodOfferEntity.getTransportRequestEntity());
+        }
 
         FoodOfferEntity savedFoodOfferEntity = foodOfferRepository.save(foodOfferEntity);
 
-
-        FoodOfferResponse response = foodOfferMapper.foodOfferToResponse(savedFoodOfferEntity);
-
-        return response;
+        return foodOfferMapper.entityToResponse(savedFoodOfferEntity);
     }
 }

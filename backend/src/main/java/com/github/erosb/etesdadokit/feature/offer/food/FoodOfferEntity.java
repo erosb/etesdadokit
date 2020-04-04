@@ -33,7 +33,7 @@ public class FoodOfferEntity {
     private String ingredients;
 
     @OneToOne
-    private TransportRequestEntity transportRequest;
+    private TransportRequestEntity transportRequestEntity;
 
     @OneToOne
     private ContactEntity contactEntity;

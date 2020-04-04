@@ -1,47 +1,45 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
-import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferEntity;
-import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferRequest;
-import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferResponse;
-import com.github.erosb.etesdadokit.mapper.AddressMapper;
-import com.github.erosb.etesdadokit.mapper.ContactMapper;
-import com.github.erosb.etesdadokit.mapper.TransportRequestMapper;
+import com.github.erosb.etesdadokit.mapper.AddressDTOMapper;
+import com.github.erosb.etesdadokit.mapper.ContactDTOMapper;
+import com.github.erosb.etesdadokit.mapper.RequestResponseMapper;
+import com.github.erosb.etesdadokit.mapper.TransportRequestDTOMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FoodOfferMapper {
+public class FoodOfferMapper implements RequestResponseMapper<FoodOfferEntity, FoodOfferRequest, FoodOfferResponse> {
 
-    private final AddressMapper addressMapper;
-    private final ContactMapper contactMapper;
-    private final TransportRequestMapper transportRequestMapper;
+    private final AddressDTOMapper addressMapper;
+    private final ContactDTOMapper contactMapper;
+    private final TransportRequestDTOMapper transportRequestMapper;
 
-    public FoodOfferMapper(AddressMapper addressMapper, ContactMapper contactMapper, TransportRequestMapper transportRequestMapper) {
+    public FoodOfferMapper(AddressDTOMapper addressMapper, ContactDTOMapper contactMapper, TransportRequestDTOMapper transportRequestMapper) {
         this.addressMapper = addressMapper;
         this.contactMapper = contactMapper;
         this.transportRequestMapper = transportRequestMapper;
     }
 
+    @Override
+    public FoodOfferResponse entityToResponse(FoodOfferEntity entity) {
 
-    public FoodOfferResponse foodOfferToResponse(FoodOfferEntity foodOfferEntity) {
-
-        if (foodOfferEntity == null) {
+        if (entity == null) {
             return null;
         }
 
-        FoodOfferResponse response = FoodOfferResponse.builder()
-                .id(foodOfferEntity.getId())
-                .name(foodOfferEntity.getName())
-                .quantity(foodOfferEntity.getQuantity())
-                .transportDate(foodOfferEntity.getTransportDate())
-                .ingredients(foodOfferEntity.getIngredients())
-                .address(addressMapper.entityToDTO(foodOfferEntity.getAddressEntity()))
-                .contact(contactMapper.entityToDTO(foodOfferEntity.getContactEntity()))
+        return FoodOfferResponse.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .quantity(entity.getQuantity())
+                .transportDate(entity.getTransportDate())
+                .ingredients(entity.getIngredients())
+                .address(addressMapper.entityToDTO(entity.getAddressEntity()))
+                .contact(contactMapper.entityToDTO(entity.getContactEntity()))
+                .transportRequest(transportRequestMapper.entityToDTO(entity.getTransportRequestEntity()))
                 .build();
-
-        return response;
     }
 
-    public FoodOfferEntity foodOfferRequestToFoodOffer(FoodOfferRequest request) {
+    @Override
+    public FoodOfferEntity requestToEntity(FoodOfferRequest request) {
         if (request == null) {
             return null;
         }
@@ -52,10 +50,9 @@ public class FoodOfferMapper {
                 .quantity(request.getQuantity())
                 .transportDate(request.getTransportDate())
                 .ingredients(request.getIngredients())
-                .transportRequest(transportRequestMapper.dtoToEntity(request.getTransportRequest()))
+                .transportRequestEntity(transportRequestMapper.dtoToEntity(request.getTransportRequest()))
                 .addressEntity(addressMapper.dtoToEntity(request.getAddress()))
                 .contactEntity(contactMapper.dtoToEntity(request.getContact()))
                 .build();
     }
-
 }

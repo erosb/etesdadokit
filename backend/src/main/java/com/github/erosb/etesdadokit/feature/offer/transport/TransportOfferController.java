@@ -24,13 +24,21 @@ import java.util.List;
 @Api(tags = {SwaggerTags.OFFER})
 public class TransportOfferController {
 
+    private final TransportOfferService transportOfferService;
+
+    public TransportOfferController(TransportOfferService transportOfferService) {
+        this.transportOfferService = transportOfferService;
+    }
+
     @PostMapping
     @ApiOperation(
             value = "Creates a transport offer.",
             response = AcknowledgeResponse.class
     )
     public ResponseEntity<AcknowledgeResponse> offerTransport(@RequestBody @Valid TransportOfferRequest transportOfferRequest) {
-        return ResponseEntity.ok(AcknowledgeResponse.builder().build());
+        TransportOfferResponse response = transportOfferService.createTransportOffer(transportOfferRequest);
+        Long id = response.getId();
+        return ResponseEntity.ok(AcknowledgeResponse.builder().id(id).build());
     }
 
     @GetMapping
