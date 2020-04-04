@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.common.address;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,13 +15,13 @@ public class Address {
 
     @Min(1000)
     @Max(9999)
-    @NotNull
+    @NotNull @ApiModelProperty(required = true)
     private Integer zip;
 
-    @NotEmpty
+    @NotEmpty @ApiModelProperty(required = true)
     private String city;
 
-    @NotEmpty
+    @NotEmpty @ApiModelProperty(required = true)
     private String addressLineOne;
 
     private String addressLineTwo;

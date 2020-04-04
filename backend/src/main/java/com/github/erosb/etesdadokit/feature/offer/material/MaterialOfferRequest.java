@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class MaterialOfferRequest {
 
     @NotEmpty
-    @ApiModelProperty("List of the required ingredients")
+    @ApiModelProperty(value = "List of the required ingredients", required = true)
     private String ingredients;
 
     // TODO az alapanyag biztosításának napja (bármely nap, vagy a következő 3 nap valamelyike)
@@ -27,10 +27,10 @@ public class MaterialOfferRequest {
     private TransportRequest transportRequest;
 
     @NotNull
-    @ApiModelProperty("The offer related address")
+    @ApiModelProperty(value = "The offer related address", required = true)
     private Address address;
 
     @NotNull
-    @ApiModelProperty("The offer related contact")
+    @ApiModelProperty(value = "The offer related contact", required = true)
     private Contact contact;
 }

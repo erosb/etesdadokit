@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.common.contact;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,14 +11,14 @@ import javax.validation.constraints.NotEmpty;
 @Builder(toBuilder = true)
 public class Contact {
 
-    @NotEmpty
+    @NotEmpty @ApiModelProperty(required = true)
     private String nameOrCompany;
 
     @Email
-    @NotEmpty
+    @NotEmpty @ApiModelProperty(required = true)
     private String email;
 
-    @NotEmpty
+    @NotEmpty @ApiModelProperty(required = true)
     private String phoneNumber;
 
 }
