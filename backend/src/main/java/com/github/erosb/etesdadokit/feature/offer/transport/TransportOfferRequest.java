@@ -9,7 +9,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class TransportOfferRequest {
@@ -25,7 +25,7 @@ public class TransportOfferRequest {
     //TODO fuvarozás napja (bármely nap, vagy a következő 3 nap valamelyike)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @ApiModelProperty("The date when the offer is active")
-    private Date offerAvailableDate;
+    private LocalDate offerAvailableDate;
 
     @Max(24)
     @Min(0)

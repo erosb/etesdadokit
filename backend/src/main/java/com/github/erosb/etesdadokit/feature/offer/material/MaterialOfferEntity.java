@@ -8,8 +8,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -27,7 +31,7 @@ public class MaterialOfferEntity {
     private Boolean availableAnytime;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date offerDate;
+    private LocalDate offerDate;
 
     @OneToOne
     private AddressEntity address;

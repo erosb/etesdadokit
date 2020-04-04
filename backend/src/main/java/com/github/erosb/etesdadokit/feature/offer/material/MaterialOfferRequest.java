@@ -9,9 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 public class MaterialOfferRequest {
@@ -22,7 +20,7 @@ public class MaterialOfferRequest {
 
     // TODO az alapanyag biztosításának napja (bármely nap, vagy a következő 3 nap valamelyike)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date offerAvailableDate;
+    private LocalDate offerAvailableDate;
 
     private TransportRequest transportRequest;
 

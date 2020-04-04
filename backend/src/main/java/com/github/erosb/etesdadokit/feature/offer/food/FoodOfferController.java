@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -48,7 +48,7 @@ public class FoodOfferController {
     )
     public ResponseEntity<List<FoodOfferResponse>> listFoodOffers(
             @ApiParam("The day for which the available food offers should be returned in yyyy-mm-dd format")
-            @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date day) {
+            @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
 
         return ResponseEntity.ok(foodOfferService.getAllFoodOfferings());
     }
