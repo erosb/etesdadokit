@@ -1,0 +1,16 @@
+{
+  "ingredients": "liszt,só",
+  "availableAnytime": false,
+  "offerAvailableDate": "2020-02-02",
+  "transportRequest": {
+    "requestRefrigeratorCar": false,
+    "requestVehicleCapacity": "2 láda",
+    "timeToPickUp": "11:25"
+  },
+  "address": {
+    "addressLineOne": "Liget utca 666",
+    "addressLineTwo": "5. épület",
+    "city": "Győr",
+    "zip": 9025
+  }
+}
