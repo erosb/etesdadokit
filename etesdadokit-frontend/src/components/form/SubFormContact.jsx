@@ -3,7 +3,7 @@ import React from 'react'
 const SubFormContact = () => {
   return (
     <div>
-      <legend className="label has-text-centered">Kapcsolat</legend>
+      <legend className="label has-text-centered margin-top-2">Kapcsolat</legend>
 
       <div className="field is-horizontal first-field">
         <div className="field-label">

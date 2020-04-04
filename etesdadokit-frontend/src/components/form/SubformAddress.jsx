@@ -1,9 +1,10 @@
 import React from 'react'
+import './Form.css'
 
 const SubformAddress = () => {
   return (
     <div>
-      <legend className="label has - text - centered margin-top-1">Cím</legend>
+      <legend className="label has-text-centered margin-top-2">Cím</legend>
 
       <div className="field is-horizontal">
         <div className="field-label">
