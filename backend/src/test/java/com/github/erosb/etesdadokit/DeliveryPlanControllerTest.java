@@ -23,13 +23,13 @@ public class DeliveryPlanControllerTest {
 
     @Test
     void test() throws Exception {
-        MockHttpSession session = (MockHttpSession) mockMvc.perform(formLogin("/login").user("admin").password("admin"))
-                        .andExpect(redirectedUrl("/"))
-                        .andExpect(status().is3xxRedirection())
-                        .andReturn().getRequest().getSession();
+//        MockHttpSession session = (MockHttpSession) mockMvc.perform(formLogin("/login").user("admin").password("admin"))
+//                        .andExpect(redirectedUrl("/"))
+//                        .andExpect(status().is3xxRedirection())
+//                        .andReturn().getRequest().getSession();
 
 
-        mockMvc.perform(post("/delivery-plan").session(session)
+        mockMvc.perform(post("/delivery-plan")
                 .header("Content-Type", "application/json")
                 .content(readJson("/delivery-plan.json")))
                 .andDo(print())
