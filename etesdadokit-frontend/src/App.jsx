@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Navigation from './components/static/Navigation';
-import Intro from './components/static/Intro';
-import Cards from './components/static/Cards';
-
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import './App.css'
 import RestaurantForm from './components/form/RestaurantForm'
 import FormRoutes from './components/form/FormRoutes'
-//import Message from './components/static/Message'
+import Message from './components/static/Intro'
 import Donate from './components/static/Donate'
 
 import PairLogistics from './components/coordinator/listings/pairLogistics/PairLogistics'
@@ -23,13 +19,54 @@ export class App extends Component {
     }
   }
 
+  onRestaurantClick() {
+    this.setState({
+      chosenOffering: (
+        <form style={{ gridArea: 'form' }}>
+          <div className="form-group">
+            <label>Milyen ételt tudsz felajánlani?</label>
+            <textarea name="txt-dish" id="txt-dish"></textarea>
+          </div>
+        </form>
+      ),
+      layoutClass: 'offering-form',
+    })
+  }
+
   render() {
     return (
-      <div className="app">
-        <Navigation />
-        <div class="container">
-          <Intro />
-          <Cards />
+      <div>
+       
+          <Message />
+      
+        <div className="container">
+          {this.state.chosenOffering || (
+            <div>
+              <BrowserRouter>
+                <Switch>
+                  <Route path="/restaurant">
+                    <RestaurantForm />
+                  </Route>
+                  <Route path="/shipping">
+                    <TransportForm />
+                  </Route>
+                  <Route path="/raw-material">
+                    <RawMaterialForm />
+                  </Route>
+                  <Route path="/logistics">
+                    <PairLogistics />
+                  </Route>
+                  <Route path="/">
+                    <FormRoutes />
+                  </Route>
+                </Switch>
+              </BrowserRouter>
+            </div>
+          )}
+        </div>
+
+        <div className="donations-col">
+          <Donate />
         </div>
       </div>
     )

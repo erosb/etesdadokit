@@ -3,13 +3,13 @@ import React from 'react'
 const Navigation = () => {
   return (
     <div>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/"></a>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="/"></a>
 
           <a
             role="button"
-            class="navbar-burger burger"
+            className="navbar-burger burger"
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -20,9 +20,9 @@ const Navigation = () => {
           </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">#etesdadokit</a>
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <a className="navbar-item">#etesdadokit</a>
           </div>
         </div>
       </nav>
