@@ -1,4 +1,4 @@
-package com.github.erosb.etesdadokit.feature.offer.food;
+package com.github.erosb.etesdadokit.feature.offer.material;
 
 import com.github.erosb.etesdadokit.mapper.AddressDTOMapper;
 import com.github.erosb.etesdadokit.mapper.ContactDTOMapper;
@@ -7,51 +7,47 @@ import com.github.erosb.etesdadokit.mapper.TransportRequestDTOMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FoodOfferMapper implements RequestResponseMapper<FoodOfferEntity, FoodOfferRequest, FoodOfferResponse> {
+public class MaterialOfferMapper implements RequestResponseMapper<MaterialOfferEntity, MaterialOfferRequest, MaterialOfferResponse> {
 
     private final AddressDTOMapper addressMapper;
     private final ContactDTOMapper contactMapper;
     private final TransportRequestDTOMapper transportRequestMapper;
 
-    public FoodOfferMapper(AddressDTOMapper addressMapper, ContactDTOMapper contactMapper, TransportRequestDTOMapper transportRequestMapper) {
+    public MaterialOfferMapper(AddressDTOMapper addressMapper,
+                               ContactDTOMapper contactMapper,
+                               TransportRequestDTOMapper transportRequestMapper) {
         this.addressMapper = addressMapper;
         this.contactMapper = contactMapper;
         this.transportRequestMapper = transportRequestMapper;
     }
 
     @Override
-    public FoodOfferResponse entityToResponse(FoodOfferEntity entity) {
-
-        if (entity == null) {
+    public MaterialOfferResponse entityToResponse(MaterialOfferEntity entity) {
+        if (entity == null)
             return null;
-        }
 
-        return FoodOfferResponse.builder()
+        return MaterialOfferResponse.builder()
                 .id(entity.getId())
-                .name(entity.getName())
-                .quantity(entity.getQuantity())
-                .transportDate(entity.getTransportDate())
                 .ingredients(entity.getIngredients())
+                .availableAnytime(entity.getAvailableAnytime())
+                .offerDate(entity.getOfferDate())
                 .address(addressMapper.entityToDTO(entity.getAddressEntity()))
                 .contact(contactMapper.entityToDTO(entity.getContactEntity()))
                 .build();
     }
 
     @Override
-    public FoodOfferEntity requestToEntity(FoodOfferRequest request) {
-        if (request == null) {
+    public MaterialOfferEntity requestToEntity(MaterialOfferRequest request) {
+        if (request == null)
             return null;
-        }
 
-        return FoodOfferEntity.builder()
-//                .id(request.getId())
-                .name(request.getName())
-                .quantity(request.getQuantity())
-                .transportDate(request.getTransportDate())
+        return MaterialOfferEntity.builder()
                 .ingredients(request.getIngredients())
-                .transportRequestEntity(transportRequestMapper.dtoToEntity(request.getTransportRequest()))
+                .availableAnytime(request.getAvailableAnytime())
+                .offerDate(request.getOfferAvailableDate())
                 .addressEntity(addressMapper.dtoToEntity(request.getAddress()))
                 .contactEntity(contactMapper.dtoToEntity(request.getContact()))
+                .transportRequestEntity(transportRequestMapper.dtoToEntity(request.getTransportRequest()))
                 .build();
     }
 }
