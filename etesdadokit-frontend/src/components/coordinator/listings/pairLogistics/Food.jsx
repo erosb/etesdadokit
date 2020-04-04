@@ -1,5 +1,5 @@
 import React from 'react';
-import './FoodList.css'
+
 
 const Food = (details) => {
     const { details: { name, quantity, transportDate, transportRequest } } = details
