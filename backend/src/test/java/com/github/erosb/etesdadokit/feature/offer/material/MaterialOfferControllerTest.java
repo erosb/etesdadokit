@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static com.github.erosb.etesdadokit.JsonReader.readJson;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,77 +40,53 @@ public class MaterialOfferControllerTest {
 
     @Test
     public void testOk() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
-        mockMvc.perform(post("/offer/material/").content(mapper.writeValueAsString(materialOfferRequest)).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/offer/material/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(readJson("/material-offer/testOk.json")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").isNotEmpty());
     }
 
     @Test
     public void testMissingRootMandatoryFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().address(null).build()))
+                .content(readJson("/material-offer/testMissingMandatoryFields-address.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().contact(null).build()))
+                .content(readJson("/material-offer/testMissingMandatoryFields-contact.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().ingredients(null).build()))
+                .content(readJson("/material-offer/testMissingMandatoryFields-ingredients.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testEmptyRootMandatoryFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().ingredients("").build()))
+                .content(readJson("/material-offer/testEmptyRootMandatoryFields.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testMissingContactMandatoryFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .contact(materialOfferRequest.getContact()
-                                .toBuilder()
-                                .nameOrCompany(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .contact(materialOfferRequest.getContact()
-                                .toBuilder()
-                                .email(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingContactMandatoryFields-email.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .contact(materialOfferRequest.getContact()
-                                .toBuilder()
-                                .phoneNumber(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingContactMandatoryFields-phoneNumber.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
@@ -119,13 +96,7 @@ public class MaterialOfferControllerTest {
         MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .contact(materialOfferRequest.getContact()
-                                .toBuilder()
-                                .nameOrCompany("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 

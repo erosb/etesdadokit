@@ -1,0 +1,15 @@
+{
+  "ingredients": "liszt,só",
+  "availableAnytime": false,
+  "offerAvailableDate": "2020-02-02",
+  "transportRequest": {
+    "requestRefrigeratorCar": false,
+    "requestVehicleCapacity": "2 láda",
+    "timeToPickUp": "11:25"
+  },
+  "contact": {
+    "email": "test@test.hu",
+    "nameOrCompany": "Teszt Elek",
+    "phoneNumber": "+3650666666"
+  }
+}
