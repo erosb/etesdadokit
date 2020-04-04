@@ -40,13 +40,19 @@ class RawMaterialForm extends React.Component {
         }
     }
 
+
+    fixCheckboxValue = (value) => {
+        return value === "on" ? true : false
+    }
+
     onChange = (event) => {
         const saveType = event.target.getAttribute("savetype")
         const { target: { name, value } } = event
+
         this.setState(prevState => {
             if (saveType) {
                 prevState.formValues[saveType] = prevState.formValues[saveType] ? prevState.formValues[saveType] : {}
-                prevState.formValues[saveType][name] = value
+                prevState.formValues[saveType][name] = name === "requestRefrigeratorCar" ? this.fixCheckboxValue(value) : value
             } else {
                 prevState.formValues[name] = value
             }
