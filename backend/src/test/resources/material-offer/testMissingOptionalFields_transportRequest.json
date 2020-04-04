@@ -1,0 +1,15 @@
+{
+  "ingredients" : "liszt,só",
+  "offerAvailableDate" : "2020-04-04",
+  "address" : {
+    "zip" : 9025,
+    "city" : "Győr",
+    "addressLineOne" : "Liget utca 666",
+    "addressLineTwo" : "5. épület"
+  },
+  "contact" : {
+    "nameOrCompany" : "Teszt Elek",
+    "email" : "test@test.hu",
+    "phoneNumber" : "+3650666666"
+  }
+}

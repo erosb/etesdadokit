@@ -1,11 +1,5 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.erosb.etesdadokit.common.address.Address;
-import com.github.erosb.etesdadokit.common.contact.Contact;
-import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,13 +21,6 @@ public class MaterialOfferControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    private ObjectMapper mapper = new ObjectMapper();
-
-    @Before
-    public void setup() {
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    }
 
     @Test
     public void testOk() throws Exception {
@@ -93,174 +77,82 @@ public class MaterialOfferControllerTest {
 
     @Test
     public void testEmptyContactMandatoryFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .contact(materialOfferRequest.getContact()
-                                .toBuilder()
-                                .email("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyContactMandatoryFields_contact_email.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .contact(materialOfferRequest.getContact()
-                                .toBuilder()
-                                .phoneNumber("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyContactMandatoryFields_contact_phoneNumber.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testMissingAddressMandatoryFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .city(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineOne(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingAddressMandatoryFields_address_addressLineOne.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .zip(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingAddressMandatoryFields_address_zip.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testEmptyAddressMandatoryFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .city("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineOne("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyAddressMandatoryFields_address_addressLineOne.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .zip(0)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyAddressMandatoryFields_address_zip_0.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void testMissingOptionalFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().transportRequest(null).build()))
+                .content(readJson("/material-offer/testMissingOptionalFields_transportRequest.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder().offerAvailableDate(null).build()))
+                .content(readJson("/material-offer/testMissingOptionalFields_offerAvailableDate.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineTwo(null)
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testMissingOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void testEmptyOptionalFields() throws Exception {
-        MaterialOfferRequest materialOfferRequest = validMaterialOfferRequest();
-
         mockMvc.perform(post("/offer/material/")
-                .content(mapper.writeValueAsString(materialOfferRequest.toBuilder()
-                        .address(materialOfferRequest.getAddress()
-                                .toBuilder()
-                                .addressLineTwo("")
-                                .build()
-                        ).build()
-                ))
+                .content(readJson("/material-offer/testEmptyOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
-    private MaterialOfferRequest validMaterialOfferRequest() {
-        return MaterialOfferRequest.builder()
-                .ingredients("liszt,só")
-                .offerAvailableDate(LocalDate.now())
-                .contact(Contact.builder()
-                        .email("test@test.hu")
-                        .nameOrCompany("Teszt Elek")
-                        .phoneNumber("+3650666666")
-                        .build())
-                .address(Address.builder()
-                        .addressLineOne("Liget utca 666")
-                        .addressLineTwo("5. épület")
-                        .city("Győr")
-                        .zip(9025)
-                        .build())
-                .transportRequest(TransportRequest.builder()
-                        .requestRefrigeratorCar(true)
-                        .requestVehicleCapacity("2 láda")
-                        .timeToPickUp(LocalTime.now())
-                        .build())
-                .build();
-    }
 }
