@@ -15,9 +15,8 @@ body {
 
 .intro {
   grid-area: intro;
-  font-size: 130%;
   text-align: justify;
-  background-color: rgba(0, 0, 0, 0.032); /* #72bb96 #74d0a1 #a6decc;*/
+  /* background-color: rgba(0, 0, 0, 0.032);  #72bb96 #74d0a1 #a6decc;*/
   
   /* border-radius: 0 0 .5em .5em; */
   padding: 0em 3em 1.6em 3em;
@@ -181,6 +180,12 @@ img.fb-logo {
 
 .offering-types .wrapping {
   background-color: #5d7fbd;
+}
+
+.bank-transfer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bank-transfer-details dl {
