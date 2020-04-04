@@ -30,7 +30,7 @@ class CarListing extends React.Component {
         if (typeof list === "string") {
             newArr = JSON.parse(list)
         }
-        console.log(newArr)
+
         return (
             <table>
                 <tbody>

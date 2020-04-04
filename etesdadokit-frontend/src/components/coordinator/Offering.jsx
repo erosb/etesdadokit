@@ -1,17 +1,18 @@
 import React from 'react';
 import CarListing from './listings/pairLogistics/CarListing';
+import OfferingDataSheet from './listings/pairLogistics/OfferingDataSheet';
 
 class Offering extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            offering: null
+            offering: null,
+            date: ''
         }
     }
 
     componentDidMount() {
         const getFoodFromUrl = "/offer/food?day="
-        const getTransportFromUrl = "/offer/transport?day="
 
         const url = window.location.href
         var regex = /[?&]([^=#]+)=([^&#]*)/g,
@@ -26,17 +27,19 @@ class Offering extends React.Component {
         fetch(`${getFoodFromUrl}${dayParam}`)
             .then(response => response.text())
             .then(data => {
-                this.setState({ offering: data, date: dayParam })
+                this.setState({ offering: data, dayParam })
             });
 
     }
 
     render() {
+        const { offering, dayParam } = this.state
         return (
             <div>
-                Felajánlás
-                {JSON.stringify(this.state)}
-                <CarListing date={this.state.dayParam} />
+                {offering && <div>
+                    <OfferingDataSheet offering={offering} />
+                    <CarListing date={dayParam} />
+                </div>}
             </div>
         )
     }
