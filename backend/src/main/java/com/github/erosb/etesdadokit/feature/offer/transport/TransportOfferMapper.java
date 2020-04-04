@@ -2,7 +2,9 @@ package com.github.erosb.etesdadokit.feature.offer.transport;
 
 import com.github.erosb.etesdadokit.mapper.ContactDTOMapper;
 import com.github.erosb.etesdadokit.mapper.RequestResponseMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TransportOfferMapper implements RequestResponseMapper<TransportOfferEntity, TransportOfferRequest, TransportOfferResponse> {
 
 
@@ -27,6 +29,13 @@ public class TransportOfferMapper implements RequestResponseMapper<TransportOffe
 
     @Override
     public TransportOfferEntity requestToEntity(TransportOfferRequest request) {
-        return null;
+        return TransportOfferEntity.builder()
+                .vehicleCapacity(request.vehicleCapacity)
+                .refrigeratorCar(request.refrigeratorCar)
+                .transportDate(request.getOfferAvailableDate())
+                .cityOnly(request.getCityOnly())
+                .contact(contactMapper.dtoToEntity(request.getContact()))
+                .firstAvailableHour(request.getFirstAvailableHour())
+                .build();
     }
 }
