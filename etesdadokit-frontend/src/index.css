@@ -8,7 +8,34 @@ td {
   min-width: 200px;
 }
 
-.flex-row{
-  display: flex;
-  flex-direction: row;
+
+
+@media screen and (min-width: 1200px) {
+  .flex-row{
+    display: flex;
+    flex-direction: row;
+  }
+  .flex-item {
+    width:700px;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+  .flex-row{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flex-item {
+    width:100%;
+  }
+}
+
+.want-to-support{
+  font-size: larger;
+  margin-top: 40px;
+  margin-bottom:40px;
+  font-weight: bold;
+  text-align: center;
 }
