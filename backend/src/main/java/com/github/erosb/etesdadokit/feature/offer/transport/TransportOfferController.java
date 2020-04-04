@@ -4,6 +4,7 @@ import com.github.erosb.etesdadokit.configuration.SwaggerTags;
 import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,18 +40,10 @@ public class TransportOfferController {
             response = TransportOfferResponse.class,
             responseContainer = "List"
     )
-    public ResponseEntity<List<TransportOfferResponse>> offerTransport(
+    public ResponseEntity<List<TransportOfferResponse>> listTransportOffers(
+            @ApiParam("The day for which the available transport offers in yyyy-mm-dd format")
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date day) {
         return ResponseEntity.ok(Collections.emptyList());
-    }
-
-    @GetMapping("/{id}")
-    @ApiOperation(
-            value = "Return a specific transport offer.",
-            response = TransportOfferResponse.class
-    )
-    public ResponseEntity<TransportOfferResponse> offerTransport(@PathVariable String id) {
-        return ResponseEntity.ok(TransportOfferResponse.builder().build());
     }
 
 }

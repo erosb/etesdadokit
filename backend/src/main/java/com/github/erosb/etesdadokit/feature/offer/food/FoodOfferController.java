@@ -5,6 +5,7 @@ import com.github.erosb.etesdadokit.feature.offer.AcknowledgeResponse;
 import com.github.erosb.etesdadokit.services.FoodOfferService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,19 +48,11 @@ public class FoodOfferController {
             response = FoodOfferResponse.class,
             responseContainer = "List"
     )
-    public ResponseEntity<List<FoodOfferResponse>> getAllFoodOffers(
+    public ResponseEntity<List<FoodOfferResponse>> listFoodOffers(
+            @ApiParam("The day for which the available food offers should be returned in yyyy-mm-dd format")
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date day) {
 
         return ResponseEntity.ok(foodOfferService.getAllFoodOfferings());
-    }
-
-    @GetMapping("/{id}")
-    @ApiOperation(
-            value = "Return a specific food offer.",
-            response = FoodOfferResponse.class
-    )
-    public ResponseEntity<FoodOfferResponse> foodOffer(@PathVariable String id) {
-        return ResponseEntity.ok(foodOfferService.findById(Long.valueOf(id)));
     }
 
 }
