@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -49,8 +49,8 @@ public class TransportOfferController {
     )
     public ResponseEntity<List<TransportOfferResponse>> listTransportOffers(
             @ApiParam("The day for which the available transport offers in yyyy-mm-dd format")
-            @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date day) {
-        return ResponseEntity.ok(transportOfferService.findAll());
+            @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
+        return ResponseEntity.ok(Collections.emptyList());
     }
 
 }

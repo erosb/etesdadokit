@@ -1,0 +1,23 @@
+{
+  "date": "2020-02-02",
+  "foodSupplyTask": {
+    "acceptedFoodOfferId": 22,
+    "portions": 120
+  },
+  "materialSupplyTasks": [
+    {
+      "acceptedMaterialOfferId": 32
+    },
+    {
+      "acceptedMaterialOfferId": 33,
+      "transferTask": {
+        "acceptedTransferOfferId": 44,
+        "departureTime": "09:45"
+      }
+    }
+  ],
+  "transferTask": {
+    "acceptedTransferOfferId": 44,
+    "departureTime": "13:15"
+  }
+}
