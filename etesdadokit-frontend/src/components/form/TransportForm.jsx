@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import history from '../../history'
 
 import './Form.css'
@@ -24,7 +23,7 @@ class TransportForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            formValues: {},
+            formValues: { cityOnly: false, refrigeratorCar: false },
         }
     }
 
@@ -78,6 +77,10 @@ class TransportForm extends React.Component {
             alert("Elnézést kérünk, valamilyen hiba történt!")
             console.log(e)
         }
+    }
+
+    goBack = () => {
+        history.push('/')
     }
 
     render() {
@@ -145,7 +148,7 @@ class TransportForm extends React.Component {
 
                     <div className="field is-horizontal">
                         <div className="field-label">
-                            <label className="label">Mekkora raktere legyen?</label>
+                            <label className="label">Mekkora raktere van?</label>
                         </div>
                         <div className="field-body">
                             <div className="field">
@@ -158,7 +161,7 @@ class TransportForm extends React.Component {
 
                     <div className="field is-horizontal">
                         <div className="field-label">
-                            <label className="label">Hányra menjen leghamarabb? (óra)</label>
+                            <label className="label">Hányra tud menni leghamarabb? (óra)</label>
                         </div>
                         <div className="field-body">
                             <div className="field">
@@ -179,9 +182,7 @@ class TransportForm extends React.Component {
                 <SubFormContact />
 
                 <div className="has-text-centered margin-top-1">
-                    <Link href="/">
-                        <button className="button margin-1"> Vissza</button>
-                    </Link>
+                    <button className="button margin-1" onClick={this.goBack}> Vissza</button>
                     <input className="button is-link is-outlined margin-1" type="submit" value="Felajánlás elküldése" />
                 </div>
             </form>
