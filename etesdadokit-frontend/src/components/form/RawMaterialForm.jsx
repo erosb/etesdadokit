@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './Form.css'
-import SubFormContact from './SubFormContact'
-import SubformAddress from './SubformAddress'
-import SubFormTransportRequest from './SubFormTransportRequest'
+import SubFormContact from './Subforms/SubFormContact'
+import SubformAddress from './Subforms/SubformAddress'
+import SubFormTransportRequest from './Subforms/SubFormTransportRequest'
 
 /**
  * {
