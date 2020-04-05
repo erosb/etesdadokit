@@ -22,6 +22,10 @@ td {
 
 
 @media screen and (max-width: 900px) {
+  .desktop {
+    display: none
+}
+
   .flex-row{
     display: flex;
     flex-direction: column;
@@ -38,4 +42,11 @@ td {
   margin-bottom:40px;
   font-weight: bold;
   text-align: center;
+}
+
+
+  @media screen and (min-width: 901px) {
+    .mobile {
+        display: none
+    }
 }

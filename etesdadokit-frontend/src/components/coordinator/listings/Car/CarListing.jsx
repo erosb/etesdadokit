@@ -33,18 +33,23 @@ class CarListing extends React.Component {
         }
 
         return (
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Név/cégnév</th>
-                        <th>Email</th>
-                        <th>Telefon</th>
-                        <th>Ráérés</th>
-                        <th>Kapacitás</th>
-                    </tr>
-                    {Array.isArray(newArr) && newArr.map(car => (<Car details={car} pairToFood={pairToFood} />))}
-                </tbody>
-            </table>
+            <div>
+                <table className="desktop">
+                    <tbody>
+                        <tr>
+                            <th>Név/cégnév</th>
+                            <th>Email</th>
+                            <th>Telefon</th>
+                            <th>Ráérés</th>
+                            <th>Kapacitás</th>
+                        </tr>
+                        {Array.isArray(newArr) && newArr.map(car => (<Car details={car} pairToFood={pairToFood} />))}
+                    </tbody>
+                </table>
+                <div className="mobile">
+                    Mobil nézet
+                </div>
+            </div>
         );
     }
 }

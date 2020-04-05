@@ -18,7 +18,7 @@ const OfferingDataSheet = ({ offering }) => {
 
     return (
         <div className="offering-details">
-            <table>
+            <table className="desktop">
                 <tbody>
                     <tr>
                         <td className="offer-title">Felajánlás </td>
@@ -54,6 +54,26 @@ const OfferingDataSheet = ({ offering }) => {
                     </tr>
                 </tbody>
             </table>
+
+            <div className="mobile">
+
+                <div className="offer-title">Felajánlás </div>
+                <div>{quantity} db {name}</div>
+                <div className="offer-title">Hozzávalók</div>
+                <div>{ingredients}</div>
+                <div className="offer-title">Felajánló neve</div>
+                <div>{nameOrCompany}</div>
+                <div className="offer-title">Kapcsolattartási adatok</div>
+                <div>{email} / {phoneNumber}</div>
+                <div className="offer-title">Cím</div>
+                <div>{zip}, {city} {addressLineOne}, {addressLinetwo}</div>
+                <div className="offer-title">Szállítás kért ideje</div>
+                <div>{transportDate} {timeToPickUp} </div>
+                <div className="offer-title">Szükséges szállítási kapacitás</div>
+                <div>{requestVehicleCapacity}</div>
+                <div className="offer-title">Hűtős kocsi</div>
+                <div>{requestRefrigeratorCar ? "igen" : "nem"}</div>
+            </div>
         </div>)
 }
 
