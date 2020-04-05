@@ -2,12 +2,12 @@ import React from 'react'
 
 const SubFormContact = () => {
   return (
-    <div>
+    <div className="forms">
       <legend className="label has-text-centered margin-top-2">Kapcsolat</legend>
 
       <div className="field is-horizontal first-field">
         <div className="field-label">
-          <label className="label">Cégnév, vagy kapcsolattartó neve (saját neved)</label>
+          <label className="label">Neved/Cégnév</label>
         </div>
         <div className="field-body">
           <div className="field">

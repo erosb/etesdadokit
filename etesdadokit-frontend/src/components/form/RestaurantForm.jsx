@@ -96,10 +96,14 @@ class RestaurantForm extends React.Component {
         }
     }
 
+    goBack = () => {
+        history.push('/')
+    }
+
     render() {
         const { formValues } = this.state
         return (
-            <div>
+            <div className="forms">
                 <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
                     <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
 
@@ -193,9 +197,7 @@ class RestaurantForm extends React.Component {
 
                     <SubformAddress />
                     <div className="has-text-centered margin-top-1">
-                        <Link to="/">
-                            <button className="button margin-1"> Vissza</button>
-                        </Link>
+                        <button className="button margin-1" onClick={this.goBack}> Vissza</button>
                         <input
                             className="button is-link is-outlined margin-1"
                             type="submit"

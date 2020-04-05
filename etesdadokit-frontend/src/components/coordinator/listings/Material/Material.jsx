@@ -2,20 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Food = ({ details }) => {
+const Material = ({ details }) => {
     console.log(details)
-    const { id, name, quantity, transportDate, transportRequest } = details
+    const { id, ingredients, offerDate, transportRequest } = details
     const transportClass = transportRequest ? "need-transport" : "no-transport-needed"
 
     return (
-        <Link to={`/offer/food/${id}`}>
+        <Link to={`/offer/material/${id}`}>
             <div id={id} className={`food-box ${transportClass}`}>
-                <div> {quantity} adag {name}</div>
-                <div>Kiszállítás:  {transportDate}</div>
+                <div> {ingredients}</div>
+                <div>Kiszállítás:  {offerDate ? offerDate : "ismeretlen"}</div>
                 <div>Fuvar:  {transportRequest ? "nem megoldott" : "megoldott"}</div>
             </div>
         </Link>
     );
 }
 
-export default Food
+export default Material

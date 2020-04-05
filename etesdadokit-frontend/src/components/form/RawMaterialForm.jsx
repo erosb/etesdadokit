@@ -96,11 +96,15 @@ class RawMaterialForm extends React.Component {
         }
     }
 
+    goBack = () => {
+        history.push('/')
+    }
+
     render() {
         const { formValues } = this.state
         return (
             <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-                <div>
+                <div className="forms">
                     <div className="has-text-centered is-size-3 margin-top-2">Hozzávaló felajánlás</div>
 
                     <div className="field is-horizontal margin-top-1">
@@ -176,7 +180,7 @@ class RawMaterialForm extends React.Component {
 
                 <SubFormContact />
                 <div className="has-text-centered margin-top-1">
-                    <Link to="/"><button className="button margin-1"> Vissza</button></Link>
+                    <button className="button margin-1" onClick={this.goBack}> Vissza</button>
                     <input className="button is-link is-outlined margin-1" type="submit" value="Felajánlás elküldése" />
                 </div>
             </form>
