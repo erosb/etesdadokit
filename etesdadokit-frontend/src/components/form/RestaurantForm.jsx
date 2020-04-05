@@ -193,7 +193,7 @@ class RestaurantForm extends React.Component {
 
                     <SubformAddress />
                     <div className="has-text-centered margin-top-1">
-                        <Link href="/">
+                        <Link to="/">
                             <button className="button margin-1"> Vissza</button>
                         </Link>
                         <input
