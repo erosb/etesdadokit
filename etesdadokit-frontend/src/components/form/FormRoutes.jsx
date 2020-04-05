@@ -26,7 +26,7 @@ const FormRoutes = () => {
                     </figure>
                   </div>
 
-                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet">
+                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
                     Éttermet, ételkiszállítót, pékséget képviselek
                   </div>
                 </div>
@@ -41,7 +41,7 @@ const FormRoutes = () => {
                     </figure>
                   </div>
 
-                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet">
+                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
                     Alapanyagom, csomagolóanyagom van
                   </div>
                 </div>
@@ -56,7 +56,7 @@ const FormRoutes = () => {
                     </figure>
                   </div>
 
-                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet">
+                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
                     Fuvarozó vagyok
                   </div>
                 </div>

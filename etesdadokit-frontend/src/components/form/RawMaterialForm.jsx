@@ -104,7 +104,7 @@ class RawMaterialForm extends React.Component {
         const { formValues } = this.state
         return (
             <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-                <div>
+                <div className="forms">
                     <div className="has-text-centered is-size-3 margin-top-2">Hozzávaló felajánlás</div>
 
                     <div className="field is-horizontal margin-top-1">

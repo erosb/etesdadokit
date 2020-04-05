@@ -103,7 +103,7 @@ class RestaurantForm extends React.Component {
     render() {
         const { formValues } = this.state
         return (
-            <div>
+            <div className="forms">
                 <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
                     <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
 

@@ -86,7 +86,7 @@ class TransportForm extends React.Component {
     render() {
         return (
             <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-                <div>
+                <div className="forms">
                     <div className="has-text-centered is-size-3 margin-top-2">Szállítás</div>
 
                     <div className="field is-horizontal">

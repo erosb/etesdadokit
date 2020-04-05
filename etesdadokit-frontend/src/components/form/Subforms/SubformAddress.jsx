@@ -2,7 +2,7 @@ import React from 'react'
 
 const SubformAddress = () => {
   return (
-    <div>
+    <div className="forms">
       <legend className="label has-text-centered margin-top-2">Cím</legend>
 
       <div className="field is-horizontal">
