@@ -6,21 +6,14 @@ class CarListing extends React.Component {
     constructor(props) {
         super(props)
 
-
         this.state = {
-            list: [],
-            pairToFood: this.props.pairToFood || null
+            list: []
         }
     }
 
     componentDidMount() {
         try {
-            let newArr = this.props.pairToFood
-            if (typeof newArr === "string") {
-                newArr = JSON.parse(this.props.pairToFood)
-            }
-
-            const url = `/offer/transport?day=${newArr.transportDate}`
+            const url = `/offer/transport?day=${this.props.pairToFood.transportDate}`
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
@@ -32,7 +25,8 @@ class CarListing extends React.Component {
     }
 
     render() {
-        const { list, pairToFood } = this.state
+        const { list } = this.state
+        const { pairToFood } = this.props
         let newArr = list
         if (typeof list === "string") {
             newArr = JSON.parse(list)

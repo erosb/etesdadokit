@@ -36,7 +36,6 @@ import React from 'react';
 
 const Car = ({ details, pairToFood }) => {
 
-    const parsedFood = JSON.parse(pairToFood)
     const {
         id: transferId,
         transportDate,
@@ -55,11 +54,11 @@ const Car = ({ details, pairToFood }) => {
             date: transportDate,
             foodSupplyTask: {
                 acceptedFoodOfferId: id,
-                portions: parsedFood.quantity
+                portions: pairToFood.quantity
             },
             transferTask: {
                 acceptedTransferOfferId: transferId,
-                departureTime: parsedFood.timeToPickUp
+                departureTime: pairToFood.timeToPickUp
             },
             materialSupplyTasks: []
         }
@@ -96,7 +95,7 @@ const Car = ({ details, pairToFood }) => {
                 </tbody>
             </table></td>
             <td>
-                <button id={parsedFood.id} onClick={onClick}>Kiválaszt</button>
+                <button id={pairToFood.id} onClick={onClick}>Kiválaszt</button>
             </td>
         </tr >
     );
