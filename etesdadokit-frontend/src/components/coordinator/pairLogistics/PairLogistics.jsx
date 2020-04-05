@@ -1,6 +1,5 @@
 import React from 'react';
-import FoodListing from './FoodListing'
-import Food from './Food'
+import FoodListing from '../listings/Food/FoodListing'
 
 const PairLogistics = () => {
 

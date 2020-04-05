@@ -5,10 +5,12 @@ import RestaurantForm from './components/form/RestaurantForm'
 import FormRoutes from './components/form/FormRoutes'
 import Navigator from './components/static/Navigation'
 
-import PairLogistics from './components/coordinator/listings/pairLogistics/PairLogistics'
+import PairLogistics from './components/coordinator/pairLogistics/PairLogistics'
+import Offering from './components/coordinator/pairLogistics/Offering'
+
 import TransportForm from './components/form/TransportForm'
 import RawMaterialForm from './components/form/RawMaterialForm'
-import Offering from './components/coordinator/Offering'
+
 import Donate from './components/static/Donate'
 
 export class App extends Component {
