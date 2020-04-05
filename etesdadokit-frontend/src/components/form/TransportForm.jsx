@@ -91,7 +91,7 @@ class TransportForm extends React.Component {
 
                     <div className="field is-horizontal">
                         <div className="field-label">
-                            <label className="label">Csak városon belül szállítasz?</label>
+                            <label className="label">Csak Debrecenen belül szállítasz?</label>
                         </div>
                         <div className="field-body">
                             <div className="field">
@@ -110,7 +110,7 @@ class TransportForm extends React.Component {
 
                     <div className="field is-horizontal">
                         <div className="field-label">
-                            <label className="label">Dátum</label>
+                            <label className="label">Mikor tudsz szállítani? (Dátum, hagyd üresen, ha bármikor!)</label>
                         </div>
                         <div className="field-body">
                             <div className="field">
@@ -120,6 +120,25 @@ class TransportForm extends React.Component {
                                         type="date"
                                         name="offerAvailableDate"
                                         id="offerAvailableDate"
+                                        size={30}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="field is-horizontal">
+                        <div className="field-label">
+                            <label className="label">Hányra tud menni leghamarabb? (óra)</label>
+                        </div>
+                        <div className="field-body">
+                            <div className="field">
+                                <div className="control">
+                                    <input
+                                        className="input"
+                                        placeholder="10:10"
+                                        name="availableFrom"
+                                        id="availableFrom"
                                         size={30}
                                     />
                                 </div>
@@ -159,24 +178,7 @@ class TransportForm extends React.Component {
                         </div>
                     </div>
 
-                    <div className="field is-horizontal">
-                        <div className="field-label">
-                            <label className="label">Hányra tud menni leghamarabb? (óra)</label>
-                        </div>
-                        <div className="field-body">
-                            <div className="field">
-                                <div className="control">
-                                    <input
-                                        className="input"
-                                        placeholder="10:10"
-                                        name="availableFrom"
-                                        id="availableFrom"
-                                        size={30}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <SubFormContact />

@@ -7,7 +7,7 @@ const SubFormContact = () => {
 
       <div className="field is-horizontal first-field">
         <div className="field-label">
-          <label className="label">Cégnév, vagy kapcsolattartó neve (saját neved)</label>
+          <label className="label">Neved/Cégnév</label>
         </div>
         <div className="field-body">
           <div className="field">

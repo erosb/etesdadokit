@@ -96,6 +96,10 @@ class RestaurantForm extends React.Component {
         }
     }
 
+    goBack = () => {
+        history.push('/')
+    }
+
     render() {
         const { formValues } = this.state
         return (
@@ -193,9 +197,7 @@ class RestaurantForm extends React.Component {
 
                     <SubformAddress />
                     <div className="has-text-centered margin-top-1">
-                        <Link to="/">
-                            <button className="button margin-1"> Vissza</button>
-                        </Link>
+                        <button className="button margin-1" onClick={this.goBack}> Vissza</button>
                         <input
                             className="button is-link is-outlined margin-1"
                             type="submit"

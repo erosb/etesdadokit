@@ -42,8 +42,11 @@ class FoodListing extends React.Component {
 
         return (
             <div>
-                {Array.isArray(foodList) && foodList.map(food => (<Food details={food} />))}
-                {Array.isArray(materialList) && materialList.map(material => (<Material details={material} />))}
+                <div>Felajánlások</div>
+                <div>
+                    {Array.isArray(foodList) && foodList.map(food => (<Food details={food} />))}
+                    {Array.isArray(materialList) && materialList.map(material => (<Material details={material} />))}
+                </div>
             </div>
         );
     }
