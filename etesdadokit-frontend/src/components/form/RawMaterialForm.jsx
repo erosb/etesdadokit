@@ -176,7 +176,7 @@ class RawMaterialForm extends React.Component {
 
                 <SubFormContact />
                 <div className="has-text-centered margin-top-1">
-                    <Link href="/"><button className="button margin-1"> Vissza</button></Link>
+                    <Link to="/"><button className="button margin-1"> Vissza</button></Link>
                     <input className="button is-link is-outlined margin-1" type="submit" value="Felajánlás elküldése" />
                 </div>
             </form>
