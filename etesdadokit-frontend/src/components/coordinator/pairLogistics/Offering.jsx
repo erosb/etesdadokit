@@ -25,11 +25,16 @@ class Offering extends React.Component {
     render() {
         const { offering } = this.state
 
+        let parsedOffering = {}
+        if (offering && typeof offering === "string") {
+            parsedOffering = JSON.parse(offering)
+        }
+
         return (
             <div>
-                {offering && <div>
-                    <OfferingDataSheet offering={offering} />
-                    {offering && <CarListing pairToFood={offering} />}
+                {parsedOffering.name && <div>
+                    <OfferingDataSheet offering={parsedOffering} />
+                    {parsedOffering.transportRequest && <CarListing pairToFood={parsedOffering} />}
                 </div>}
             </div>
         )
