@@ -1,6 +1,6 @@
 import React from 'react';
-import CarListing from './listings/pairLogistics/CarListing';
-import OfferingDataSheet from './listings/pairLogistics/OfferingDataSheet';
+import CarListing from '../listings/Car/CarListing';
+import OfferingDataSheet from './OfferingDataSheet';
 
 class Offering extends React.Component {
     constructor(props) {
@@ -20,7 +20,6 @@ class Offering extends React.Component {
             .then(data => {
                 this.setState({ offering: data })
             });
-
     }
 
     render() {

@@ -15,7 +15,7 @@ class FoodListing extends React.Component {
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
-                    this.setState({ list: data })
+                    this.setState({ list: JSON.parse(data) })
                 });
         } catch (err) {
             console.log(err)
@@ -24,14 +24,10 @@ class FoodListing extends React.Component {
 
     render() {
         const { list } = this.state
-        let newArr = list
-        if (typeof list === "string") {
-            newArr = JSON.parse(list)
-        }
 
         return (
             <div>
-                {Array.isArray(newArr) && newArr.map(food => (<Food details={food} />))}
+                {Array.isArray(list) && list.map(food => (<Food details={food} />))}
             </div>
         );
     }
