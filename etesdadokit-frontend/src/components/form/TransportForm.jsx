@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import history from '../../history'
 
 import './Form.css'
 import SubFormContact from './Subforms/SubFormContact'
@@ -70,10 +71,11 @@ class TransportForm extends React.Component {
                 body: JSON.stringify(formValues),
             })
                 .then((response) => response.text())
-                .then((data) => {
-                    console.log(data)
+                .then(() => {
+                    history.push('/thankyou')
                 })
         } catch (e) {
+            alert("Elnézést kérünk, valamilyen hiba történt!")
             console.log(e)
         }
     }

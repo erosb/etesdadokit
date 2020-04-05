@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import history from '../../history'
 
 import './Form.css'
 import SubFormContact from './Subforms/SubFormContact'
@@ -68,6 +69,13 @@ class RestaurantForm extends React.Component {
         event.preventDefault()
         const { formValues } = this.state
 
+        const improvedFormValues = formValues
+        if (improvedFormValues.transportRequest) {
+            if (!("requestRefrigeratorCar" in improvedFormValues.transportRequest)) {
+                improvedFormValues.transportRequest.requestRefrigeratorCar = false
+            }
+        }
+
         const url = '/offer/food/'
 
         try {
@@ -76,13 +84,14 @@ class RestaurantForm extends React.Component {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formValues),
+                body: JSON.stringify(improvedFormValues),
             })
                 .then((response) => response.text())
-                .then((data) => {
-                    console.log(data)
+                .then(() => {
+                    history.push('/thankyou')
                 })
         } catch (e) {
+            alert("Elnézést kérünk, valamilyen hiba történt!")
             console.log(e)
         }
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
+import history from './history';
 import './App.css'
 import RestaurantForm from './components/form/RestaurantForm'
 import FormRoutes from './components/form/FormRoutes'
@@ -12,6 +13,7 @@ import TransportForm from './components/form/TransportForm'
 import RawMaterialForm from './components/form/RawMaterialForm'
 
 import Donate from './components/static/Donate'
+import ThankYou from './components/static/ThankYou';
 
 export class App extends Component {
   constructor(props) {
@@ -43,7 +45,7 @@ export class App extends Component {
         <div className="container">
           {this.state.chosenOffering || (
             <div>
-              <BrowserRouter>
+              <Router history={history}>
                 <Switch>
                   <Route path="/restaurant">
                     <RestaurantForm />
@@ -63,11 +65,14 @@ export class App extends Component {
                   <Route path="/offer/food">
                     <Offering />
                   </Route>
+                  <Route path="/thankyou">
+                    <ThankYou />
+                  </Route>
                   <Route path="/">
                     <FormRoutes />
                   </Route>
                 </Switch>
-              </BrowserRouter>
+              </Router>
             </div>
           )}
         </div>
