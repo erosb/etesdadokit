@@ -1,5 +1,6 @@
 package com.github.erosb.etesdadokit.feature.offer.food;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface FoodOfferService {
@@ -11,4 +12,6 @@ public interface FoodOfferService {
     FoodOfferResponse createFoodOffer(FoodOfferRequest foodOfferRequest);
 
     FoodOfferResponse getById(Long id);
+
+    List<FoodOfferResponse> listFoodOfferings(LocalDate day);
 }

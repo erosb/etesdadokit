@@ -1,20 +1,25 @@
 package com.github.erosb.etesdadokit.feature.offer.material;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.IOException;
+import java.time.LocalDate;
+
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
+import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class MaterialOfferControllerTest {
@@ -22,8 +27,11 @@ public class MaterialOfferControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper mapper;
+
     @Test
-    public void testOk() throws Exception {
+    void testOk() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(readJson("/material-offer/testOk.json")))
@@ -32,7 +40,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingRootMandatoryFields() throws Exception {
+    void testMissingRootMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingMandatoryFields-address.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -50,7 +58,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyRootMandatoryFields() throws Exception {
+    void testEmptyRootMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyRootMandatoryFields.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -58,7 +66,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingContactMandatoryFields() throws Exception {
+    void testMissingContactMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +84,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyContactMandatoryFields() throws Exception {
+    void testEmptyContactMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyContactMandatoryFields-nameOrCompany.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -94,7 +102,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingAddressMandatoryFields() throws Exception {
+    void testMissingAddressMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -112,7 +120,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyAddressMandatoryFields() throws Exception {
+    void testEmptyAddressMandatoryFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyAddressMandatoryFields_address_city.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -130,7 +138,7 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testMissingOptionalFields() throws Exception {
+    void testMissingOptionalFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testMissingOptionalFields_transportRequest.json"))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -148,11 +156,37 @@ public class MaterialOfferControllerTest {
     }
 
     @Test
-    public void testEmptyOptionalFields() throws Exception {
+    void testEmptyOptionalFields() throws Exception {
         mockMvc.perform(post("/offer/material/")
                 .content(readJson("/material-offer/testEmptyOptionalFields_address_addressLineTwo.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    void testFindAndFilterByDate() throws Exception {
+        MaterialOfferRequest offer1 = mapper.readerFor(MaterialOfferRequest.class).readValue(getClass().
+                getResourceAsStream("/material-offer/testOk.json"));
+        offer1 = offer1.toBuilder().offerAvailableDate(LocalDate.parse("2020-03-04")).build();
+
+        MaterialOfferRequest offer2 = offer1.toBuilder().offerAvailableDate(LocalDate.parse("2020-03-05")).build();
+
+        mockMvc.perform(post("/offer/material/")
+                .content(mapper.writeValueAsString(offer1))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+        mockMvc.perform(post("/offer/material/")
+                .content(mapper.writeValueAsString(offer2))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        mockMvc.perform(get("/offer/material?day=2020-03-04"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
+
+        mockMvc.perform(get("/offer/material"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
+
     }
 
 }

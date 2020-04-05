@@ -25,7 +25,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 
-@Component
+//@Component
 public class Bootstrap implements CommandLineRunner {
 
     private final FoodOfferRepository foodOfferRepository;

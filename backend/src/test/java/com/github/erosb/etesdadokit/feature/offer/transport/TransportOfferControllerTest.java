@@ -10,14 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static com.github.erosb.etesdadokit.JsonReader.readJson;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,10 +35,10 @@ public class TransportOfferControllerTest {
     @BeforeEach
     public void setup() {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//        mapper.getSerializationConfig().
     }
 
     @Test
+    @DirtiesContext
     public void testOk() throws Exception {
         mockMvc.perform(post("/offer/transport/").content(readJson("/transport-offer/testOk.json")).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -173,7 +175,7 @@ public class TransportOfferControllerTest {
                 .availableFrom(LocalTime.NOON)
                 .refrigeratorCar(true)
                 .vehicleCapacity("2m3")
-                .offerAvailableDate(LocalDate.now())
+                .offerAvailableDate(LocalDate.parse("2020-03-04"))
                 .contact(Contact.builder()
                         .email("test@test.hu")
                         .nameOrCompany("Teszt Elek")
@@ -199,10 +201,13 @@ public class TransportOfferControllerTest {
                     .build();
 
             mockMvc.perform(post("/offer/transport").contentType(MediaType.APPLICATION_JSON)
-                    .content(mapper.writeValueAsString(transportOffer1))).andExpect(status().isOk());
+                    .content(mapper.writeValueAsString(transportOffer2))).andExpect(status().isOk());
 
-            mockMvc.perform(get("/offer/transport?day=2020-02-02")).andDo(print())
-            .andExpect(status().isOk());
+            mockMvc.perform(get("/offer/transport?day=2020-02-02"))
+            .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
+
+            mockMvc.perform(get("/offer/transport"))
+                    .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
         }
 
     }

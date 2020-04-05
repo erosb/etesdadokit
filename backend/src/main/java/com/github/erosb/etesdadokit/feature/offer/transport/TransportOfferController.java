@@ -44,7 +44,7 @@ public class TransportOfferController {
     public ResponseEntity<List<TransportOfferResponse>> listTransportOffers(
             @ApiParam("The day for which the available transport offers in yyyy-mm-dd format")
             @RequestParam(required = false) @Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
-        return ResponseEntity.ok(transportOfferService.findAll());
+        return ResponseEntity.ok(transportOfferService.listByDate(day));
     }
 
     @GetMapping("/date")

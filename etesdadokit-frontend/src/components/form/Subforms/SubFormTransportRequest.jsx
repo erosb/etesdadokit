@@ -2,7 +2,7 @@ import React from 'react'
 
 const SubFormTransportRequest = () => {
   return (
-    <div>
+    <div className="forms">
       <legend className="label has-text-centered">Szállítás kérés</legend>
 
       <div className="field is-horizontal">
