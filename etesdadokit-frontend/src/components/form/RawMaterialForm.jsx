@@ -139,7 +139,7 @@ class RawMaterialForm extends React.Component {
                                 <label className="label">Mikor lesz elérhető?</label>
                             </div>
                             <div className="field-body">
-                                <div className="field is-narrow">
+                                <div className="field">
                                     <div className="control">
                                         <input
                                             className="input"
@@ -158,7 +158,7 @@ class RawMaterialForm extends React.Component {
                             <label className="label">Meg tudod oldani a kiszállítást étteremhez?</label>
                         </div>
                         <div className="field-body">
-                            <div className="field is-narrow">
+                            <div className="field">
                                 <input className="radio" type="radio" name="canResolveTransport" value="yes" />{' '}
                 Igen, meg tudom oldani
                 <input className="radio" type="radio" name="canResolveTransport" value="no" /> Nem
@@ -173,8 +173,8 @@ class RawMaterialForm extends React.Component {
 
                 <SubFormContact />
                 <div className="has-text-centered margin-top-1">
-                    <Link href="/"><button className="button"> Vissza</button></Link>
-                    <input className="button" type="submit" value="Felajánlás elküldése" />
+                    <Link href="/"><button className="button margin-1"> Vissza</button></Link>
+                    <input className="button is-link is-outlined margin-1" type="submit" value="Felajánlás elküldése" />
                 </div>
             </form>
         )

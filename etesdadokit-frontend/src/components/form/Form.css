@@ -11,6 +11,26 @@
     margin-top: 1.5rem;
 }
 
+.margin-top-3 {
+    margin-top: 2rem;
+}
+
+.margin-1 {
+    margin: 1rem;
+}
+
+.padding-bottom-15 {
+    padding-bottom: 1.5rem;
+}
+
+.padding-15 {
+    padding: 1.5rem;
+}
+
+.m-h {
+    height: 210px;
+}
+
 /*
 legend {
     font-size: 130%;

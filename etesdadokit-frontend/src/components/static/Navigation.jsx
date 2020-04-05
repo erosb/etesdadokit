@@ -6,7 +6,7 @@ const Navigation = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href="/"></a>
-
+          <img className="image is-48x48" src="./logo192.png" />
           <a
             role="button"
             className="navbar-burger burger"
