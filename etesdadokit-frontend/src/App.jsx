@@ -14,6 +14,7 @@ import RawMaterialForm from './components/form/RawMaterialForm'
 
 import Donate from './components/static/Donate'
 import ThankYou from './components/static/ThankYou';
+import PairSuccess from './components/static/PairSuccess';
 
 export class App extends Component {
   constructor(props) {
@@ -67,6 +68,9 @@ export class App extends Component {
                   </Route>
                   <Route path="/thankyou">
                     <ThankYou />
+                  </Route>
+                  <Route path="/success">
+                    <PairSuccess />
                   </Route>
                   <Route path="/">
                     <FormRoutes />

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import history from '../../../../history'
 /**
  * 
  * @param {{
@@ -73,7 +73,7 @@ const Car = ({ details, pairToFood }) => {
                 body: JSON.stringify(sendDeliveryPlan)
             }).then(response => response.text())
                 .then(data => {
-                    console.log(data)
+                    history.push('/success')
                 });
         } catch (e) {
             console.log(e)
