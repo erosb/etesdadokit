@@ -1,6 +1,8 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
 import com.github.erosb.etesdadokit.common.contact.ContactInfoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -53,6 +55,21 @@ public class TransportOfferServiceImpl implements TransportOfferService {
         }
     }
 
+    @Override
+    public TrasnsportOfferPagedList findAll(PageRequest pageRequest) {
+        Page<TransportOfferEntity> page;
+        page = repository.findAll(pageRequest);
+
+        return new TrasnsportOfferPagedList(page
+                .getContent()
+                .stream()
+                .map(transportOfferMapper::entityToResponse)
+                .collect(Collectors.toList()),
+                PageRequest
+                        .of(page.getPageable().getPageNumber(),
+                                page.getPageable().getPageSize()),
+                page.getTotalElements());
+    }
     private TransportOfferResponse saveEntityAndReturnResponse(TransportOfferEntity entity) {
         contactInfoService.createContactInfo(entity.getContact());
 

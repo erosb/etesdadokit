@@ -194,7 +194,7 @@ public class TransportOfferControllerTest {
                     .build();
 
             mockMvc.perform(post("/offer/transport").contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(transportOffer1))).andExpect(status().isOk());
+                    .content(mapper.writeValueAsString(transportOffer1))).andExpect(status().isOk());
 
             TransportOfferRequest transportOffer2 = validTransportOfferRequest().toBuilder()
                     .offerAvailableDate(LocalDate.of(2020, 3, 3))
@@ -204,10 +204,18 @@ public class TransportOfferControllerTest {
                     .content(mapper.writeValueAsString(transportOffer2))).andExpect(status().isOk());
 
             mockMvc.perform(get("/offer/transport?day=2020-02-02"))
-            .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
+                    .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(1)));
 
             mockMvc.perform(get("/offer/transport"))
                     .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
+
+            mockMvc.perform(get("/offer/transport/page?pageNumber=0&pageSize=5"))
+                    .andExpect(status().isOk()).andExpect(status().isOk())
+                    .andExpect(jsonPath("content").isNotEmpty());
+
+            mockMvc.perform(get("/offer/transport/page"))
+                    .andExpect(status().isOk()).andExpect(status().isOk())
+                    .andExpect(jsonPath("content").isNotEmpty());
         }
 
     }

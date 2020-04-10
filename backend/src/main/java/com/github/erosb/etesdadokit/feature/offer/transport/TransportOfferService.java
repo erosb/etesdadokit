@@ -1,6 +1,7 @@
 package com.github.erosb.etesdadokit.feature.offer.transport;
 
 import com.github.erosb.etesdadokit.feature.offer.food.FoodOfferEntity;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface TransportOfferService {
     TransportOfferResponse getTransportOfferByDate(LocalDate transportDate);
 
     List<TransportOfferResponse> listByDate(LocalDate day);
+
+    TrasnsportOfferPagedList findAll(PageRequest pageRequest);
 }

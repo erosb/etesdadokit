@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 //@Component
 public class Bootstrap implements CommandLineRunner {
@@ -62,7 +63,9 @@ public class Bootstrap implements CommandLineRunner {
 
         loadFoodOffers();
         loadMaterialOffers();
-        loadTransportOffers();
+        for (int i = 0; i < 100; i++) {
+            loadTransportOffers(Long.valueOf(i));
+        }
 
         loadMaterialSupplyTasks();
         loadDeliveryPlan();
@@ -132,14 +135,16 @@ public class Bootstrap implements CommandLineRunner {
                         .build());
     }
 
-    private void loadTransportOffers() {
+    private void loadTransportOffers(Long i) {
+        LocalDate randomDate = LocalDate.now().plusDays(ThreadLocalRandom.current().nextInt(0, 30));
+
         transportOfferRepository.save(
                 TransportOfferEntity.builder()
-                        .id(1L)
+                        .id(i)
                         .vehicleCapacity("normal")
                         .refrigeratorCar(true)
-                        .transportDate(LocalDate.now())
-                        .availableFrom(LocalTime.NOON)
+                        .transportDate(randomDate)
+                        .availableFrom(randomDate.atStartOfDay().toLocalTime())
                         .cityOnly(false)
                         .contact(contactEntity)
                         .build()
