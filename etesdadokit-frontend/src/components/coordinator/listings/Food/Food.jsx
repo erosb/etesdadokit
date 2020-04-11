@@ -21,7 +21,7 @@ const Food = ({ details }) => {
 
   return (
     <Link to={`/offer/food/${id}`}>
-      <div id={id} className={`card m-h food-box ${transportClass}`}>
+      <div id={id} className={`card food-box ${transportClass}`}>
         <div className="card-flex">
 
           <div className="card-flex-item">
@@ -39,6 +39,7 @@ const Food = ({ details }) => {
         <div>Felajánló: {nameOrCompany}</div>
         <div>Kiszállítás: {transportDate} ({n})</div>
         <div>Fuvar {transportRequest ? 'nem megoldott' : 'megoldott'}</div>
+        <div className="card-operation">{transportRequest ? 'Fuvar szervezése' : 'Adatlap megtekintése'} ></div>
       </div>
     </Link>
   )

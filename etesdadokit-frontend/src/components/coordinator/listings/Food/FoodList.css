@@ -11,11 +11,11 @@
 }
 
 .need-transport{
-    background-color: rgb(245, 205, 130);
+    background-color: rgb(243, 208, 144);
 }
 
 .no-transport-needed{
-    background-color: rgb(190, 245, 109);
+    background-color: rgb(200, 248, 129);
 }
 
 .card-flex {
@@ -36,4 +36,9 @@
 .marker-img {
    padding-left:80px;
    padding-top:10px;
+}
+
+.card-operation{
+    padding-top:5px;
+    color: blue;
 }

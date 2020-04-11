@@ -47,7 +47,11 @@ class FoodListing extends React.Component {
       <div>
 
         <div className="need-space has-text-centered is-size-3 has-text-weight-bold">Felajánlások</div>
-        <div>
+        <form>
+          <div>Szűrés dátumra <input type="date" name="filter-date" />          <button type="submit" >Szűrés</button> </div>
+
+        </form>
+        <div className="flex-row">
           {Array.isArray(foodList) && foodList.map(food => <Food details={food} />)}
           {Array.isArray(materialList) &&
             materialList.map(material => <Material details={material} />)}
