@@ -5,6 +5,7 @@ import './Form.css'
 import SubFormContact from './Subforms/SubFormContact'
 import SubformAddress from './Subforms/SubformAddress'
 import SubFormTransportRequest from './Subforms/SubFormTransportRequest'
+import Modal from '../static/Modal'
 /**
  * {
   "address": {
@@ -35,6 +36,7 @@ class RestaurantForm extends React.Component {
     super(props)
     this.state = {
       formValues: {},
+      error: null,
     }
   }
 
@@ -90,8 +92,7 @@ class RestaurantForm extends React.Component {
           history.push('/thankyou')
         })
     } catch (e) {
-      alert('Elnézést kérünk, valamilyen hiba történt!')
-      console.log(e)
+      this.setState(prevSTate => ({ ...prevSTate, error: e }))
     }
   }
 
@@ -100,120 +101,128 @@ class RestaurantForm extends React.Component {
   }
 
   render() {
-    const { formValues } = this.state
+    const { formValues, error } = this.state
     return (
       <div className="forms">
-        <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-          <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
+        {!error && (
+          <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
+            <div className="has-text-centered is-size-3 margin-top-2">Készétel felajánlás</div>
 
-          <div className="field is-horizontal margin-top-1">
-            <div className="field-label">
-              <label className="label">Milyen ételt tudsz felajánlani?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input className="input" name="name" id="name" type="text" required />
+            <div className="field is-horizontal margin-top-1">
+              <div className="field-label">
+                <label className="label">Milyen ételt tudsz felajánlani?</label>
+              </div>
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <input className="input" name="name" id="name" type="text" required />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Hány adagot tudsz készíteni? (minimum 50)</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min="50"
-                    max="1000"
-                    required
-                  />
+            <div className="field is-horizontal">
+              <div className="field-label">
+                <label className="label">Hány adagot tudsz készíteni? (minimum 50)</label>
+              </div>
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="number"
+                      id="quantity"
+                      name="quantity"
+                      min="50"
+                      max="1000"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Milyen fontosabb hozzávalók kellenek hozzá?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    cols={30}
-                    rows={4}
-                    name="ingredients"
-                    id="ingredients"
-                  ></textarea>
+            <div className="field is-horizontal">
+              <div className="field-label">
+                <label className="label">Milyen fontosabb hozzávalók kellenek hozzá?</label>
+              </div>
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      cols={30}
+                      rows={4}
+                      name="ingredients"
+                      id="ingredients"
+                    ></textarea>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Mikor lesz elérhető?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    type="date"
-                    id="transportDate"
-                    name="transportDate"
-                    required
-                  />
+            <div className="field is-horizontal">
+              <div className="field-label">
+                <label className="label">Mikor lesz elérhető?</label>
+              </div>
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="date"
+                      id="transportDate"
+                      name="transportDate"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Meg tudod oldani a kiszállítást a kórházhoz?</label>
-            </div>
-            <div className="field-body">
-              <div className="field is-narrow">
-                <div className="control">
-                  <label className="radio">
-                    <input className="radio" type="radio" name="canResolveTransport" value="yes" />{' '}
-                    Igen, meg tudom oldani
-                  </label>
-                  <label className="radio">
-                    <input className="radio" type="radio" name="canResolveTransport" value="no" />{' '}
-                    Nem tudom megoldani
-                  </label>
+            <div className="field is-horizontal">
+              <div className="field-label">
+                <label className="label">Meg tudod oldani a kiszállítást a kórházhoz?</label>
+              </div>
+              <div className="field-body">
+                <div className="field is-narrow">
+                  <div className="control">
+                    <label className="radio">
+                      <input
+                        className="radio"
+                        type="radio"
+                        name="canResolveTransport"
+                        value="yes"
+                      />{' '}
+                      Igen, meg tudom oldani
+                    </label>
+                    <label className="radio">
+                      <input className="radio" type="radio" name="canResolveTransport" value="no" />{' '}
+                      Nem tudom megoldani
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {formValues.canResolveTransport === 'no' && <SubFormTransportRequest />}
+            {formValues.canResolveTransport === 'no' && <SubFormTransportRequest />}
 
-          <SubFormContact />
+            <SubFormContact />
 
-          <SubformAddress />
-          <div className="has-text-centered margin-top-1">
-            <button className="button margin-1" onClick={this.goBack} type="button">
-              {' '}
-              Vissza
-            </button>
-            <input
-              className="button is-link is-outlined margin-1"
-              type="submit"
-              value="Felajánlás elküldése"
-            />
-          </div>
-        </form>
+            <SubformAddress />
+            <div className="has-text-centered margin-top-1">
+              <button className="button margin-1" onClick={this.goBack} type="button">
+                {' '}
+                Vissza
+              </button>
+              <input
+                className="button is-link is-outlined margin-1"
+                type="submit"
+                value="Felajánlás elküldése"
+              />
+            </div>
+          </form>
+        )}
+        {error && <Modal text="Elnézést kérünk, valamilyen hiba történt!" />}
       </div>
     )
   }

@@ -5,6 +5,7 @@ import history from '../../history'
 
 import './Form.css'
 import SubFormContact from './Subforms/SubFormContact'
+import Modal from '../static/Modal'
 
 /**
  * {
@@ -26,6 +27,7 @@ class TransportForm extends React.Component {
     super(props)
     this.state = {
       formValues: { cityOnly: false, refrigeratorCar: false },
+      error: null,
     }
   }
 
@@ -80,8 +82,7 @@ class TransportForm extends React.Component {
           history.push('/thankyou')
         })
     } catch (e) {
-      alert('Elnézést kérünk, valamilyen hiba történt!')
-      console.log(e)
+      this.setState(prevSTate => ({ ...prevSTate, error: e }))
     }
   }
 
@@ -90,125 +91,131 @@ class TransportForm extends React.Component {
   }
 
   render() {
+    const { error } = this.state
     return (
-      <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
-        <div className="forms">
-          <div className="has-text-centered is-size-3 margin-top-2">Szállítás</div>
+      <div>
+        {!error && (
+          <form style={{ gridArea: 'form' }} onChange={this.onChange} onSubmit={this.onSubmit}>
+            <div className="forms">
+              <div className="has-text-centered is-size-3 margin-top-2">Szállítás</div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Csak Debrecenen belül szállítasz?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="checkbox"
-                    type="checkbox"
-                    name="cityOnly"
-                    id="cityOnly"
-                    size={30}
-                  />
+              <div className="field is-horizontal">
+                <div className="field-label">
+                  <label className="label">Csak Debrecenen belül szállítasz?</label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <input
+                        className="checkbox"
+                        type="checkbox"
+                        name="cityOnly"
+                        id="cityOnly"
+                        size={30}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="field is-horizontal">
+                <div className="field-label">
+                  <label className="label">
+                    Mikor tudsz szállítani? (Dátum, hagyd üresen, ha bármikor!)
+                  </label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <input
+                        className="input"
+                        type="date"
+                        name="offerAvailableDate"
+                        id="offerAvailableDate"
+                        size={30}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="field is-horizontal">
+                <div className="field-label">
+                  <label className="label">Hányra tud menni leghamarabb? (óra)</label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <input
+                        className="input"
+                        placeholder="10:10"
+                        name="availableFrom"
+                        id="availableFrom"
+                        size={30}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="field is-horizontal">
+                <div className="field-label">
+                  <label className="label">Hűtős kocsi?</label>
+                </div>
+                <div className="field-body">
+                  <div className="field is-narrow">
+                    <div className="control">
+                      <input
+                        className="checkbox"
+                        type="checkbox"
+                        name="refrigeratorCar"
+                        id="refrigeratorCar"
+                        size={30}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="field is-horizontal">
+                <div className="field-label">
+                  <label className="label">Mekkora raktere van?</label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <input
+                        className="input"
+                        name="vehicleCapacity"
+                        id="vehicleCapacity"
+                        size={30}
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">
-                Mikor tudsz szállítani? (Dátum, hagyd üresen, ha bármikor!)
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    type="date"
-                    name="offerAvailableDate"
-                    id="offerAvailableDate"
-                    size={30}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+            <SubFormContact />
 
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Hányra tud menni leghamarabb? (óra)</label>
+            <div className="has-text-centered margin-top-1">
+              <button className="button margin-1" onClick={this.goBack} type="button">
+                {' '}
+                Vissza
+              </button>
+              <input
+                className="button is-link is-outlined margin-1"
+                type="submit"
+                value="Felajánlás elküldése"
+              />
             </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    placeholder="10:10"
-                    name="availableFrom"
-                    id="availableFrom"
-                    size={30}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Hűtős kocsi?</label>
-            </div>
-            <div className="field-body">
-              <div className="field is-narrow">
-                <div className="control">
-                  <input
-                    className="checkbox"
-                    type="checkbox"
-                    name="refrigeratorCar"
-                    id="refrigeratorCar"
-                    size={30}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal">
-            <div className="field-label">
-              <label className="label">Mekkora raktere van?</label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className="input"
-                    name="vehicleCapacity"
-                    id="vehicleCapacity"
-                    size={30}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <SubFormContact />
-
-        <div className="has-text-centered margin-top-1">
-          <button className="button margin-1" onClick={this.goBack} type="button">
-            {' '}
-            Vissza
-          </button>
-          <input
-            className="button is-link is-outlined margin-1"
-            type="submit"
-            value="Felajánlás elküldése"
-          />
-        </div>
-      </form>
+          </form>
+        )}
+        {error && <Modal text="Elnézést kérünk, valamilyen hiba történt!" />}
+      </div>
     )
   }
 }
