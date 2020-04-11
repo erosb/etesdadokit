@@ -30,6 +30,7 @@
     "cy": true
   },
   "rules": {
+    "react/prop-types": 0,
     "curly": [
       2,
       "all"

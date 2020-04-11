@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 import React from 'react'
-import { Link } from 'react-router-dom'
 import history from '../../history'
 
 import './Form.css'
@@ -181,7 +181,7 @@ class RawMaterialForm extends React.Component {
 
         <SubFormContact />
         <div className="has-text-centered margin-top-1">
-          <button className="button margin-1" onClick={this.goBack}>
+          <button className="button margin-1" onClick={this.goBack} type="button">
             {' '}
             Vissza
           </button>

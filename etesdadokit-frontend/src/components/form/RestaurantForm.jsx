@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import history from '../../history'
 
 import './Form.css'
@@ -167,7 +166,13 @@ class RestaurantForm extends React.Component {
             <div className="field-body">
               <div className="field">
                 <div className="control">
-                  <input className="input" type="date" id="transportDate" name="transportDate" required />
+                  <input
+                    className="input"
+                    type="date"
+                    id="transportDate"
+                    name="transportDate"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -198,7 +203,7 @@ class RestaurantForm extends React.Component {
 
           <SubformAddress />
           <div className="has-text-centered margin-top-1">
-            <button className="button margin-1" onClick={this.goBack}>
+            <button className="button margin-1" onClick={this.goBack} type="button">
               {' '}
               Vissza
             </button>

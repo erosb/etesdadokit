@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react'
 import history from '../../../../history'
 /**
@@ -73,7 +74,7 @@ const Car = ({ details, pairToFood }) => {
         body: JSON.stringify(sendDeliveryPlan),
       })
         .then(response => response.text())
-        .then(data => {
+        .then(() => {
           history.push('/success')
         })
     } catch (e) {
@@ -105,7 +106,7 @@ const Car = ({ details, pairToFood }) => {
         </table>
       </td>
       <td>
-        <button id={pairToFood.id} onClick={onClick}>
+        <button id={pairToFood.id} onClick={onClick} type="button">
           Kiválaszt
         </button>
       </td>

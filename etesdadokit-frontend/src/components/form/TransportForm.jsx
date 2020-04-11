@@ -182,7 +182,13 @@ class TransportForm extends React.Component {
             <div className="field-body">
               <div className="field">
                 <div className="control">
-                  <input className="input" name="vehicleCapacity" id="vehicleCapacity" size={30} required />
+                  <input
+                    className="input"
+                    name="vehicleCapacity"
+                    id="vehicleCapacity"
+                    size={30}
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -192,7 +198,7 @@ class TransportForm extends React.Component {
         <SubFormContact />
 
         <div className="has-text-centered margin-top-1">
-          <button className="button margin-1" onClick={this.goBack}>
+          <button className="button margin-1" onClick={this.goBack} type="button">
             {' '}
             Vissza
           </button>

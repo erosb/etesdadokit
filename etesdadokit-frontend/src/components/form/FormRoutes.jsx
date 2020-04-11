@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Message from '../static/Intro'
-import Donate from '../static/Donate'
 import './Form.css'
 
 const FormRoutes = () => {
+  const titleClass =
+    'content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile'
   return (
     <div>
       <Message />
@@ -19,13 +20,11 @@ const FormRoutes = () => {
             <div className="card m-h">
               <div className="columns is-flex is-centered">
                 <figure className="image is-64x64 margin-top-2">
-                  <img src="./assets/restaurant-logo.svg" />
+                  <img src="./assets/restaurant-logo.svg" alt="restaurant logo" />
                 </figure>
               </div>
 
-              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                Éttermet, ételkiszállítót, pékséget képviselek
-              </div>
+              <div className={titleClass}>Éttermet, ételkiszállítót, pékséget képviselek</div>
             </div>
           </Link>
         </div>
@@ -34,13 +33,11 @@ const FormRoutes = () => {
             <div className="card m-h">
               <div className="columns is-flex is-centered">
                 <figure className="image is-64x64 margin-top-2">
-                  <img src="./assets/raw-material.svg" />
+                  <img src="./assets/raw-material.svg" alt="raw-material logo" />
                 </figure>
               </div>
 
-              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                Alapanyagom, csomagolóanyagom van
-              </div>
+              <div className={titleClass}>Alapanyagom, csomagolóanyagom van</div>
             </div>
           </Link>
         </div>
@@ -49,13 +46,11 @@ const FormRoutes = () => {
             <div className="card m-h">
               <div className="columns is-flex is-centered">
                 <figure className="image is-64x64 margin-top-2">
-                  <img src="./assets/transport.svg" />
+                  <img src="./assets/transport.svg" alt="transport logo" />
                 </figure>
               </div>
 
-              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                Fuvarozó vagyok
-              </div>
+              <div className={titleClass}>Fuvarozó vagyok</div>
             </div>
           </Link>
         </div>
@@ -64,13 +59,11 @@ const FormRoutes = () => {
             <div className="card m-h">
               <div className="columns is-flex is-centered">
                 <figure className="image is-64x64 margin-top-2">
-                  <img src="./assets/donation-svgrepo-com.svg" />
+                  <img src="./assets/donation-svgrepo-com.svg" alt="donation logo" />
                 </figure>
               </div>
 
-              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                Pénzbeli segítséget szeretnék nyújtani
-              </div>
+              <div className={titleClass}>Pénzbeli segítséget szeretnék nyújtani</div>
             </div>
           </Link>
         </div>

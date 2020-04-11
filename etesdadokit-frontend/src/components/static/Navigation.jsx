@@ -6,7 +6,7 @@ const Navigation = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
-            <img className="image is-32x32" src="./logo192.png" />
+            <img className="image is-32x32" src="./logo192.png" alt="etesdadokit logo" />
           </a>
           <a
             role="button"
@@ -14,6 +14,7 @@ const Navigation = () => {
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
+            href="/"
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -23,7 +24,9 @@ const Navigation = () => {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item">#etesdadokit</a>
+            <a className="navbar-item" href="/">
+              #etesdadokit
+            </a>
           </div>
         </div>
       </nav>
