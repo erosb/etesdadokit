@@ -9,65 +9,70 @@ const FormRoutes = () => {
     <div>
       <Message />
 
-      <div className="has-text-centered is-size-3 has-text-weight-bold">
-        Hogyan tudsz segíteni minket?
+      <div className="need-space has-text-centered is-size-3 has-text-weight-bold">
+        Milyen felajánlással tudsz segíteni minket?
       </div>
 
       <div className="flex-row">
-        <div className="flex-item">
-          <h3 className="want-to-support">Felajánlással</h3>
-          <ul className="offering-types ">
-            <li className="restaurant">
-              <Link to="/restaurant">
-                <div className="card m-h">
-                  <div className="columns is-flex is-centered">
-                    <figure className="image is-64x64 margin-top-2">
-                      <img src="./assets/restaurant-logo.svg" />
-                    </figure>
-                  </div>
+        <div className="restaurant flex-item main-page-card">
+          <Link to="/restaurant">
+            <div className="card m-h">
+              <div className="columns is-flex is-centered">
+                <figure className="image is-64x64 margin-top-2">
+                  <img src="./assets/restaurant-logo.svg" />
+                </figure>
+              </div>
 
-                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                    Éttermet, ételkiszállítót, pékséget képviselek
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className="raw-material">
-              <Link to="/raw-material">
-                <div className="card m-h">
-                  <div className="columns is-flex is-centered">
-                    <figure className="image is-64x64 margin-top-2">
-                      <img src="./assets/raw-material.svg" />
-                    </figure>
-                  </div>
-
-                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                    Alapanyagom, csomagolóanyagom van
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className="shipping">
-              <Link to="/shipping">
-                <div className="card m-h">
-                  <div className="columns is-flex is-centered">
-                    <figure className="image is-64x64 margin-top-2">
-                      <img src="./assets/transport.svg" />
-                    </figure>
-                  </div>
-
-                  <div class="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
-                    Fuvarozó vagyok
-                  </div>
-                </div>
-              </Link>
-            </li>
-          </ul>
+              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
+                Éttermet, ételkiszállítót, pékséget képviselek
+              </div>
+            </div>
+          </Link>
         </div>
+        <div className="raw-material flex-item main-page-card">
+          <Link to="/raw-material">
+            <div className="card m-h">
+              <div className="columns is-flex is-centered">
+                <figure className="image is-64x64 margin-top-2">
+                  <img src="./assets/raw-material.svg" />
+                </figure>
+              </div>
 
-        <div className="flex-item">
-          <h3 className="want-to-support">Pénzbeli segítséggel</h3>
-          <Donate />
+              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
+                Alapanyagom, csomagolóanyagom van
+              </div>
+            </div>
+          </Link>
+        </div>
+        <div className="flex-item main-page-card">
+          <Link to="/shipping">
+            <div className="card m-h">
+              <div className="columns is-flex is-centered">
+                <figure className="image is-64x64 margin-top-2">
+                  <img src="./assets/transport.svg" />
+                </figure>
+              </div>
+
+              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
+                Fuvarozó vagyok
+              </div>
+            </div>
+          </Link>
+        </div>
+        <div className="flex-item main-page-card">
+          <Link to="/donate">
+            <div className="card m-h">
+              <div className="columns is-flex is-centered">
+                <figure className="image is-64x64 margin-top-2">
+                  <img src="./assets/donation-svgrepo-com.svg" />
+                </figure>
+              </div>
+
+              <div className="content has-text-centered padding-15 is-size-5 is-size-6-tablet is-size-6-mobile">
+                Pénzbeli segítséget szeretnék nyújtani
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

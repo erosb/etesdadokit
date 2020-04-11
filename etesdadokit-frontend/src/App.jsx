@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
-import history from './history';
+import history from './history'
 import './App.css'
 import RestaurantForm from './components/form/RestaurantForm'
 import FormRoutes from './components/form/FormRoutes'
@@ -13,15 +13,14 @@ import TransportForm from './components/form/TransportForm'
 import RawMaterialForm from './components/form/RawMaterialForm'
 
 import Donate from './components/static/Donate'
-import ThankYou from './components/static/ThankYou';
-import PairSuccess from './components/static/PairSuccess';
+import ThankYou from './components/static/ThankYou'
+import PairSuccess from './components/static/PairSuccess'
 
-export class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       chosenOffering: null,
-      layoutClass: '',
     }
   }
 
@@ -35,7 +34,6 @@ export class App extends Component {
           </div>
         </form>
       ),
-      layoutClass: 'offering-form',
     })
   }
 

@@ -1,6 +1,5 @@
 {
   "extends": [
-    "plugin:@cypress/dev/general",
     "airbnb",
     "prettier",
     "prettier/react",
@@ -31,7 +30,10 @@
     "cy": true
   },
   "rules": {
-    "curly": [2, "all"],
+    "curly": [
+      2,
+      "all"
+    ],
     "max-len": [
       "error",
       {
@@ -42,7 +44,10 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     ],
     "prettier/prettier": [
@@ -55,24 +60,24 @@
         "printWidth": 100
       }
     ],
-    "prefer-promise-reject-errors": ["off"],
-    "react/jsx-one-expression-per-line": ["off"],
-    "no-return-assign": ["warn"],
-    "react/require-default-props": [
-      "error",
-      {
-        "forbidDefaultForRequired": true
-      }
+    "prefer-promise-reject-errors": [
+      "off"
     ],
-    "import/no-extraneous-dependencies": ["off"],
-    "react/prop-types": 2,
+    "react/jsx-one-expression-per-line": [
+      "off"
+    ],
+    "no-return-assign": [
+      "warn"
+    ],
+    "import/no-extraneous-dependencies": [
+      "off"
+    ],
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "warn",
     "jsx-a11y/label-has-for": 0,
-    "react/no-unknown-property": [2],
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/label-has-associated-control": 0,
     "no-duplicate-imports": "error",
@@ -83,7 +88,10 @@
     "react/jsx-props-no-spreading": 0,
     "no-unused-vars": 1,
     "no-param-reassign": 0,
-    "import/imports-first": ["warn", "absolute-first"],
+    "import/imports-first": [
+      "warn",
+      "absolute-first"
+    ],
     "react/self-closing-comp": [
       "error",
       {
@@ -93,5 +101,9 @@
     ],
     "import/newline-after-import": "error"
   },
-  "plugins": ["@cypress/dev", "prettier", "json", "jest"]
+  "plugins": [
+    "prettier",
+    "json",
+    "jest"
+  ]
 }

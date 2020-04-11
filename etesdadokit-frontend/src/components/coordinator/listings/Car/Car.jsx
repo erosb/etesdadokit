@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import history from '../../../../history'
 /**
  * 
@@ -35,70 +35,82 @@ import history from '../../../../history'
  */
 
 const Car = ({ details, pairToFood }) => {
+  const {
+    id: transferId,
+    transportDate,
+    vehicleCapacity,
+    refrigeratorCar,
+    firstAvailableHour,
+    cityOnly,
+    contact: { nameOrCompany, email, phoneNumber },
+  } = details
 
+  // POST delivery plan
+  const onClick = event => {
     const {
-        id: transferId,
-        transportDate,
-        vehicleCapacity,
-        refrigeratorCar,
-        firstAvailableHour,
-        cityOnly,
-        contact: { nameOrCompany, email, phoneNumber }
-    } = details
-
-
-    //POST delivery plan
-    const onClick = (event) => {
-        const { target: { id } } = event
-        const sendDeliveryPlan = {
-            date: transportDate,
-            foodSupplyTask: {
-                acceptedFoodOfferId: id,
-                portions: pairToFood.quantity
-            },
-            transferTask: {
-                acceptedTransferOfferId: transferId,
-                departureTime: pairToFood.timeToPickUp
-            },
-            materialSupplyTasks: []
-        }
-
-        const url = '/delivery-plan'
-        try {
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(sendDeliveryPlan)
-            }).then(response => response.text())
-                .then(data => {
-                    history.push('/success')
-                });
-        } catch (e) {
-            console.log(e)
-        }
+      target: { id },
+    } = event
+    const sendDeliveryPlan = {
+      date: transportDate,
+      foodSupplyTask: {
+        acceptedFoodOfferId: id,
+        portions: pairToFood.quantity,
+      },
+      transferTask: {
+        acceptedTransferOfferId: transferId,
+        departureTime: pairToFood.timeToPickUp,
+      },
+      materialSupplyTasks: [],
     }
 
+    const url = '/delivery-plan'
+    try {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendDeliveryPlan),
+      })
+        .then(response => response.text())
+        .then(data => {
+          history.push('/success')
+        })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
-    return (
-        <tr>
-            <td>{nameOrCompany}</td>
-            <td>{email}</td>
-            <td>{phoneNumber}</td>
-            <td>{transportDate} {firstAvailableHour}:00-</td>
-            <td><table>
-                <tbody>
-                    <tr><td>Kapacitás: {vehicleCapacity}</td></tr>
-                    <tr><td>Hűtős? {refrigeratorCar ? "igen" : "nem"}</td></tr>
-                    <tr><td>Csak városon belül? {cityOnly ? "igen" : "nem"}</td></tr>
-                </tbody>
-            </table></td>
-            <td>
-                <button id={pairToFood.id} onClick={onClick}>Kiválaszt</button>
-            </td>
-        </tr >
-    );
+  return (
+    <tr>
+      <td>{nameOrCompany}</td>
+      <td>{email}</td>
+      <td>{phoneNumber}</td>
+      <td>
+        {transportDate} {firstAvailableHour}:00-
+      </td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>Kapacitás: {vehicleCapacity}</td>
+            </tr>
+            <tr>
+              <td>Hűtős? {refrigeratorCar ? 'igen' : 'nem'}</td>
+            </tr>
+            <tr>
+              <td>Csak városon belül? {cityOnly ? 'igen' : 'nem'}</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <button id={pairToFood.id} onClick={onClick}>
+          Kiválaszt
+        </button>
+      </td>
+    </tr>
+  )
 }
 
 export default Car

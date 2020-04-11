@@ -4,7 +4,6 @@ import '../../App.css'
 const Donations = () => {
   return (
     <div className="content is-vcentered has-text-centered">
-      
       <table>
         <tbody>
           <tr>
