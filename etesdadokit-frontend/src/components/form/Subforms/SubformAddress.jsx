@@ -38,6 +38,7 @@ const SubformAddress = () => {
               id="zip"
               savetype="address"
               size={30}
+              autoComplete="postal-code"
             />
           </div>
         </div>
@@ -56,6 +57,7 @@ const SubformAddress = () => {
                 name="addressLineOne"
                 id="addressLineOne"
                 savetype="address"
+                autoComplete="address-line1"
                 size={30}
               />
             </div>
@@ -76,6 +78,7 @@ const SubformAddress = () => {
                 name="addressLineTwo"
                 id="addressLineTwo"
                 savetype="address"
+                autoComplete="address-line2"
                 size={30}
               />
             </div>

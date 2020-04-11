@@ -129,6 +129,7 @@ class TransportForm extends React.Component {
                     name="offerAvailableDate"
                     id="offerAvailableDate"
                     size={30}
+                    required
                   />
                 </div>
               </div>
@@ -148,6 +149,7 @@ class TransportForm extends React.Component {
                     name="availableFrom"
                     id="availableFrom"
                     size={30}
+                    required
                   />
                 </div>
               </div>
@@ -180,7 +182,7 @@ class TransportForm extends React.Component {
             <div className="field-body">
               <div className="field">
                 <div className="control">
-                  <input className="input" name="vehicleCapacity" id="vehicleCapacity" size={30} />
+                  <input className="input" name="vehicleCapacity" id="vehicleCapacity" size={30} required />
                 </div>
               </div>
             </div>

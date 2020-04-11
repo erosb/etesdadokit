@@ -114,7 +114,7 @@ class RestaurantForm extends React.Component {
             <div className="field-body">
               <div className="field">
                 <div className="control">
-                  <input className="input" name="name" id="name" type="text" />
+                  <input className="input" name="name" id="name" type="text" required />
                 </div>
               </div>
             </div>
@@ -134,6 +134,7 @@ class RestaurantForm extends React.Component {
                     name="quantity"
                     min="50"
                     max="1000"
+                    required
                   />
                 </div>
               </div>
@@ -166,7 +167,7 @@ class RestaurantForm extends React.Component {
             <div className="field-body">
               <div className="field">
                 <div className="control">
-                  <input className="input" type="date" id="transportDate" name="transportDate" />
+                  <input className="input" type="date" id="transportDate" name="transportDate" required />
                 </div>
               </div>
             </div>

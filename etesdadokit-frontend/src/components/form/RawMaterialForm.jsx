@@ -153,6 +153,7 @@ class RawMaterialForm extends React.Component {
                       type="date"
                       id="offerAvailableDate"
                       name="offerAvailableDate"
+                      required
                     />
                   </div>
                 </div>

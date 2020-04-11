@@ -19,6 +19,8 @@ const SubFormContact = () => {
                 id="nameOrCompany"
                 savetype="contact"
                 size={30}
+                autoComplete="name"
+                required
               />
             </div>
           </div>
@@ -39,6 +41,8 @@ const SubFormContact = () => {
                 id="email"
                 savetype="contact"
                 size={30}
+                autoComplete="email"
+                required
               />
             </div>
           </div>
@@ -59,6 +63,8 @@ const SubFormContact = () => {
                 id="phoneNumber"
                 savetype="contact"
                 size={30}
+                autoComplete="tel"
+                required
               />
             </div>
           </div>
