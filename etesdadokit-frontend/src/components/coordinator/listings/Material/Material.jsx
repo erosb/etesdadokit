@@ -25,8 +25,8 @@ const Material = ({ details }) => {
 
         <hr />
         <div>Felajánló: {nameOrCompany}</div>
-        <div>Kiszállítás: {offerDate || 'ismeretlen'}</div>
-        <div>Fuvar: {transportRequest ? 'nem megoldott' : 'megoldott'}</div>
+        <div>Kiszállítás ideje: {offerDate || 'ismeretlen'}</div>
+        <div>Fuvar {transportRequest ? 'nem megoldott' : 'megoldott'}</div>
         <div className="card-operation">{transportRequest ? 'Fuvar szervezése' : 'Adatlap megtekintése'} ></div>
       </div>
     </Link>

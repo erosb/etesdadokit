@@ -1,5 +1,6 @@
 import React from 'react'
 import './Offering.css'
+import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
 
 /**
  * @param {
@@ -46,79 +47,81 @@ const OfferingDataSheet = ({ offering }) => {
     transportRequest || {}
 
   return (
-    <div className="offering-details">
-      <table className="desktop">
-        <tbody>
-          <tr>
-            <td className="offer-title">Felajánlás </td>
-            <td>
-              {quantity} db {name}
-            </td>
-          </tr>
-          <tr>
-            <td className="offer-title">Hozzávalók</td>
-            <td>{ingredients}</td>
-          </tr>
-          <tr>
-            <td className="offer-title">Felajánló neve</td>
-            <td>{nameOrCompany}</td>
-          </tr>
-          <tr>
-            <td className="offer-title">Kapcsolattartási adatok</td>
-            <td>
-              {email} / {phoneNumber}
-            </td>
-          </tr>
-          <tr>
-            <td className="offer-title">Cím</td>
-            <td>
-              {zip}, {city} {addressLineOne}, {addressLinetwo}
-            </td>
-          </tr>
-          <tr>
-            <td className="offer-title">Szállítás kért ideje</td>
-            <td>
-              {transportDate} {timeToPickUp}{' '}
-            </td>
-          </tr>
-          <tr>
-            <td className="offer-title">Szükséges szállítási kapacitás</td>
-            <td>{requestVehicleCapacity}</td>
-          </tr>
-          <tr>
-            <td className="offer-title">Hűtős kocsi</td>
-            <td>{requestRefrigeratorCar ? 'igen' : 'nem'}</td>
-          </tr>
-        </tbody>
-      </table>
+    <ErrorBoundary name="OfferingDataSheet">
+      <div className="offering-details">
+        <table className="desktop">
+          <tbody>
+            <tr>
+              <td className="offer-title">Felajánlás </td>
+              <td>
+                {quantity} db {name}
+              </td>
+            </tr>
+            <tr>
+              <td className="offer-title">Hozzávalók</td>
+              <td>{ingredients}</td>
+            </tr>
+            <tr>
+              <td className="offer-title">Felajánló neve</td>
+              <td>{nameOrCompany}</td>
+            </tr>
+            <tr>
+              <td className="offer-title">Kapcsolattartási adatok</td>
+              <td>
+                {email} / {phoneNumber}
+              </td>
+            </tr>
+            <tr>
+              <td className="offer-title">Cím</td>
+              <td>
+                {zip}, {city} {addressLineOne}, {addressLinetwo}
+              </td>
+            </tr>
+            <tr>
+              <td className="offer-title">Szállítás kért ideje</td>
+              <td>
+                {transportDate} {timeToPickUp}{' '}
+              </td>
+            </tr>
+            <tr>
+              <td className="offer-title">Szükséges szállítási kapacitás</td>
+              <td>{requestVehicleCapacity}</td>
+            </tr>
+            <tr>
+              <td className="offer-title">Hűtős kocsi</td>
+              <td>{requestRefrigeratorCar ? 'igen' : 'nem'}</td>
+            </tr>
+          </tbody>
+        </table>
 
-      <div className="mobile">
-        <div className="offer-title">Felajánlás </div>
-        <div>
-          {quantity} db {name}
+        <div className="mobile">
+          <div className="offer-title">Felajánlás </div>
+          <div>
+            {quantity} db {name}
+          </div>
+          <div className="offer-title">Hozzávalók</div>
+          <div>{ingredients}</div>
+          <div className="offer-title">Felajánló neve</div>
+          <div>{nameOrCompany}</div>
+          <div className="offer-title">Kapcsolattartási adatok</div>
+          <div>
+            {email} / {phoneNumber}
+          </div>
+          <div className="offer-title">Cím</div>
+          <div>
+            {zip}, {city} {addressLineOne}, {addressLinetwo}
+          </div>
+          <div className="offer-title">Szállítás kért ideje</div>
+          <div>
+            {transportDate} {timeToPickUp}{' '}
+          </div>
+          <div className="offer-title">Szükséges szállítási kapacitás</div>
+          <div>{requestVehicleCapacity}</div>
+          <div className="offer-title">Hűtős kocsi</div>
+          <div>{requestRefrigeratorCar ? 'igen' : 'nem'}</div>
         </div>
-        <div className="offer-title">Hozzávalók</div>
-        <div>{ingredients}</div>
-        <div className="offer-title">Felajánló neve</div>
-        <div>{nameOrCompany}</div>
-        <div className="offer-title">Kapcsolattartási adatok</div>
-        <div>
-          {email} / {phoneNumber}
-        </div>
-        <div className="offer-title">Cím</div>
-        <div>
-          {zip}, {city} {addressLineOne}, {addressLinetwo}
-        </div>
-        <div className="offer-title">Szállítás kért ideje</div>
-        <div>
-          {transportDate} {timeToPickUp}{' '}
-        </div>
-        <div className="offer-title">Szükséges szállítási kapacitás</div>
-        <div>{requestVehicleCapacity}</div>
-        <div className="offer-title">Hűtős kocsi</div>
-        <div>{requestRefrigeratorCar ? 'igen' : 'nem'}</div>
       </div>
-    </div>
+    </ErrorBoundary>
   )
 }
 

@@ -8,7 +8,7 @@ import Navigator from './components/static/Navigation'
 
 import PairLogistics from './components/coordinator/pairLogistics/PairLogistics'
 import Offering from './components/coordinator/pairLogistics/Offering'
-
+import MaterialOffering from './components/coordinator/pairLogistics/MaterialOffering'
 import TransportForm from './components/form/TransportForm'
 import RawMaterialForm from './components/form/RawMaterialForm'
 
@@ -63,6 +63,9 @@ class App extends Component {
                   </Route>
                   <Route path="/offer/food">
                     <Offering />
+                  </Route>
+                  <Route path="/offer/material">
+                    <MaterialOffering />
                   </Route>
                   <Route path="/thankyou">
                     <ThankYou />

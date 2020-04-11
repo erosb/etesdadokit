@@ -2,6 +2,7 @@
 import React from 'react'
 import Car from './Car'
 import './CarList.css'
+import ErrorBoundary from '../../../common/ErrorBoundary/ErrorBoundary'
 
 class CarListing extends React.Component {
   constructor(props) {
@@ -34,22 +35,24 @@ class CarListing extends React.Component {
     }
 
     return (
-      <div>
-        <table className="desktop">
-          <tbody>
-            <tr>
-              <th>Név/cégnév</th>
-              <th>Email</th>
-              <th>Telefon</th>
-              <th>Ráérés</th>
-              <th>Kapacitás</th>
-            </tr>
-            {Array.isArray(newArr) &&
-              newArr.map(car => <Car details={car} pairToFood={pairToFood} />)}
-          </tbody>
-        </table>
-        <div className="mobile">Mobil nézet</div>
-      </div>
+      <ErrorBoundary name="CarListing">
+        <div>
+          <table className="desktop">
+            <tbody>
+              <tr>
+                <th>Név/cégnév</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Ráérés</th>
+                <th>Kapacitás</th>
+              </tr>
+              {Array.isArray(newArr) &&
+                newArr.map(car => <Car details={car} pairToFood={pairToFood} />)}
+            </tbody>
+          </table>
+          <div className="mobile">Mobil nézet</div>
+        </div>
+      </ErrorBoundary>
     )
   }
 }

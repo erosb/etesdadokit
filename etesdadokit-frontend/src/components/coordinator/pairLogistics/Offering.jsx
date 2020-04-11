@@ -1,6 +1,7 @@
 import React from 'react'
 import CarListing from '../listings/Car/CarListing'
 import OfferingDataSheet from './OfferingDataSheet'
+import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
 
 class Offering extends React.Component {
   constructor(props) {
@@ -31,14 +32,16 @@ class Offering extends React.Component {
     }
 
     return (
-      <div>
-        {parsedOffering.name && (
-          <div>
-            <OfferingDataSheet offering={parsedOffering} />
-            {parsedOffering.transportRequest && <CarListing pairToFood={parsedOffering} />}
-          </div>
-        )}
-      </div>
+      <ErrorBoundary name="Offering">
+        <div>
+          {parsedOffering.name && (
+            <div>
+              <OfferingDataSheet offering={parsedOffering} />
+              {parsedOffering.transportRequest && <CarListing pairToFood={parsedOffering} />}
+            </div>
+          )}
+        </div>
+      </ErrorBoundary>
     )
   }
 }

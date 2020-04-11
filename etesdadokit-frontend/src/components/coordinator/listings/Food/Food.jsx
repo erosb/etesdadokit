@@ -37,7 +37,7 @@ const Food = ({ details }) => {
 
         <hr />
         <div>Felajánló: {nameOrCompany}</div>
-        <div>Kiszállítás: {transportDate} ({n})</div>
+        <div>Kiszállítás ideje: {transportDate} ({n})</div>
         <div>Fuvar {transportRequest ? 'nem megoldott' : 'megoldott'}</div>
         <div className="card-operation">{transportRequest ? 'Fuvar szervezése' : 'Adatlap megtekintése'} ></div>
       </div>
