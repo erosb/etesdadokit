@@ -1,6 +1,6 @@
 .food-box {
-    width: 400px;
-    padding: 10px;
+    width: 350px;
+    padding: 20px;
     margin: 20px;
 }
 
@@ -11,9 +11,29 @@
 }
 
 .need-transport{
-    border: 5px solid red;
+    background-color: rgb(245, 205, 130);
 }
 
 .no-transport-needed{
-    border: 5px solid green;
+    background-color: rgb(190, 245, 109);
+}
+
+.card-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-flex-item {
+    width: 175px;
+}
+
+.card-title{
+    font-size: 120%;
+    font-weight: bold;
+    padding-top: 25px;
+}
+
+.marker-img {
+   padding-left:80px;
+   padding-top:10px;
 }

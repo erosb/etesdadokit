@@ -3,6 +3,9 @@
   padding: 0;
   line-height: 1.6;
 }
+hr{
+ background-color:  black;
+}
 
 td {
   min-width: 200px;

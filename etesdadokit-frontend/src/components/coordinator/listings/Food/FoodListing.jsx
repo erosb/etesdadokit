@@ -45,7 +45,8 @@ class FoodListing extends React.Component {
 
     return (
       <div>
-        <div>Felajánlások</div>
+
+        <div className="need-space has-text-centered is-size-3 has-text-weight-bold">Felajánlások</div>
         <div>
           {Array.isArray(foodList) && foodList.map(food => <Food details={food} />)}
           {Array.isArray(materialList) &&
