@@ -2,6 +2,7 @@ package com.github.erosb.etesdadokit.feature.offer.material;
 
 import com.github.erosb.etesdadokit.common.address.Address;
 import com.github.erosb.etesdadokit.common.contact.Contact;
+import com.github.erosb.etesdadokit.feature.offer.TransportRequest;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,4 +24,9 @@ public class MaterialOfferResponse {
 
     private Contact contact;
 
+    private TransportRequest transportRequest;
+
+    public Long getId() {
+        return id;
+    }
 }

@@ -29,4 +29,8 @@ public class FoodOfferResponse {
     private Contact contact;
 
     private TransportRequest transportRequest;
+
+    public Long getId() {
+        return id;
+    }
 }

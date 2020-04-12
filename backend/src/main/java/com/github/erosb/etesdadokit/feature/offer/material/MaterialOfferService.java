@@ -10,4 +10,8 @@ public interface MaterialOfferService {
     List<MaterialOfferResponse> findAll();
 
     List<MaterialOfferResponse> listByDate(LocalDate day);
+
+    MaterialOfferResponse findById(Long id);
+
+    MaterialOfferResponse getById(Long id);
 }

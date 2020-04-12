@@ -63,4 +63,18 @@ public class MaterialOfferServiceImpl implements MaterialOfferService {
         }
         return repository.findByOfferDate(day).stream().map(materialOfferMapper::entityToResponse).collect(toList());
     }
+
+    @Override
+    public MaterialOfferResponse findById(Long id) {
+        return repository.findById(id)
+                .map(materialOfferMapper::entityToResponse)
+                .get();
+    }
+
+    @Override
+    public MaterialOfferResponse getById(Long id) {
+        return repository.findById(id)
+                .map(materialOfferMapper::entityToResponse)
+                .orElse(null);
+    }
 }
