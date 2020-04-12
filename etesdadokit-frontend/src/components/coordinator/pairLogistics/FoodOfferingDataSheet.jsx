@@ -32,7 +32,7 @@ import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
 offering
  */
 
-const OfferingDataSheet = ({ offering }) => {
+const FoodOfferingDataSheet = ({ offering }) => {
   const {
     name,
     quantity,
@@ -47,7 +47,7 @@ const OfferingDataSheet = ({ offering }) => {
     transportRequest || {}
 
   return (
-    <ErrorBoundary name="OfferingDataSheet">
+    <ErrorBoundary name="FoodOfferingDataSheet">
       <div className="offering-details">
         <table className="desktop">
           <tbody>
@@ -125,4 +125,4 @@ const OfferingDataSheet = ({ offering }) => {
   )
 }
 
-export default OfferingDataSheet
+export default FoodOfferingDataSheet

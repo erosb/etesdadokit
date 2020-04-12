@@ -1,6 +1,6 @@
 import React from 'react'
 import CarListing from '../listings/Car/CarListing'
-import OfferingDataSheet from './OfferingDataSheet'
+import MaterialOfferingDataSheet from './MaterialOfferingDataSheet'
 import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
 
 class MaterialOffering extends React.Component {
@@ -35,9 +35,9 @@ class MaterialOffering extends React.Component {
         return (
             <ErrorBoundary name="MaterialOffering">
                 <div>
-                    {parsedOffering.name && (
+                    {parsedOffering.ingredients && (
                         <div>
-                            <OfferingDataSheet offering={parsedOffering} />
+                            <MaterialOfferingDataSheet offering={parsedOffering} />
                             {parsedOffering.transportRequest && <CarListing pairToFood={parsedOffering} />}
                         </div>
                     )}

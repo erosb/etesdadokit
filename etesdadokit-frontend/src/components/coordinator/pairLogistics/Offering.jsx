@@ -1,6 +1,6 @@
 import React from 'react'
 import CarListing from '../listings/Car/CarListing'
-import OfferingDataSheet from './OfferingDataSheet'
+import FoodOfferingDataSheet from './FoodOfferingDataSheet'
 import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
 
 class Offering extends React.Component {
@@ -36,7 +36,7 @@ class Offering extends React.Component {
         <div>
           {parsedOffering.name && (
             <div>
-              <OfferingDataSheet offering={parsedOffering} />
+              <FoodOfferingDataSheet offering={parsedOffering} />
               {parsedOffering.transportRequest && <CarListing pairToFood={parsedOffering} />}
             </div>
           )}
