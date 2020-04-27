@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -79,5 +78,11 @@ public class FoodOfferServiceImpl implements FoodOfferService {
         } else {
             return foodOfferRepository.findByTransportDate(day).stream().map(foodOfferMapper::entityToResponse).collect(toList());
         }
+    }
+
+    @Override
+    public List<FoodOfferResponse> getFoodOffersByIngredient(String ingredient) {
+        return foodOfferRepository.findByIngredientsContainingIgnoreCase(ingredient).stream()
+                .map(foodOfferMapper::entityToResponse).collect(toList());
     }
 }

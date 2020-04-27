@@ -58,4 +58,10 @@ public class FoodOfferController {
         return ResponseEntity.ok(foodOfferService.getById(id));
     }
 
+    @GetMapping("/getByIngredient")
+    public ResponseEntity<List<FoodOfferResponse>> getFoodOffersByIngredient(@RequestBody String ingredient) {
+        return ResponseEntity.ok(foodOfferService.getFoodOffersByIngredient(ingredient));
+
+    }
+
 }

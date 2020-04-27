@@ -239,4 +239,29 @@ public class FoodOfferControllerTest {
         mockMvc.perform(get("/offer/food"))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.length()", equalTo(2)));
     }
+
+    @Test
+    void testFindByIngredient() throws Exception {
+        FoodOfferRequest offer1 = mapper.readerFor(FoodOfferRequest.class).readValue(
+                getClass().getResourceAsStream("/food-offer/testOk.json"));
+        offer1 = offer1.toBuilder().ingredients("pizza").build();
+
+        FoodOfferRequest offer2 = offer1.toBuilder().ingredients("salad").build();
+
+        mockMvc.perform(post("/offer/food/")
+                .content(mapper.writeValueAsString(offer1))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        mockMvc.perform(post("/offer/food/")
+                .content(mapper.writeValueAsString(offer2))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+
+        mockMvc.perform(get("/offer/food/getByIngredient")
+                .content("sala")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", equalTo(1)));
+    }
 }

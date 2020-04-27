@@ -9,5 +9,8 @@ public interface FoodOfferRepository extends JpaRepository<FoodOfferEntity, Long
 
     List<FoodOfferEntity> findByTransportDate(LocalDate day);
 
+    List<FoodOfferEntity> findByIngredientsContainingIgnoreCase(String ingredient);
+
+
 }
 

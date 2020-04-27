@@ -14,4 +14,6 @@ public interface FoodOfferService {
     FoodOfferResponse getById(Long id);
 
     List<FoodOfferResponse> listFoodOfferings(LocalDate day);
+
+    List<FoodOfferResponse> getFoodOffersByIngredient(String ingredient);
 }
